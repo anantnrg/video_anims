@@ -1,0 +1,146 @@
+{
+  "version": 0,
+  "timeEvents": [
+    {
+      "name": "start-variables",
+      "targetTime": 19.623429248411806
+    },
+    {
+      "name": "declare-var",
+      "targetTime": 24.881420703702318
+    },
+    {
+      "name": "give-var-name",
+      "targetTime": 40.22871266719599
+    },
+    {
+      "name": "init-to-value",
+      "targetTime": 50.2311633863508
+    },
+    {
+      "name": "print-var",
+      "targetTime": 74.04112065338093
+    },
+    {
+      "name": "add-braces",
+      "targetTime": 74.73958846572367
+    },
+    {
+      "name": "add-quotes",
+      "targetTime": 75.28958846572367
+    },
+    {
+      "name": "add-curly-braces",
+      "targetTime": 108.74995353503228
+    },
+    {
+      "name": "insert-x",
+      "targetTime": 121.91971758416565
+    },
+    {
+      "name": "finish-print",
+      "targetTime": 126.81021024055924
+    },
+    {
+      "name": "run",
+      "targetTime": 127.64493667482458
+    },
+    {
+      "name": "show-output",
+      "targetTime": 129.82808261059478
+    },
+    {
+      "name": "finish-output",
+      "targetTime": 132.01327146324132
+    },
+    {
+      "name": "start-mut-variable",
+      "targetTime": 132.56327146324134
+    },
+    {
+      "name": "put-incorrect-mut",
+      "targetTime": 141.476958225216
+    },
+    {
+      "name": "run-again",
+      "targetTime": 147.22843894940297
+    },
+    {
+      "name": "wont-compile",
+      "targetTime": 148.72435311565033
+    },
+    {
+      "name": "will-error",
+      "targetTime": 149.27435311565034
+    },
+    {
+      "name": "will-error-end",
+      "targetTime": 153.12413304586434
+    },
+    {
+      "name": "vars-are-imut",
+      "targetTime": 156.2283874859327
+    },
+    {
+      "name": "need-to-use-mut",
+      "targetTime": 174.99605715471947
+    },
+    {
+      "name": "make-x-mut",
+      "targetTime": 182.2347696484293
+    },
+    {
+      "name": "try-running-again",
+      "targetTime": 190.95049932728034
+    },
+    {
+      "name": "should-print-1",
+      "targetTime": 194.0795594292979
+    },
+    {
+      "name": "close-cargo",
+      "targetTime": 196.66066244819174
+    },
+    {
+      "name": "look-another-scenario",
+      "targetTime": 201.4611217139405
+    },
+    {
+      "name": "simple-enough",
+      "targetTime": 212.2378591743714
+    },
+    {
+      "name": "not-quite",
+      "targetTime": 215.039564970395
+    },
+    {
+      "name": "but-then-no-init-type",
+      "targetTime": 240.84335477678388
+    },
+    {
+      "name": "since-we-init",
+      "targetTime": 243.93249544748355
+    },
+    {
+      "name": "since-we-init-end",
+      "targetTime": 252.37771703607257
+    },
+    {
+      "name": "we-removed-init",
+      "targetTime": 253.6402821613965
+    },
+    {
+      "name": "could-be-anything",
+      "targetTime": 259.09273022362504
+    },
+    {
+      "name": "could-be-anything-end",
+      "targetTime": 275.2626395356346
+    },
+    {
+      "name": "types-start",
+      "targetTime": 280.1455172625133
+    }
+  ],
+  "seed": 2932385804
+}

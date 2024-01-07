@@ -1,0 +1,218 @@
+{
+  "version": 0,
+  "timeEvents": [
+    {
+      "name": "start-fn-code",
+      "targetTime": 0
+    },
+    {
+      "name": "define-fn",
+      "targetTime": 0.75
+    },
+    {
+      "name": "give-fn-name",
+      "targetTime": 1.5
+    },
+    {
+      "name": "put-brackets",
+      "targetTime": 2.25
+    },
+    {
+      "name": "put-braces",
+      "targetTime": 3
+    },
+    {
+      "name": "write-logic-in-brackets",
+      "targetTime": 4.5
+    },
+    {
+      "name": "find-area-comment",
+      "targetTime": 6
+    },
+    {
+      "name": "it-might-look-familiar",
+      "targetTime": 7.5
+    },
+    {
+      "name": "create-main-function",
+      "targetTime": 8.25
+    },
+    {
+      "name": "lets-get-back-to-writing",
+      "targetTime": 9
+    },
+    {
+      "name": "area-formula",
+      "targetTime": 10.5
+    },
+    {
+      "name": "find-area-comment-end",
+      "targetTime": 13.5
+    },
+    {
+      "name": "create-three-variables",
+      "targetTime": 15
+    },
+    {
+      "name": "set-l",
+      "targetTime": 20.25
+    },
+    {
+      "name": "set-b",
+      "targetTime": 21
+    },
+    {
+      "name": "set-h",
+      "targetTime": 21.75
+    },
+    {
+      "name": "create-volume-var",
+      "targetTime": 22.5
+    },
+    {
+      "name": "product-of",
+      "targetTime": 23.25
+    },
+    {
+      "name": "lets-print-it-out",
+      "targetTime": 24
+    },
+    {
+      "name": "if-we-run",
+      "targetTime": 27
+    },
+    {
+      "name": "lets-go-back-to-main",
+      "targetTime": 27.55
+    },
+    {
+      "name": "to-call-this-fn",
+      "targetTime": 28.1
+    },
+    {
+      "name": "put-braces-to-call",
+      "targetTime": 28.85
+    },
+    {
+      "name": "end-fn-code",
+      "targetTime": 34.03199583521607
+    },
+    {
+      "name": "lets-try-running",
+      "targetTime": 36.98863250545969
+    },
+    {
+      "name": "it-will-output",
+      "targetTime": 39.78380795592939
+    },
+    {
+      "name": "now-we-have-printed",
+      "targetTime": 47.132372246079974
+    },
+    {
+      "name": "so-to-define-type-l",
+      "targetTime": 50.788472466744636
+    },
+    {
+      "name": "then-we-need-to-set-type",
+      "targetTime": 53.6945726874093
+    },
+    {
+      "name": "now-we-can-repeat",
+      "targetTime": 57.73546249789747
+    },
+    {
+      "name": "then-delete-let-statements",
+      "targetTime": 64.90941044701502
+    },
+    {
+      "name": "lets-return-to-the-main-fn",
+      "targetTime": 69.51769505241495
+    },
+    {
+      "name": "pass-in-length",
+      "targetTime": 72.60640047816786
+    },
+    {
+      "name": "pass-in-breadth",
+      "targetTime": 75.51250069883253
+    },
+    {
+      "name": "pass-in-height",
+      "targetTime": 78.8725167554266
+    },
+    {
+      "name": "lets-go-back-to-term",
+      "targetTime": 79.6225167554266
+    },
+    {
+      "name": "it-will-output-49536",
+      "targetTime": 81.1225167554266
+    },
+    {
+      "name": "now-we-can-call-with-diff-dim",
+      "targetTime": 83.91513801710892
+    },
+    {
+      "name": "to-specify-put->",
+      "targetTime": 87.38259564422756
+    },
+    {
+      "name": "specify-the-output-type",
+      "targetTime": 91.19308528641213
+    },
+    {
+      "name": "use-the-return-keyword",
+      "targetTime": 93.47333010750441
+    },
+    {
+      "name": "put-var-name",
+      "targetTime": 97.50242615270214
+    },
+    {
+      "name": "remove-print-statement",
+      "targetTime": 101.53152219789987
+    },
+    {
+      "name": "remove-return-keyword",
+      "targetTime": 102.28152219789987
+    },
+    {
+      "name": "remove-var-declaration",
+      "targetTime": 104.34316061597897
+    },
+    {
+      "name": "remove-semicolon",
+      "targetTime": 106.84201184008444
+    },
+    {
+      "name": "lets-return-to-the-main-fn-once-more",
+      "targetTime": 107.59201184008444
+    },
+    {
+      "name": "create-variable-to-hold-return-value",
+      "targetTime": 111.27807587021627
+    },
+    {
+      "name": "put-equals",
+      "targetTime": 116.40020393047992
+    },
+    {
+      "name": "print-it-out-using-println",
+      "targetTime": 119.11766155759857
+    },
+    {
+      "name": "lets-go-back-to-term-once-more",
+      "targetTime": 123.02233199074358
+    },
+    {
+      "name": "output-will-be-same",
+      "targetTime": 126.9270024238886
+    },
+    {
+      "name": "thats-all-about-functions",
+      "targetTime": 130.95609846908633
+    }
+  ],
+  "seed": 2075680657
+}

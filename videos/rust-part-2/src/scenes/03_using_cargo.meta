@@ -1,0 +1,74 @@
+{
+  "version": 0,
+  "timeEvents": [
+    {
+      "name": "how-to-use-cargo",
+      "targetTime": 8.892812562153592
+    },
+    {
+      "name": "prompt-cargo",
+      "targetTime": 10.949207947456863
+    },
+    {
+      "name": "indicated-by",
+      "targetTime": 12.499207947456863
+    },
+    {
+      "name": "project-name",
+      "targetTime": 15.600303226481424
+    },
+    {
+      "name": "cargo-new-end",
+      "targetTime": 21.90993020613712
+    },
+    {
+      "name": "cd-project",
+      "targetTime": 31.589083416177175
+    },
+    {
+      "name": "cd-project-end",
+      "targetTime": 40.56827304171884
+    },
+    {
+      "name": "cargo-run",
+      "targetTime": 42.84801778442672
+    },
+    {
+      "name": "show-result",
+      "targetTime": 50.630021832303704
+    },
+    {
+      "name": "cargo-end",
+      "targetTime": 54.93751249663152
+    },
+    {
+      "name": "autogen-code",
+      "targetTime": 55.866203586074164
+    },
+    {
+      "name": "autogen-code-end",
+      "targetTime": 69.49934359501668
+    },
+    {
+      "name": "default-dir-structure",
+      "targetTime": 70.50464370129538
+    },
+    {
+      "name": "cargo-toml",
+      "targetTime": 77.33971628707566
+    },
+    {
+      "name": "cargo-toml-end",
+      "targetTime": 83.55918627188284
+    },
+    {
+      "name": "start-entry-point",
+      "targetTime": 91.47080421708685
+    },
+    {
+      "name": "end-entry-point",
+      "targetTime": 103.53374371707612
+    }
+  ],
+  "seed": 4193421042
+}

@@ -1,0 +1,130 @@
+{
+  "version": 0,
+  "timeEvents": [
+    {
+      "name": "use-types",
+      "targetTime": 3.4232503138649153
+    },
+    {
+      "name": "to-set-type",
+      "targetTime": 7.536075940484489
+    },
+    {
+      "name": "output-1",
+      "targetTime": 24.959618108154814
+    },
+    {
+      "name": "perform-arithmetic",
+      "targetTime": 36.899540282741455
+    },
+    {
+      "name": "set-x-16",
+      "targetTime": 42.85658473044939
+    },
+    {
+      "name": "set-x-x+4",
+      "targetTime": 49.19309531298889
+    },
+    {
+      "name": "what-this-will-do-1",
+      "targetTime": 55.529605895528384
+    },
+    {
+      "name": "output-20",
+      "targetTime": 64.68012689811971
+    },
+    {
+      "name": "try-subtraction",
+      "targetTime": 70.08958017037416
+    },
+    {
+      "name": "what-this-will-do-2",
+      "targetTime": 76.71111680304324
+    },
+    {
+      "name": "what-this-will-do-2-end",
+      "targetTime": 85.84088267685249
+    },
+    {
+      "name": "output-12",
+      "targetTime": 87.54088267685249
+    },
+    {
+      "name": "remove-mut",
+      "targetTime": 93.577393259392
+    },
+    {
+      "name": "remove-mutate-x",
+      "targetTime": 99.4578621617242
+    },
+    {
+      "name": "change-x",
+      "targetTime": 107.1624977848856
+    },
+    {
+      "name": "define-y",
+      "targetTime": 111.60890416690684
+    },
+    {
+      "name": "define-z",
+      "targetTime": 118.08792777451113
+    },
+    {
+      "name": "set-z",
+      "targetTime": 118.83792777451113
+    },
+    {
+      "name": "type-y",
+      "targetTime": 127.7331260894563
+    },
+    {
+      "name": "type-modulus",
+      "targetTime": 129.481652510447
+    },
+    {
+      "name": "type-x",
+      "targetTime": 131.31475150093934
+    },
+    {
+      "name": "change-print-var",
+      "targetTime": 137.3947386383622
+    },
+    {
+      "name": "what-this-will-do",
+      "targetTime": 141.3085277948004
+    },
+    {
+      "name": "with-value-of-x",
+      "targetTime": 144.6237622459665
+    },
+    {
+      "name": "will-output",
+      "targetTime": 147.8237622459665
+    },
+    {
+      "name": "replace",
+      "targetTime": 156.0834760195166
+    },
+    {
+      "name": "divide-value-of-y",
+      "targetTime": 159.68373652081226
+    },
+    {
+      "name": "with-value-of-new-x",
+      "targetTime": 162.59993450179695
+    },
+    {
+      "name": "which-is-32",
+      "targetTime": 165.4876298777687
+    },
+    {
+      "name": "which-will-output",
+      "targetTime": 168.9352210532222
+    },
+    {
+      "name": "finish",
+      "targetTime": 171.66783827880522
+    }
+  ],
+  "seed": 1787337530
+}

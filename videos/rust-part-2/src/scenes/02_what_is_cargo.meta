@@ -1,0 +1,22 @@
+{
+  "version": 0,
+  "timeEvents": [
+    {
+      "name": "whats-cargo",
+      "targetTime": 5.82773141722126
+    },
+    {
+      "name": "build-tool",
+      "targetTime": 9.525649344614672
+    },
+    {
+      "name": "pacman",
+      "targetTime": 11.375649344614674
+    },
+    {
+      "name": "whats-cargo-end",
+      "targetTime": 30.97583919413914
+    }
+  ],
+  "seed": 925411922
+}

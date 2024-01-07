@@ -1,0 +1,38 @@
+{
+  "version": 0,
+  "timeEvents": [
+    {
+      "name": "create-file-start",
+      "targetTime": 5.971669361863469
+    },
+    {
+      "name": "create-file-end",
+      "targetTime": 9.609875517570014
+    },
+    {
+      "name": "write-code-start",
+      "targetTime": 10.330494642194687
+    },
+    {
+      "name": "write-code-end",
+      "targetTime": 15.043601283036653
+    },
+    {
+      "name": "compile-code-start",
+      "targetTime": 15.593601283036653
+    },
+    {
+      "name": "compile-code-end",
+      "targetTime": 17.897490989637962
+    },
+    {
+      "name": "run-code-start",
+      "targetTime": 18.447490989637963
+    },
+    {
+      "name": "run-code-end",
+      "targetTime": 22.0815499887609
+    }
+  ],
+  "seed": 972458983
+}
