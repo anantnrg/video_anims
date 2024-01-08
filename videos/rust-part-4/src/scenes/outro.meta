@@ -3,15 +3,15 @@
   "timeEvents": [
     {
       "name": "start-outro",
-      "targetTime": 7.1062619304364505
+      "targetTime": 7.700686987520038
     },
     {
       "name": "thanks-for-watching",
-      "targetTime": 10.596033530644771
+      "targetTime": 11.190458587728358
     },
     {
       "name": "finish-outro",
-      "targetTime": 26.1444119443702
+      "targetTime": 26.73883700145379
     }
   ],
   "seed": 3238496156

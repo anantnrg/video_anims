@@ -1,0 +1,62 @@
+{
+  "version": 0,
+  "timeEvents": [
+    {
+      "name": "what-is-infinite-loop",
+      "targetTime": 1.1228028856023342
+    },
+    {
+      "name": "how-to-define-loop-in-rust",
+      "targetTime": 4.317789218705178
+    },
+    {
+      "name": "to-create-infinite-loop-use-keyword",
+      "targetTime": 5.617789218705178
+    },
+    {
+      "name": "put-a-pair-of-curly-braces-1",
+      "targetTime": 6.367789218705178
+    },
+    {
+      "name": "need-to-put-our-code-1",
+      "targetTime": 7.117789218705178
+    },
+    {
+      "name": "lets-print-out-string-1",
+      "targetTime": 7.867789218705178
+    },
+    {
+      "name": "lets-try-running-code-1",
+      "targetTime": 10.867789218705177
+    },
+    {
+      "name": "it-will-print-our-string-infinitely",
+      "targetTime": 12.367789218705177
+    },
+    {
+      "name": "to-quit-press-ctrl-c",
+      "targetTime": 13.36778921870519
+    },
+    {
+      "name": "lets-go-back-to-our-loop-1",
+      "targetTime": 15.075474032895414
+    },
+    {
+      "name": "now-after-the-println-statement-1",
+      "targetTime": 16.575474032895414
+    },
+    {
+      "name": "lets-try-running-code-2",
+      "targetTime": 17.325474032895414
+    },
+    {
+      "name": "it-will-print-our-string-once",
+      "targetTime": 18.825474032895414
+    },
+    {
+      "name": "thats-all-bout-infinite-loops",
+      "targetTime": 21.127583904169228
+    }
+  ],
+  "seed": 1568218595
+}

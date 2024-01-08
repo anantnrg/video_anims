@@ -1,0 +1,26 @@
+{
+  "version": 0,
+  "timeEvents": [
+    {
+      "name": "first-we-talk-about-infinite-loop",
+      "targetTime": 0.6567390593844603
+    },
+    {
+      "name": "then-we-look-at-while",
+      "targetTime": 2.0336263433423545
+    },
+    {
+      "name": "next-we-learn-for-loop",
+      "targetTime": 3.4702171781533813
+    },
+    {
+      "name": "finally-if-statement",
+      "targetTime": 4.81725268668471
+    },
+    {
+      "name": "finish-diff-statements",
+      "targetTime": 6.283695296922303
+    }
+  ],
+  "seed": 568876867
+}

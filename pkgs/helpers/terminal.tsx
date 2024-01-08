@@ -8,6 +8,7 @@ interface TerminalWindowProps {
     scale: number;
     command: string;
     output: string;
+    cmdRef: Reference<Txt>;
 }
 
 export const TerminalWindow = (props: TerminalWindowProps) => {
@@ -97,6 +98,7 @@ export const TerminalWindow = (props: TerminalWindowProps) => {
                 paddingLeft={20}
                 gap={20}
                 marginTop={20}
+                ref={props.cmdRef}
             >
                 <Txt
                     fontFamily={"JetBrains Mono"}
@@ -127,6 +129,7 @@ export const TerminalWindow = (props: TerminalWindowProps) => {
                 justifyContent={"start"}
                 paddingLeft={20}
                 gap={20}
+                clip
             >
                 <Txt
                     fontFamily={"JetBrains Mono"}
