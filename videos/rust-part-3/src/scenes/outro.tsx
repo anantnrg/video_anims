@@ -1,5 +1,5 @@
 import { makeScene2D, Circle, Txt, Img, Rect, Line, Icon, Latex, CubicBezier, QuadBezier } from '@motion-canvas/2d';
-import { all, tween, createRef, map, easeInSine, chain, easeInOutSine, waitFor, slideTransition, Direction, easeOutSine, easeInBounce, createSignal, Vector2, waitUntil, easeOutBack, easeInOutCubic, easeInQuad } from '@motion-canvas/core';
+import { all, tween, createRef, map, easeInSine, chain, easeInOutSine, waitFor, slideTransition, Direction, easeOutSine, easeInBounce, createSignal, Vector2, waitUntil, easeOutBack, easeInOutCubic, easeInQuad, easeInOutQuad } from '@motion-canvas/core';
 import { CodeBlock, insert, lines, range, remove } from '@motion-canvas/2d/lib/components/CodeBlock';
 import ferrisImg from '../assets/ferris.svg';
 import { Copyright } from 'helpers/copyright';
@@ -147,5 +147,103 @@ export default makeScene2D(function* (view) {
         }),
     );
 
-    yield* waitUntil("finish-outro")
+    yield* all(
+        sub_curve().y(180, 1, easeInOutCubic),
+        sub_curve_text().y(380, 1, easeInOutCubic)
+    );
+
+    yield* all(
+        sub_curve().y(200, 1, easeInOutCubic),
+        sub_curve_text().y(400, 1, easeInOutCubic)
+    );
+
+    yield* all(
+        sub_curve().y(180, 1, easeInOutCubic),
+        sub_curve_text().y(380, 1, easeInOutCubic)
+    );
+
+    yield* all(
+        sub_curve().y(200, 1, easeInOutCubic),
+        sub_curve_text().y(400, 1, easeInOutCubic)
+    );
+
+    yield* all(
+        sub_curve().y(180, 1, easeInOutCubic),
+        sub_curve_text().y(380, 1, easeInOutCubic)
+    );
+
+    yield* all(
+        sub_curve().y(200, 1, easeInOutCubic),
+        sub_curve_text().y(400, 1, easeInOutCubic)
+    );
+
+    yield* all(
+        sub_curve().y(180, 1, easeInOutCubic),
+        sub_curve_text().y(380, 1, easeInOutCubic)
+    );
+
+    yield* all(
+        sub_curve().y(200, 1, easeInOutCubic),
+        sub_curve_text().y(400, 1, easeInOutCubic)
+    );
+
+    yield* all(
+        sub_curve().y(180, 1, easeInOutCubic),
+        sub_curve_text().y(380, 1, easeInOutCubic)
+    );
+
+    yield* all(
+        sub_curve().y(200, 1, easeInOutCubic),
+        sub_curve_text().y(400, 1, easeInOutCubic)
+    );
+
+    yield* all(
+        sub_curve().y(180, 1, easeInOutCubic),
+        sub_curve_text().y(380, 1, easeInOutCubic)
+    );
+
+    yield* all(
+        sub_curve().y(200, 1, easeInOutCubic),
+        sub_curve_text().y(400, 1, easeInOutCubic)
+    );
+
+    yield* all(
+        sub_curve().y(180, 1, easeInOutCubic),
+        sub_curve_text().y(380, 1, easeInOutCubic)
+    );
+
+    yield* all(
+        sub_curve().y(200, 1, easeInOutCubic),
+        sub_curve_text().y(400, 1, easeInOutCubic)
+    );
+
+    yield* all(
+        sub_curve().y(180, 1, easeInOutCubic),
+        sub_curve_text().y(380, 1, easeInOutCubic)
+    );
+
+    yield* all(
+        sub_curve().y(200, 1, easeInOutCubic),
+        sub_curve_text().y(400, 1, easeInOutCubic)
+    );
+
+    yield* all(
+        sub_curve().y(180, 1, easeInOutCubic),
+        sub_curve_text().y(380, 1, easeInOutCubic)
+    );
+
+    yield* all(
+        sub_curve().y(200, 1, easeInOutCubic),
+        sub_curve_text().y(400, 1, easeInOutCubic)
+    );
+
+    yield* all(
+        sub_curve().y(180, 1, easeInOutCubic),
+        sub_curve_text().y(380, 1, easeInOutCubic)
+    );
+
+    yield* all(
+        sub_curve().y(200, 1, easeInOutCubic),
+        sub_curve_text().y(400, 1, easeInOutCubic)
+    );
 });

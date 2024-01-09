@@ -287,20 +287,20 @@ export default makeScene2D(function* (view) {
     closeWindowScale(cargo_run),
     openWindowScale(code_block_rect_ref),
     waitUntil("to-specify-put->"),
-    codeblock().edit(0.75)`fn get_cuboid_volume(l: i32, b: i32, h: i32)${insert(" ->")} {\n    let volume = l * b * h;\n\n    println!("{}", volume);\n\}`,
+    codeblock().edit(0.75)`fn get_cuboid_volume(l: i32, b: i32, h: i32)${insert(" ->")} {\n    let volume = l * b * h;\n    println!("{}", volume);\n\}`,
     waitUntil("specify-the-output-type"),
-    codeblock().edit(0.75)`fn get_cuboid_volume(l: i32, b: i32, h: i32) ->${insert(" i32")} {\n    let volume = l * b * h;\n\n    println!("{}", volume);\n\}`,
+    codeblock().edit(0.75)`fn get_cuboid_volume(l: i32, b: i32, h: i32) ->${insert(" i32")} {\n    let volume = l * b * h;\n    println!("{}", volume);\n\}`,
   );
 
   yield codeblock().selection(lines(0, Infinity));
 
   yield* chain(
     waitUntil("use-the-return-keyword"),
-    codeblock().edit(0.75)`fn get_cuboid_volume(l: i32, b: i32, h: i32) -> i32 {\n    let volume = l * b * h;\n\n    println!("{}", volume);\n${insert("    return\n")}\}`,
+    codeblock().edit(0.75)`fn get_cuboid_volume(l: i32, b: i32, h: i32) -> i32 {\n    let volume = l * b * h;\n    println!("{}", volume);\n${insert("    return\n")}\}`,
     waitUntil("put-var-name"),
-    codeblock().edit(0.75)`fn get_cuboid_volume(l: i32, b: i32, h: i32) -> i32 {\n    let volume = l * b * h;\n\n    println!("{}", volume);\n    return${insert(" volume;")}\n\}`,
+    codeblock().edit(0.75)`fn get_cuboid_volume(l: i32, b: i32, h: i32) -> i32 {\n    let volume = l * b * h;\n    println!("{}", volume);\n    return${insert(" volume;")}\n\}`,
     waitUntil("remove-print-statement"),
-    codeblock().edit(0.75)`fn get_cuboid_volume(l: i32, b: i32, h: i32) -> i32 {\n    let volume = l * b * h;\n${remove('\n    println!("{}", volume);\n')}    return volume;\n\}`,
+    codeblock().edit(0.75)`fn get_cuboid_volume(l: i32, b: i32, h: i32) -> i32 {\n    let volume = l * b * h;\n${remove('    println!("{}", volume);\n')}    return volume;\n\}`,
   );
 
   yield codeblock().selection(lines(0, Infinity));
