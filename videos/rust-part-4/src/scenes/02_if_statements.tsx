@@ -380,4 +380,21 @@ export default makeScene2D(function* (view) {
     yield* waitUntil("lets-do-one-more-thing");
     yield* closeWindowScale(cargo_run);
     yield* openWindowScale(code_block_rect_ref);
+    yield* waitUntil("use-if-else-statement");
+    yield* codeblock().edit(0.75)`fn main() {\n    let x = 2048;\n    if x % 64 == 0 {\n        println!("x is a multiple of 64");\n    \}${insert(" else if")} else {\n        println!("x is NOT a multiple of 64");\n    \}\n}`;
+    yield* waitUntil("then-pass-in-condition");
+    yield* codeblock().edit(0.75)`fn main() {\n    let x = 2048;\n    if x % 64 == 0 {\n        println!("x is a multiple of 64");\n    \} else if${insert(" x % 70 == 0")} else {\n        println!("x is NOT a multiple of 64");\n    \}\n}`;
+    yield* waitUntil("finally-open-a-new-pair-of-curly-braces");
+    yield* codeblock().edit(0.75)`fn main() {\n    let x = 2048;\n    if x % 64 == 0 {\n        println!("x is a multiple of 64");\n    \} else if x % 70 == 0${insert(" {\n\n    }")} else {\n        println!("x is NOT a multiple of 64");\n    \}\n}`;
+    yield* waitUntil("again-ill-just-print-out");
+    yield* codeblock().edit(0.75)`fn main() {\n    let x = 2048;\n    if x % 64 == 0 {\n        println!("x is a multiple of 64");\n    \} else if x % 70 == 0 {\n${insert("        println!();")}\n    } else {\n        println!("x is NOT a multiple of 64");\n    \}\n}`;
+    yield* codeblock().edit(0.75)`fn main() {\n    let x = 2048;\n    if x % 64 == 0 {\n        println!("x is a multiple of 64");\n    \} else if x % 70 == 0 {\n        println!(${insert('"x is a multiple of 70 but not 64"')});\n    } else {\n        println!("x is NOT a multiple of 64");\n    \}\n}`;
+    yield* waitUntil("lets-run-code-once-more");
+    yield* closeWindowScale(code_block_rect_ref);
+    yield* cargo_run().width(800)
+    yield* cargo_run_result().text("", 0, easeInOutQuad);
+    yield* openWindowScale(cargo_run);
+    yield* cargo_run_result().text("x is a multiple of 70 but not 64", 0.55, easeInOutQuad);
+    yield* waitUntil("that-sums-up-if-statements");
+    yield* closeWindowScale(cargo_run);
 });

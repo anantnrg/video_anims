@@ -103,11 +103,35 @@
     },
     {
       "name": "lets-run-code-again-again",
-      "targetTime": 40.390544613562
+      "targetTime": 41.390544613562
     },
     {
       "name": "lets-do-one-more-thing",
       "targetTime": 43.440544613562
+    },
+    {
+      "name": "use-if-else-statement",
+      "targetTime": 44.940544613562
+    },
+    {
+      "name": "then-pass-in-condition",
+      "targetTime": 45.690544613562
+    },
+    {
+      "name": "finally-open-a-new-pair-of-curly-braces",
+      "targetTime": 47.06723793434161
+    },
+    {
+      "name": "again-ill-just-print-out",
+      "targetTime": 47.81723793434161
+    },
+    {
+      "name": "lets-run-code-once-more",
+      "targetTime": 49.31723793434161
+    },
+    {
+      "name": "that-sums-up-if-statements",
+      "targetTime": 51.523911264536515
     }
   ],
   "seed": 2699494555

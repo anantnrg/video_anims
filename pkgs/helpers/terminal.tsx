@@ -54,7 +54,7 @@ export const TerminalWindow = (props: TerminalWindowProps) => {
             fill={"1e1e2e"}
             radius={15}
             minWidth={700}
-            maxWidth={1400}
+            maxWidth={1600}
             minHeight={450}
             maxHeight={700}
             ref={props.rectRef}

@@ -74,7 +74,7 @@ export default makeScene2D(function* (view) {
             fontSize={38}
             tabTitle={'main.rs'}
             lang='rust'
-            code={''}
+            code={'fn main() {\n\n}'}
         />
     );
 
@@ -90,16 +90,16 @@ export default makeScene2D(function* (view) {
         }),
         openWindowScale(code_block_rect_ref),
         waitUntil("to-create-infinite-loop-use-keyword"),
-        codeblock().edit(0.75)`${insert("loop")}`,
+        codeblock().edit(0.75)`fn main() {\n${insert("    loop")}\n}`,
         waitUntil("put-a-pair-of-curly-braces-1"),
-        codeblock().edit(0.75)`loop${insert(" {}")}`,
+        codeblock().edit(0.75)`fn main() {\n    loop${insert(" {}")}\n}`,
         waitUntil("need-to-put-our-code-1"),
-        codeblock().edit(0.75)`loop {${insert("\n\n")}\}`,
+        codeblock().edit(0.75)`fn main() {\n    loop {${insert("\n\n    ")}\}\n}`,
         waitUntil("lets-print-out-string-1"),
-        codeblock().edit(0.75)`loop {\n${insert("    println!")}\n\}`,
-        codeblock().edit(0.75)`loop {\n    println!${insert("();")}\n\}`,
-        codeblock().edit(0.75)`loop {\n    println!(${insert('""')});\n\}`,
-        codeblock().edit(0.75)`loop {\n    println!("${insert('This prints forever!')}");\n\}`,
+        codeblock().edit(0.75)`fn main() {\n    loop {\n${insert("        println!")}\n    \}\n}`,
+        codeblock().edit(0.75)`fn main() {\n    loop {\n        println!${insert("();")}\n    \}\n}`,
+        codeblock().edit(0.75)`fn main() {\n    loop {\n        println!(${insert('""')});\n    \}\n}`,
+        codeblock().edit(0.75)`fn main() {\n    loop {\n        println!("${insert('This prints forever!')}");\n    \}\n}`,
     );
 
     yield* codeblock().selection(lines(0, Infinity));
@@ -122,7 +122,7 @@ export default makeScene2D(function* (view) {
         ),
         openWindowScale(code_block_rect_ref),
         waitUntil("now-after-the-println-statement-1"),
-        codeblock().edit(0.75)`loop {\n    println!("This prints forever!");\n${insert('    break;\n')}\}`,
+        codeblock().edit(0.75)`fn main() {\n    loop {\n        println!("This prints forever!");\n${insert('        break;\n')}    \}\n}`,
         waitUntil("lets-try-running-code-2"),
         cargo_run_result().text("This prints forever!", 0),
         cargo_run_result().opacity(0, 0),

@@ -22,7 +22,7 @@ export const CustomCodeBlock = (props: CustomCodeBlockProps) => (
         minWidth={700}
         maxWidth={1700}
         minHeight={450}
-        maxHeight={800}
+        maxHeight={900}
         ref={props.rectRef}
         scale={props.scale}
         clip

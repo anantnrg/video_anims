@@ -60,7 +60,7 @@ export default makeScene2D(function* (view) {
             height={100}
             ref={while_loop_button_ref}
             scale={0}
-            text='While Loop'
+            text='While(True)'
             x={0}
             y={0}
             textRef={null}
@@ -89,11 +89,10 @@ export default makeScene2D(function* (view) {
             stroke={Colors.red}
             points={[
                 Vector2.zero,
-                Vector2.up.scale(150)
+                [0, 0]
             ]}
             arrowSize={16}
-            y={-270}
-            opacity={0}
+            y={-230}
             ref={value_to_loop_arrow_ref}
         />
     );
@@ -105,11 +104,10 @@ export default makeScene2D(function* (view) {
             stroke={Colors.green}
             points={[
                 Vector2.zero,
-                Vector2.up.scale(150)
+                [0, 0]
             ]}
             arrowSize={16}
-            y={50}
-            opacity={0}
+            y={70}
             ref={loop_to_function_arrow_ref}
         />
     );
@@ -144,7 +142,7 @@ export default makeScene2D(function* (view) {
             fontSize={38}
             tabTitle={'main.rs'}
             lang='rust'
-            code={''}
+            code={'fn main() {\n\n}'}
         />
     );
 
@@ -154,18 +152,18 @@ export default makeScene2D(function* (view) {
     yield* waitUntil("lets-say-we-have-a-var");
     yield* openWindowScale(value_button_ref);
 
-    yield* all(
-        value_to_loop_arrow_ref().opacity(1, 0.55),
-        value_to_loop_arrow_ref().y(-230, 0.55)
-    );
+    yield* value_to_loop_arrow_ref().points([
+        Vector2.zero,
+        [0, 150]
+    ], 0.75, easeInOutQuad);
 
     yield* waitUntil("performs-associated-function");
     yield* openWindowScale(function_button_ref);
 
-    yield* all(
-        loop_to_function_arrow_ref().opacity(1, 0.55),
-        loop_to_function_arrow_ref().y(80, 0.55)
-    );
+    yield* loop_to_function_arrow_ref().points([
+        Vector2.zero,
+        [0, 150]
+    ], 0.75, easeInOutQuad);
 
     yield* waitUntil("if-the-value-becomes-false");
     yield* value_text_ref().text("False", 0.5)
@@ -184,27 +182,27 @@ export default makeScene2D(function* (view) {
     yield* waitUntil("lets-see-how-we-can-create-while-loop");
     yield* openWindowScale(code_block_rect_ref);
     yield* waitUntil("first-we-need-to-create-mutable-var-x");
-    yield* codeblock().edit(0.75)`${insert("let mut x;")}`;
+    yield* codeblock().edit(0.75)`fn main() {\n    ${insert("let mut x;")}\n}`;
     yield* waitUntil("set-x-to-0");
-    yield* codeblock().edit(0.75)`let mut x${insert(" = 0")};`;
+    yield* codeblock().edit(0.75)`fn main() {\n    let mut x${insert(" = 0")};\n}`;
     yield* waitUntil("define-while-loop");
-    yield* codeblock().edit(0.75)`let mut x = 0;${insert("\n\nwhile")}`;
+    yield* codeblock().edit(0.75)`fn main() {\n    let mut x = 0;${insert("\n    while")}\n}`;
     yield* waitUntil("need-condition-type-x");
-    yield* codeblock().edit(0.75)`let mut x = 0;\n\nwhile${insert(" x")}`;
+    yield* codeblock().edit(0.75)`fn main() {\n    let mut x = 0;\n    while${insert(" x")}\n}`;
     yield* waitUntil("put-left-angle-bracket");
-    yield* codeblock().edit(0.75)`let mut x = 0;\n\nwhile x${insert(" <")}`;
+    yield* codeblock().edit(0.75)`fn main() {\n    let mut x = 0;\n    while x${insert(" <")}\n}`;
     yield* waitUntil("put-equal-sign");
-    yield* codeblock().edit(0.75)`let mut x = 0;\n\nwhile x <${insert("=")}`;
+    yield* codeblock().edit(0.75)`fn main() {\n    let mut x = 0;\n    while x <${insert("=")}\n}`;
     yield* waitUntil("put-ten");
-    yield* codeblock().edit(0.75)`let mut x = 0;\n\nwhile x <=${insert(" 10")}`;
+    yield* codeblock().edit(0.75)`fn main() {\n    let mut x = 0;\n    while x <=${insert(" 10")}\n}`;
     yield* waitUntil("put-code-inside-curly-braces");
-    yield* codeblock().edit(0.75)`let mut x = 0;\n\nwhile x <= 10${insert(" {\n\n}")}`;
+    yield* codeblock().edit(0.75)`fn main() {\n    let mut x = 0;\n    while x <= 10${insert(" {\n\n    }")}\n}`;
     yield* waitUntil("we-can-use-println-macro");
-    yield* codeblock().edit(0.75)`let mut x = 0;\n\nwhile x <= 10 {\n${insert("    println!();")}\n\}`;
-    yield* codeblock().edit(0.75)`let mut x = 0;\n\nwhile x <= 10 {\n    println!(${insert('"{}"')});\n\}`;
-    yield* codeblock().edit(0.75)`let mut x = 0;\n\nwhile x <= 10 {\n    println!("{}"${insert(', x')});\n\}`;
+    yield* codeblock().edit(0.75)`fn main() {\n    let mut x = 0;\n    while x <= 10 {\n${insert("        println!();")}\n    \}\n}`;
+    yield* codeblock().edit(0.75)`fn main() {\n    let mut x = 0;\n    while x <= 10 {\n        println!(${insert('"{}"')});\n    \}\n}`;
+    yield* codeblock().edit(0.75)`fn main() {\n    let mut x = 0;\n    while x <= 10 {\n        println!("{}"${insert(', x')});\n    \}\n}`;
     yield* waitUntil("mutate-and-increment-x");
-    yield* codeblock().edit(0.75)`let mut x = 0;\n\nwhile x <= 10 {\n    println!("{}", x);${insert('\n    x += 1;')}\n\}`;
+    yield* codeblock().edit(0.75)`fn main() {\n    let mut x = 0;\n    while x <= 10 {\n        println!("{}", x);${insert('\n        x += 1;')}\n    \}\n}`;
     yield* waitFor(1);
     yield* codeblock().selection(lines(0, Infinity));
     yield* waitUntil("lets-try-running-code-2");

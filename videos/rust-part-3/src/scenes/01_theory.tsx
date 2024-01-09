@@ -1,5 +1,5 @@
 import { makeScene2D, Circle, Txt, Img, Rect, Line, Icon, Latex } from '@motion-canvas/2d';
-import { all, tween, createRef, map, easeInSine, chain, easeInOutSine, waitFor, slideTransition, Direction, easeOutSine, easeInBounce, createSignal, Vector2, waitUntil, easeOutBack } from '@motion-canvas/core';
+import { all, tween, createRef, map, easeInSine, chain, easeInOutSine, waitFor, slideTransition, Direction, easeOutSine, easeInBounce, createSignal, Vector2, waitUntil, easeOutBack, easeInOutQuad } from '@motion-canvas/core';
 import { CodeBlock, insert, lines, range, remove } from '@motion-canvas/2d/lib/components/CodeBlock';
 import ferrisImg from '../assets/ferris.svg';
 import { Copyright } from 'helpers/copyright';
@@ -125,13 +125,12 @@ export default makeScene2D(function* (view) {
       stroke="#a6e3a1"
       startArrow
       points={[
+        [0, 0],
         Vector2.zero,
-        Vector2.left.scale(200)
       ]}
       arrowSize={20}
       ref={inputs_line_ref}
-      x={-350}
-      opacity={0}
+      x={-440}
     />
   );
 
@@ -142,12 +141,11 @@ export default makeScene2D(function* (view) {
       startArrow
       points={[
         Vector2.zero,
-        Vector2.left.scale(200)
+        [0, 0]
       ]}
       arrowSize={20}
       ref={outputs_line_ref}
-      x={350}
-      opacity={0}
+      x={250}
     />
   );
 
@@ -212,10 +210,10 @@ export default makeScene2D(function* (view) {
       input_data_ref().opacity(map(1, 0, easeInSine(v)))
       input_data_ref().y(map(-200, -80, easeInSine(v)))
     }),
-    tween(0.75, v => {
-      inputs_line_ref().opacity(map(0, 1, easeOutSine(v)))
-      inputs_line_ref().x(map(-350, -250, easeOutSine(v)))
-    }),
+    inputs_line_ref().points([
+      [200, 0],
+      Vector2.zero,
+    ], 0.75, easeInOutQuad),
     waitUntil("performs-task"),
     tween(0.35, v => {
       function_working_ref().opacity(map(0, 1, easeOutBack(v)))
@@ -227,10 +225,10 @@ export default makeScene2D(function* (view) {
     tween(0.35, v => {
       function_working_ref().opacity(map(1, 0, easeOutBack(v)))
     }),
-    tween(0.55, v => {
-      outputs_line_ref().opacity(map(0, 1, easeOutSine(v)))
-      outputs_line_ref().x(map(350, 450, easeOutSine(v)))
-    }),
+    outputs_line_ref().points([
+      [200, 0],
+      Vector2.zero,
+    ], 0.75, easeInOutQuad),
     waitUntil("gives-output"),
 
     tween(0.55, v => {

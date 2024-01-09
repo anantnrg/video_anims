@@ -84,6 +84,10 @@
     {
       "name": "now-lets-try-running-this-code",
       "targetTime": 21.9
+    },
+    {
+      "name": "thats-all-about-for-loops",
+      "targetTime": 26.018957745347343
     }
   ],
   "seed": 1675598955
