@@ -5,6 +5,7 @@ import ferrisImg from '../assets/ferris.svg';
 import { Copyright } from 'helpers/copyright';
 import { Button } from 'helpers/button';
 import { openWindowScale, closeWindowScale, textAppear, textDisappear } from 'helpers/animations';
+import { Colors } from 'helpers/styles';
 
 export default makeScene2D(function* (view) {
     const infinite_loop_rect_ref = createRef<Rect>();
@@ -35,48 +36,52 @@ export default makeScene2D(function* (view) {
             gap={100}
         >
             <Button
-                text="Infinite Loops"
+                text="If/Else Statements"
                 fontFamily='JetBrains Mono'
                 fontSize={36}
                 ref={infinite_loop_rect_ref}
                 height={120}
-                color='f38ba8'
+                color={Colors.red}
                 x={0}
                 y={-250}
                 scale={0}
+                textRef={null}
+            />
+            <Button
+                text="Infinite Loops"
+                fontFamily='JetBrains Mono'
+                fontSize={36}
+                ref={while_loop_rect_ref}
+                height={120}
+                color={Colors.blue}
+                x={0}
+                y={-50}
+                scale={0}
+                textRef={null}
             />
             <Button
                 text="While Loops"
                 fontFamily='JetBrains Mono'
                 fontSize={36}
-                ref={while_loop_rect_ref}
-                height={120}
-                color='89b4fa'
-                x={0}
-                y={-50}
-                scale={0}
-            />
-            <Button
-                text="For Loops"
-                fontFamily='JetBrains Mono'
-                fontSize={36}
                 ref={for_loop_rect_ref}
                 height={120}
-                color='f9e2af'
+                color={Colors.yellow}
                 x={0}
                 y={150}
                 scale={0}
+                textRef={null}
             />
             <Button
-                text="If/Else Statements"
+                text="For Loops "
                 fontFamily='JetBrains Mono'
                 fontSize={36}
                 ref={if_statement_rect_ref}
                 height={120}
-                color='a6e3a1'
+                color={Colors.green}
                 x={0}
                 y={350}
                 scale={0}
+                textRef={null}
             />
         </Rect>
     )

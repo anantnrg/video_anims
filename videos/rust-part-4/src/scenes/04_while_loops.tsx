@@ -4,7 +4,11 @@ import { CodeBlock, insert, lines, range, remove } from '@motion-canvas/2d/lib/c
 import ferrisImg from '../assets/ferris.svg';
 import { Copyright } from 'helpers/copyright';
 import { Button } from 'helpers/button';
-import { openWindowScale } from 'helpers/animations';
+import { closeWindowScale, openWindowScale, textAppear } from 'helpers/animations';
+import { Colors } from 'helpers/styles';
+import { CustomCodeBlock } from 'helpers/codeblock';
+import { TerminalWindow } from 'helpers/terminal';
+
 
 export default makeScene2D(function* (view) {
     const while_loop_button_ref = createRef<Rect>();
@@ -14,6 +18,10 @@ export default makeScene2D(function* (view) {
     const value_to_loop_arrow_ref = createRef<Line>();
     const loop_to_function_arrow_ref = createRef<Line>();
     const break_loop_icon = createRef<Icon>();
+    const code_block_rect_ref = createRef<Rect>();
+    const codeblock = createRef<CodeBlock>();
+    const cargo_run = createRef<Rect>();
+    const cargo_run_result = createRef<Txt>();
 
     yield view.add(
         <Copyright text=' Technologs ' />
@@ -31,7 +39,7 @@ export default makeScene2D(function* (view) {
 
     yield view.add(
         <Button
-            color='#f38ba8'
+            color={Colors.red}
             fontFamily='JetBrains Mono'
             fontSize={42}
             height={100}
@@ -46,7 +54,7 @@ export default makeScene2D(function* (view) {
 
     yield view.add(
         <Button
-            color='#cba6f7'
+            color={Colors.mauve}
             fontFamily='JetBrains Mono'
             fontSize={42}
             height={100}
@@ -61,7 +69,7 @@ export default makeScene2D(function* (view) {
 
     yield view.add(
         <Button
-            color='#a6e3a1'
+            color={Colors.green}
             fontFamily='JetBrains Mono'
             fontSize={42}
             height={100}
@@ -78,7 +86,7 @@ export default makeScene2D(function* (view) {
         <Line
             endArrow
             lineWidth={8}
-            stroke="#f38ba8"
+            stroke={Colors.red}
             points={[
                 Vector2.zero,
                 Vector2.up.scale(150)
@@ -94,7 +102,7 @@ export default makeScene2D(function* (view) {
         <Line
             endArrow
             lineWidth={8}
-            stroke="#a6e3a1"
+            stroke={Colors.green}
             points={[
                 Vector2.zero,
                 Vector2.up.scale(150)
@@ -109,12 +117,36 @@ export default makeScene2D(function* (view) {
     yield view.add(
         <Icon
             icon={"ic:baseline-cancel"}
-            color={"f38ba8"}
+            color={Colors.red}
             scale={0}
             y={150}
             ref={break_loop_icon}
         />
-    )
+    );
+
+    yield view.add(
+        <TerminalWindow
+            fontSize={36}
+            scale={0}
+            rectRef={cargo_run}
+            outputRef={cargo_run_result}
+            command="cargo run"
+            output={`0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n10`}
+            cmdRef={null}
+        />
+    );
+
+    yield view.add(
+        <CustomCodeBlock
+            rectRef={code_block_rect_ref}
+            codeBlockRef={codeblock}
+            scale={0}
+            fontSize={38}
+            tabTitle={'main.rs'}
+            lang='rust'
+            code={''}
+        />
+    );
 
     yield* waitUntil("we-will-look-at-while-loops");
     yield* openWindowScale(while_loop_button_ref);
@@ -139,4 +171,47 @@ export default makeScene2D(function* (view) {
     yield* value_text_ref().text("False", 0.5)
     yield* loop_to_function_arrow_ref().opacity(0, 0.55, easeInOutQuad);
     yield* break_loop_icon().scale(6, 0.75, easeInOutQuad);
+    yield* waitUntil("now-we-know-what-while-loops-are");
+
+    yield* all(
+        break_loop_icon().scale(0, 0.75, easeInOutQuad),
+        closeWindowScale(while_loop_button_ref),
+        closeWindowScale(value_button_ref),
+        closeWindowScale(function_button_ref),
+        value_to_loop_arrow_ref().opacity(0, 0.55),
+    );
+
+    yield* waitUntil("lets-see-how-we-can-create-while-loop");
+    yield* openWindowScale(code_block_rect_ref);
+    yield* waitUntil("first-we-need-to-create-mutable-var-x");
+    yield* codeblock().edit(0.75)`${insert("let mut x;")}`;
+    yield* waitUntil("set-x-to-0");
+    yield* codeblock().edit(0.75)`let mut x${insert(" = 0")};`;
+    yield* waitUntil("define-while-loop");
+    yield* codeblock().edit(0.75)`let mut x = 0;${insert("\n\nwhile")}`;
+    yield* waitUntil("need-condition-type-x");
+    yield* codeblock().edit(0.75)`let mut x = 0;\n\nwhile${insert(" x")}`;
+    yield* waitUntil("put-left-angle-bracket");
+    yield* codeblock().edit(0.75)`let mut x = 0;\n\nwhile x${insert(" <")}`;
+    yield* waitUntil("put-equal-sign");
+    yield* codeblock().edit(0.75)`let mut x = 0;\n\nwhile x <${insert("=")}`;
+    yield* waitUntil("put-ten");
+    yield* codeblock().edit(0.75)`let mut x = 0;\n\nwhile x <=${insert(" 10")}`;
+    yield* waitUntil("put-code-inside-curly-braces");
+    yield* codeblock().edit(0.75)`let mut x = 0;\n\nwhile x <= 10${insert(" {\n\n}")}`;
+    yield* waitUntil("we-can-use-println-macro");
+    yield* codeblock().edit(0.75)`let mut x = 0;\n\nwhile x <= 10 {\n${insert("    println!();")}\n\}`;
+    yield* codeblock().edit(0.75)`let mut x = 0;\n\nwhile x <= 10 {\n    println!(${insert('"{}"')});\n\}`;
+    yield* codeblock().edit(0.75)`let mut x = 0;\n\nwhile x <= 10 {\n    println!("{}"${insert(', x')});\n\}`;
+    yield* waitUntil("mutate-and-increment-x");
+    yield* codeblock().edit(0.75)`let mut x = 0;\n\nwhile x <= 10 {\n    println!("{}", x);${insert('\n    x += 1;')}\n\}`;
+    yield* waitFor(1);
+    yield* codeblock().selection(lines(0, Infinity));
+    yield* waitUntil("lets-try-running-code-2");
+    yield* closeWindowScale(code_block_rect_ref);
+    yield* openWindowScale(cargo_run);
+    yield* waitUntil("it-will-print-every-number");
+    yield* textAppear(cargo_run_result);
+    yield* waitUntil("finish-while");
+    yield* closeWindowScale(cargo_run);
 });

@@ -1,0 +1,90 @@
+{
+  "version": 0,
+  "timeEvents": [
+    {
+      "name": "what-are-for-loops",
+      "targetTime": 0
+    },
+    {
+      "name": "suppose-we-have-an-array",
+      "targetTime": 0.75
+    },
+    {
+      "name": "then-lets-create-a-for-loop",
+      "targetTime": 2.05
+    },
+    {
+      "name": "what-this-will-do-is",
+      "targetTime": 2.5999999999999996
+    },
+    {
+      "name": "first-print-mango",
+      "targetTime": 4.6499999999999995
+    },
+    {
+      "name": "next-print-banana",
+      "targetTime": 5.699999999999999
+    },
+    {
+      "name": "next-print-strawberry",
+      "targetTime": 6.749999999999999
+    },
+    {
+      "name": "next-print-kiwi",
+      "targetTime": 7.799999999999999
+    },
+    {
+      "name": "next-print-peach",
+      "targetTime": 8.85
+    },
+    {
+      "name": "lets-see-how-we-can-implement-in-rust",
+      "targetTime": 9.9
+    },
+    {
+      "name": "first-we-will-declare-var-named-fruits",
+      "targetTime": 11.4
+    },
+    {
+      "name": "then-use-vec-macro",
+      "targetTime": 12.15
+    },
+    {
+      "name": "then-put-square-brackets",
+      "targetTime": 12.9
+    },
+    {
+      "name": "type-in-names-of-fruits",
+      "targetTime": 13.65
+    },
+    {
+      "name": "we-can-create-for-loop-using-for",
+      "targetTime": 14.4
+    },
+    {
+      "name": "create-loop-variable",
+      "targetTime": 15.15
+    },
+    {
+      "name": "use-in-keyword",
+      "targetTime": 15.9
+    },
+    {
+      "name": "provide-array-to-loop",
+      "targetTime": 16.65
+    },
+    {
+      "name": "need-to-put-code-inside-braces",
+      "targetTime": 17.4
+    },
+    {
+      "name": "just-print-the-current-fruit",
+      "targetTime": 18.9
+    },
+    {
+      "name": "now-lets-try-running-this-code",
+      "targetTime": 21.9
+    }
+  ],
+  "seed": 1675598955
+}

@@ -1,0 +1,114 @@
+{
+  "version": 0,
+  "timeEvents": [
+    {
+      "name": "lets-say-we-have-a-number",
+      "targetTime": 1.7979178931383775
+    },
+    {
+      "name": "we-want-to-check-if-its-a-multiple-of-64",
+      "targetTime": 5.1756440446483145
+    },
+    {
+      "name": "if-its-a-multiple-of-64",
+      "targetTime": 8.525644044648313
+    },
+    {
+      "name": "if-its-not-a-multiple-of-64",
+      "targetTime": 10.74826020742452
+    },
+    {
+      "name": "now-lets-see-how-we-can-impl-in-rust",
+      "targetTime": 13.680581110797808
+    },
+    {
+      "name": "lets-create-var-named-x",
+      "targetTime": 15.180581110797808
+    },
+    {
+      "name": "init-it-to-value",
+      "targetTime": 15.930581110797808
+    },
+    {
+      "name": "use-if-keyword",
+      "targetTime": 16.68058111079781
+    },
+    {
+      "name": "type-in-x",
+      "targetTime": 17.43058111079781
+    },
+    {
+      "name": "then-the-modulus-sign",
+      "targetTime": 18.18058111079781
+    },
+    {
+      "name": "and-finally-64",
+      "targetTime": 18.93058111079781
+    },
+    {
+      "name": "difference-between-slash-and-modulus",
+      "targetTime": 19.68058111079781
+    },
+    {
+      "name": "we-will-use-the-modulus-sign",
+      "targetTime": 21.880581110797813
+    },
+    {
+      "name": "put-two-equal-signs",
+      "targetTime": 22.980581110797814
+    },
+    {
+      "name": "type-in-zero",
+      "targetTime": 23.730581110797814
+    },
+    {
+      "name": "put-code-inside-curly-braces",
+      "targetTime": 24.480581110797814
+    },
+    {
+      "name": "use-println-macro-to-print-it-is-multiple",
+      "targetTime": 25.980581110797814
+    },
+    {
+      "name": "lets-try-running-our-code",
+      "targetTime": 28.340544613561995
+    },
+    {
+      "name": "lets-go-back-and-change-x-value",
+      "targetTime": 30.390544613561996
+    },
+    {
+      "name": "say-3500",
+      "targetTime": 31.890544613561996
+    },
+    {
+      "name": "if-we-run-our-code-again",
+      "targetTime": 33.640544613562
+    },
+    {
+      "name": "lets-go-back-and-use-else-statement",
+      "targetTime": 35.140544613562
+    },
+    {
+      "name": "after-closing-brace-of-if-type-else",
+      "targetTime": 36.640544613562
+    },
+    {
+      "name": "put-braces-again",
+      "targetTime": 37.390544613562
+    },
+    {
+      "name": "print-out-its-not-multiple",
+      "targetTime": 38.890544613562
+    },
+    {
+      "name": "lets-run-code-again-again",
+      "targetTime": 40.390544613562
+    },
+    {
+      "name": "lets-do-one-more-thing",
+      "targetTime": 43.440544613562
+    }
+  ],
+  "seed": 2699494555
+}

@@ -20,7 +20,7 @@ export function* closeWindowScale(rect: Reference<Rect>) {
 export function* textAppear(txt: Reference<Txt>) {
     yield* chain(
         tween(0.75, value => {
-            txt().opacity(map(0, 1, easeInSine(value)))
+            txt().opacity(map(0, 1, easeInOutCubic(value)))
         }),
     )
 }
@@ -28,7 +28,7 @@ export function* textAppear(txt: Reference<Txt>) {
 export function* textDisappear(txt: Reference<Txt>) {
     yield* chain(
         tween(0.75, value => {
-            txt().opacity(map(1, 0, easeInSine(value)))
+            txt().opacity(map(1, 0, easeInOutCubic(value)))
         }),
     )
 }

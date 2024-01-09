@@ -20,7 +20,7 @@ export const CustomCodeBlock = (props: CustomCodeBlockProps) => (
         fill={"1e1e2e"}
         radius={15}
         minWidth={700}
-        maxWidth={1400}
+        maxWidth={1700}
         minHeight={450}
         maxHeight={800}
         ref={props.rectRef}

@@ -1,0 +1,82 @@
+{
+  "version": 0,
+  "timeEvents": [
+    {
+      "name": "we-will-look-at-while-loops",
+      "targetTime": 0
+    },
+    {
+      "name": "lets-say-we-have-a-var",
+      "targetTime": 0.75
+    },
+    {
+      "name": "performs-associated-function",
+      "targetTime": 2.05
+    },
+    {
+      "name": "if-the-value-becomes-false",
+      "targetTime": 3.3499999999999996
+    },
+    {
+      "name": "now-we-know-what-while-loops-are",
+      "targetTime": 5.1499999999999995
+    },
+    {
+      "name": "lets-see-how-we-can-create-while-loop",
+      "targetTime": 5.8999999999999995
+    },
+    {
+      "name": "first-we-need-to-create-mutable-var-x",
+      "targetTime": 6.6499999999999995
+    },
+    {
+      "name": "set-x-to-0",
+      "targetTime": 7.3999999999999995
+    },
+    {
+      "name": "define-while-loop",
+      "targetTime": 8.149999999999999
+    },
+    {
+      "name": "need-condition-type-x",
+      "targetTime": 8.899999999999999
+    },
+    {
+      "name": "put-left-angle-bracket",
+      "targetTime": 9.649999999999999
+    },
+    {
+      "name": "put-equal-sign",
+      "targetTime": 10.399999999999999
+    },
+    {
+      "name": "put-ten",
+      "targetTime": 11.149999999999999
+    },
+    {
+      "name": "put-code-inside-curly-braces",
+      "targetTime": 11.899999999999999
+    },
+    {
+      "name": "we-can-use-println-macro",
+      "targetTime": 12.649999999999999
+    },
+    {
+      "name": "mutate-and-increment-x",
+      "targetTime": 14.899999999999999
+    },
+    {
+      "name": "lets-try-running-code-2",
+      "targetTime": 16.65
+    },
+    {
+      "name": "it-will-print-every-number",
+      "targetTime": 18.15
+    },
+    {
+      "name": "finish-while",
+      "targetTime": 18.9
+    }
+  ],
+  "seed": 1501668443
+}

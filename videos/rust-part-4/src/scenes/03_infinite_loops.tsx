@@ -7,6 +7,7 @@ import { TerminalWindow } from 'helpers/terminal';
 import { CustomCodeBlock } from 'helpers/codeblock';
 import { Keys } from 'helpers/keys';
 import { openWindowScale, closeWindowScale, textAppear, textDisappear } from 'helpers/animations';
+import { Colors } from 'helpers/styles';
 
 export default makeScene2D(function* (view) {
     const code_block_rect_ref = createRef<Rect>();
@@ -35,7 +36,7 @@ export default makeScene2D(function* (view) {
         <Icon
             icon={"octicon:sync"}
             scale={0}
-            color={"cba6f7"}
+            color={Colors.mauve}
             ref={infinite_loop_circle}
         />
     )
