@@ -83,6 +83,9 @@ export default makeScene2D(function* (view) {
         infinite_loop_circle().scale(map(0, 16, easeInOutQuad(v)))
     });
 
+    yield* loop(360, i => infinite_loop_circle().rotation(infinite_loop_circle().rotation() + 1, 0.005));
+    yield* infinite_loop_circle().rotation(0);
+
     yield* waitUntil("how-to-define-loop-in-rust");
     yield* chain(
         tween(0.55, v => {
@@ -110,9 +113,9 @@ export default makeScene2D(function* (view) {
         openWindowScale(cargo_run),
         waitUntil("it-will-print-our-string-infinitely"),
         textAppear(cargo_run_result),
-        loop(15, i => {
-            cargo_run_result().text(cargo_run_result().text().concat("\nThis prints forever!"))
-        }),
+        loop(15, i =>
+            cargo_run_result().text(cargo_run_result().text().concat("\nThis prints forever!"), 0.25)
+        ),
         waitUntil("to-quit-press-ctrl-c"),
         openWindowScale(keys_ref),
         waitUntil("lets-go-back-to-our-loop-1"),

@@ -44,7 +44,7 @@ export default makeScene2D(function* (view) {
 
     yield view.add(
         <Circle
-            lineWidth={8}
+            lineWidth={10}
             stroke={"f38ba8"}
             width={298}
             height={298}
@@ -57,7 +57,7 @@ export default makeScene2D(function* (view) {
 
     yield view.add(
         <Rect
-            lineWidth={8}
+            lineWidth={10}
             stroke={"cba6f7"}
             width={608}
             height={344}
@@ -73,7 +73,7 @@ export default makeScene2D(function* (view) {
 
     yield view.add(
         <Rect
-            lineWidth={8}
+            lineWidth={10}
             stroke={"f9e2af"}
             width={608}
             height={344}
