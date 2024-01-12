@@ -44,7 +44,7 @@ export default makeScene2D(function* (view) {
 
     yield view.add(
         <Circle
-            lineWidth={10}
+            lineWidth={8}
             stroke={"f38ba8"}
             width={298}
             height={298}
@@ -57,7 +57,7 @@ export default makeScene2D(function* (view) {
 
     yield view.add(
         <Rect
-            lineWidth={10}
+            lineWidth={8}
             stroke={"cba6f7"}
             width={608}
             height={344}
@@ -73,7 +73,7 @@ export default makeScene2D(function* (view) {
 
     yield view.add(
         <Rect
-            lineWidth={10}
+            lineWidth={8}
             stroke={"f9e2af"}
             width={608}
             height={344}
@@ -147,103 +147,5 @@ export default makeScene2D(function* (view) {
         }),
     );
 
-    yield* all(
-        sub_curve().y(180, 1, easeInOutCubic),
-        sub_curve_text().y(380, 1, easeInOutCubic)
-    );
-
-    yield* all(
-        sub_curve().y(200, 1, easeInOutCubic),
-        sub_curve_text().y(400, 1, easeInOutCubic)
-    );
-
-    yield* all(
-        sub_curve().y(180, 1, easeInOutCubic),
-        sub_curve_text().y(380, 1, easeInOutCubic)
-    );
-
-    yield* all(
-        sub_curve().y(200, 1, easeInOutCubic),
-        sub_curve_text().y(400, 1, easeInOutCubic)
-    );
-
-    yield* all(
-        sub_curve().y(180, 1, easeInOutCubic),
-        sub_curve_text().y(380, 1, easeInOutCubic)
-    );
-
-    yield* all(
-        sub_curve().y(200, 1, easeInOutCubic),
-        sub_curve_text().y(400, 1, easeInOutCubic)
-    );
-
-    yield* all(
-        sub_curve().y(180, 1, easeInOutCubic),
-        sub_curve_text().y(380, 1, easeInOutCubic)
-    );
-
-    yield* all(
-        sub_curve().y(200, 1, easeInOutCubic),
-        sub_curve_text().y(400, 1, easeInOutCubic)
-    );
-
-    yield* all(
-        sub_curve().y(180, 1, easeInOutCubic),
-        sub_curve_text().y(380, 1, easeInOutCubic)
-    );
-
-    yield* all(
-        sub_curve().y(200, 1, easeInOutCubic),
-        sub_curve_text().y(400, 1, easeInOutCubic)
-    );
-
-    yield* all(
-        sub_curve().y(180, 1, easeInOutCubic),
-        sub_curve_text().y(380, 1, easeInOutCubic)
-    );
-
-    yield* all(
-        sub_curve().y(200, 1, easeInOutCubic),
-        sub_curve_text().y(400, 1, easeInOutCubic)
-    );
-
-    yield* all(
-        sub_curve().y(180, 1, easeInOutCubic),
-        sub_curve_text().y(380, 1, easeInOutCubic)
-    );
-
-    yield* all(
-        sub_curve().y(200, 1, easeInOutCubic),
-        sub_curve_text().y(400, 1, easeInOutCubic)
-    );
-
-    yield* all(
-        sub_curve().y(180, 1, easeInOutCubic),
-        sub_curve_text().y(380, 1, easeInOutCubic)
-    );
-
-    yield* all(
-        sub_curve().y(200, 1, easeInOutCubic),
-        sub_curve_text().y(400, 1, easeInOutCubic)
-    );
-
-    yield* all(
-        sub_curve().y(180, 1, easeInOutCubic),
-        sub_curve_text().y(380, 1, easeInOutCubic)
-    );
-
-    yield* all(
-        sub_curve().y(200, 1, easeInOutCubic),
-        sub_curve_text().y(400, 1, easeInOutCubic)
-    );
-
-    yield* all(
-        sub_curve().y(180, 1, easeInOutCubic),
-        sub_curve_text().y(380, 1, easeInOutCubic)
-    );
-
-    yield* all(
-        sub_curve().y(200, 1, easeInOutCubic),
-        sub_curve_text().y(400, 1, easeInOutCubic)
-    );
+    yield* waitUntil("finish-outro")
 });

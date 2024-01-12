@@ -1,0 +1,18 @@
+{
+  "version": 0,
+  "timeEvents": [
+    {
+      "name": "start-outro",
+      "targetTime": 1.9942802503551913
+    },
+    {
+      "name": "thanks-for-watching",
+      "targetTime": 5.484051850563512
+    },
+    {
+      "name": "finish-outro",
+      "targetTime": 20.01095914243566
+    }
+  ],
+  "seed": 3238496156
+}
