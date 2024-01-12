@@ -1,6 +1,17 @@
-import { makeScene2D, Circle, Txt, Img, Rect } from '@motion-canvas/2d';
-import { all, tween, createRef, map, easeInSine, chain, easeInOutSine, waitFor, easeOutSine, waitUntil } from '@motion-canvas/core';
-import ferrisImg from '../assets/ferris.svg';
+import { makeScene2D, Circle, Txt, Img, Rect } from "@motion-canvas/2d";
+import {
+  all,
+  tween,
+  createRef,
+  map,
+  easeInSine,
+  chain,
+  easeInOutSine,
+  waitFor,
+  easeOutSine,
+  waitUntil,
+} from "@motion-canvas/core";
+import ferrisImg from "../assets/ferris.svg";
 
 export default makeScene2D(function* (view) {
   const heading = createRef<Rect>();
@@ -15,7 +26,10 @@ export default makeScene2D(function* (view) {
       fontFamily={"JetBrains Mono"}
       fontWeight={900}
       fontSize={22}
-    > © Technologs 2023</Txt >,
+    >
+      {" "}
+      © Technologs 2023
+    </Txt>,
   );
 
   // yield view.add(
@@ -44,19 +58,18 @@ export default makeScene2D(function* (view) {
   // );
 
   yield view.add(
-    <Img
-      ref={ferrisLogo}
-      src={ferrisImg}
-      width={900}
-      scale={0}
-    ></Img>
+    <Img ref={ferrisLogo} src={ferrisImg} width={900} scale={0}></Img>,
   );
 
   yield* waitUntil("start-intro");
 
   yield* chain(
-    tween(0.75, value => { ferrisLogo().scale(map(0, 1.1, easeOutSine(value))) }),
-    tween(0.75, value => { ferrisLogo().scale(map(1.1, 1, easeOutSine(value))) }),
+    tween(0.75, (value) => {
+      ferrisLogo().scale(map(0, 1.1, easeOutSine(value)));
+    }),
+    tween(0.75, (value) => {
+      ferrisLogo().scale(map(1.1, 1, easeOutSine(value)));
+    }),
     // tween(0.64, value => { ferrisLogo().position.y(map(0, -200, easeOutSine(value))) })
   );
   // yield* chain(
@@ -64,7 +77,7 @@ export default makeScene2D(function* (view) {
   //     heading().scale(map(0, 1, easeOutSine(value)))
   //   }),
   // );
-  yield* waitUntil("finish-intro")
+  yield* waitUntil("finish-intro");
   // yield* chain(
   //   tween(0.75, value => {
   //     heading().scale(map(1, 0, easeInSine(value)))
@@ -77,8 +90,14 @@ export default makeScene2D(function* (view) {
   // );
 
   yield* all(
-    tween(0.75, value => { ferrisLogo().scale(map(1, 0.15, easeOutSine(value))) }),
-    tween(0.75, value => { ferrisLogo().x(map(0, 850, easeInSine(value))) }),
-    tween(0.75, value => { ferrisLogo().y(map(0, 450, easeInSine(value))) }),
+    tween(0.75, (value) => {
+      ferrisLogo().scale(map(1, 0.15, easeOutSine(value)));
+    }),
+    tween(0.75, (value) => {
+      ferrisLogo().x(map(0, 850, easeInSine(value)));
+    }),
+    tween(0.75, (value) => {
+      ferrisLogo().y(map(0, 450, easeInSine(value)));
+    }),
   );
 });

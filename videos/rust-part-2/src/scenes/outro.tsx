@@ -1,6 +1,17 @@
-import { makeScene2D, Circle, Txt, Img, Rect } from '@motion-canvas/2d';
-import { all, tween, createRef, map, easeInSine, chain, easeInOutSine, waitFor, easeOutSine, waitUntil } from '@motion-canvas/core';
-import ferrisImg from '../assets/ferris.svg';
+import { makeScene2D, Circle, Txt, Img, Rect } from "@motion-canvas/2d";
+import {
+  all,
+  tween,
+  createRef,
+  map,
+  easeInSine,
+  chain,
+  easeInOutSine,
+  waitFor,
+  easeOutSine,
+  waitUntil,
+} from "@motion-canvas/core";
+import ferrisImg from "../assets/ferris.svg";
 
 export default makeScene2D(function* (view) {
   const thanks = createRef<Txt>();
@@ -17,7 +28,10 @@ export default makeScene2D(function* (view) {
       fontWeight={900}
       fontSize={22}
       ref={copyright}
-    > © Technologs 2023</Txt >,
+    >
+      {" "}
+      © Technologs 2023
+    </Txt>,
   );
 
   yield view.add(
@@ -28,7 +42,7 @@ export default makeScene2D(function* (view) {
       scale={0.15}
       x={850}
       y={450}
-    ></Img>
+    ></Img>,
   );
 
   yield view.add(
@@ -41,34 +55,44 @@ export default makeScene2D(function* (view) {
       opacity={0}
       x={-400}
       y={250}
-    >Thanks for watching!</Txt>
+    >
+      Thanks for watching!
+    </Txt>,
   );
 
   yield* all(
-    tween(0.75, value => { ferrisLogo().scale(map(0.15, 1, easeOutSine(value))) }),
-    tween(0.75, value => { ferrisLogo().x(map(850, 0, easeOutSine(value))) }),
-    tween(0.75, value => { ferrisLogo().y(map(450, 0, easeOutSine(value))) }),
+    tween(0.75, (value) => {
+      ferrisLogo().scale(map(0.15, 1, easeOutSine(value)));
+    }),
+    tween(0.75, (value) => {
+      ferrisLogo().x(map(850, 0, easeOutSine(value)));
+    }),
+    tween(0.75, (value) => {
+      ferrisLogo().y(map(450, 0, easeOutSine(value)));
+    }),
   );
 
   yield* chain(
     waitUntil("next-time"),
-    tween(0.75, value => { ferrisLogo().y(map(0, -100, easeOutSine(value))) }),
+    tween(0.75, (value) => {
+      ferrisLogo().y(map(0, -100, easeOutSine(value)));
+    }),
     all(
-      tween(0.75, v => {
-        thanks().x(map(-400, 0, easeOutSine(v)))
+      tween(0.75, (v) => {
+        thanks().x(map(-400, 0, easeOutSine(v)));
       }),
-      tween(0.75, v => {
-        thanks().opacity(map(0, 1, easeOutSine(v)))
-      })
+      tween(0.75, (v) => {
+        thanks().opacity(map(0, 1, easeOutSine(v)));
+      }),
     ),
     waitFor(18.5),
     all(
-      tween(1, v => {
-        ferrisLogo().opacity(map(1, 0, easeOutSine(v)))
-        thanks().opacity(map(1, 0, easeOutSine(v)))
-        copyright().opacity(map(1, 0, easeOutSine(v)))
-      })
+      tween(1, (v) => {
+        ferrisLogo().opacity(map(1, 0, easeOutSine(v)));
+        thanks().opacity(map(1, 0, easeOutSine(v)));
+        copyright().opacity(map(1, 0, easeOutSine(v)));
+      }),
     ),
-    waitFor(0.5)
+    waitFor(0.5),
   );
 });

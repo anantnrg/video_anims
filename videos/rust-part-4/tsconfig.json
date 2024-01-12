@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-      "jsx": "react"
+    "jsx": "react"
   },
   "extends": "@motion-canvas/2d/tsconfig.project.json",
   "include": ["src"]
