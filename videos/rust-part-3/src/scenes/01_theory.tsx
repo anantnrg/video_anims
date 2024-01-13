@@ -119,7 +119,7 @@ export default makeScene2D(function* (view) {
 
   yield* view.add(
     <Line
-      lineWidth={10}
+      lineWidth={6}
       stroke="#a6e3a1"
       startArrow
       points={[[0, 0], Vector2.zero]}
@@ -131,7 +131,7 @@ export default makeScene2D(function* (view) {
 
   yield* view.add(
     <Line
-      lineWidth={10}
+      lineWidth={6}
       stroke="#f38ba8"
       startArrow
       points={[Vector2.zero, [0, 0]]}
@@ -186,7 +186,7 @@ export default makeScene2D(function* (view) {
       fnWorkingRef().rotation(map(0, 360, v));
     }),
     tween(0.35, (v) => {
-      fnWorkingRef().opacity(map(1, 0, easeOutBack(v)));
+      fnWorkingRef().opacity(map(1, 0, easeInOutQuad(v)));
     }),
     outputsLineRef().points([[200, 0], Vector2.zero], 0.75, easeInOutQuad),
     waitUntil("gives-output"),

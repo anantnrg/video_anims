@@ -105,7 +105,7 @@ export default makeScene2D(function* (view) {
 
   yield view.add(
     <QuadBezier
-      lineWidth={10}
+      lineWidth={7}
       stroke="cdd6f4"
       y={200}
       p0={[200, 200]}
