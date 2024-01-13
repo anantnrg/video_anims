@@ -25,7 +25,7 @@ export default makeScene2D(function* (view) {
   const forLoopBtn = createRef<Rect>();
   const printBtn = createRef<Rect>();
   const printResultBtn = createRef<Rect>();
-  const array_to_loop = createRef<Line>();
+  const arrayToLoop = createRef<Line>();
   const loop_to_print = createRef<Line>();
   const print_to_result = createRef<Line>();
   const code_block_rect_ref = createRef<Rect>();
@@ -103,7 +103,7 @@ export default makeScene2D(function* (view) {
       points={[Vector2.zero, [0, 0]]}
       arrowSize={16}
       y={-330}
-      ref={array_to_loop}
+      ref={arrayToLoop}
     />,
   );
 
@@ -153,14 +153,14 @@ export default makeScene2D(function* (view) {
     easeInOutQuad,
   );
   yield* waitUntil("then-lets-create-a-for-loop");
-  yield* array_to_loop().points([Vector2.zero, [0, 280]], 0.55, easeInOutQuad);
+  yield* arrayToLoop().points([Vector2.zero, [0, 280]], 0.55, easeInOutQuad);
   yield* waitUntil("what-this-will-do-is");
   yield* openWindowScale(printBtn);
   yield* loop_to_print().points([[0, 250], Vector2.zero], 0.55, easeInOutQuad);
   yield* openWindowScale(printResultBtn);
   yield* waitUntil("first-print-mango");
   yield* all(
-    array_to_loop().points([Vector2.zero, [-500, 280]], 0.55, easeInOutQuad),
+    arrayToLoop().points([Vector2.zero, [-500, 280]], 0.55, easeInOutQuad),
     loop_to_print().points(
       [
         [0, 250],
@@ -173,7 +173,7 @@ export default makeScene2D(function* (view) {
   yield* resultTextRef().text("mango", 0.5, easeInOutQuad);
   yield* waitUntil("next-print-banana");
   yield* all(
-    array_to_loop().points([Vector2.zero, [-280, 280]], 0.55, easeInOutQuad),
+    arrayToLoop().points([Vector2.zero, [-280, 280]], 0.55, easeInOutQuad),
     loop_to_print().points(
       [
         [0, 250],
@@ -186,7 +186,7 @@ export default makeScene2D(function* (view) {
   yield* resultTextRef().text("banana", 0.5, easeInOutQuad);
   yield* waitUntil("next-print-strawberry");
   yield* all(
-    array_to_loop().points([Vector2.zero, [-0, 280]], 0.55, easeInOutQuad),
+    arrayToLoop().points([Vector2.zero, [-0, 280]], 0.55, easeInOutQuad),
     loop_to_print().points(
       [
         [0, 250],
@@ -199,7 +199,7 @@ export default makeScene2D(function* (view) {
   yield* resultTextRef().text("strawberry", 0.5, easeInOutQuad);
   yield* waitUntil("next-print-kiwi");
   yield* all(
-    array_to_loop().points([Vector2.zero, [300, 280]], 0.55, easeInOutQuad),
+    arrayToLoop().points([Vector2.zero, [300, 280]], 0.55, easeInOutQuad),
     loop_to_print().points(
       [
         [0, 250],
@@ -212,7 +212,7 @@ export default makeScene2D(function* (view) {
   yield* resultTextRef().text("kiwi", 0.5, easeInOutQuad);
   yield* waitUntil("next-print-peach");
   yield* all(
-    array_to_loop().points([Vector2.zero, [500, 280]], 0.55, easeInOutQuad),
+    arrayToLoop().points([Vector2.zero, [500, 280]], 0.55, easeInOutQuad),
     loop_to_print().points(
       [
         [0, 250],
@@ -229,7 +229,7 @@ export default makeScene2D(function* (view) {
     arraylistTextRef().opacity(0, 0.55, easeInOutQuad),
     closeWindowScale(printBtn),
     closeWindowScale(printResultBtn),
-    array_to_loop().opacity(0, 0.55, easeInOutQuad),
+    arrayToLoop().opacity(0, 0.55, easeInOutQuad),
     loop_to_print().opacity(0, 0.55, easeInOutQuad),
   );
 
