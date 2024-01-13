@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-filename-extension */
 import { makeScene2D, Txt, Img, Rect, Line } from "@motion-canvas/2d";
 import {
   all,
@@ -26,14 +27,13 @@ export default makeScene2D(function* (view) {
   const printBtn = createRef<Rect>();
   const printResultBtn = createRef<Rect>();
   const arrayToLoop = createRef<Line>();
-  const loop_to_print = createRef<Line>();
-  const print_to_result = createRef<Line>();
-  const code_block_rect_ref = createRef<Rect>();
+  const loopToPrint = createRef<Line>();
+  const codeBlockRectRef = createRef<Rect>();
   const codeblock = createRef<CodeBlock>();
-  const cargo_run = createRef<Rect>();
-  const cargo_run_result = createRef<Txt>();
+  const terminal = createRef<Rect>();
+  const terminalResult = createRef<Txt>();
 
-  yield view.add(<Copyright text=" Technologs " />);
+  yield view.add(<Copyright />);
 
   yield view.add(
     <Img src={ferrisImg} width={900} scale={0.15} x={850} y={470} />,
@@ -115,7 +115,7 @@ export default makeScene2D(function* (view) {
       points={[[0, 0], Vector2.zero]}
       arrowSize={16}
       y={80}
-      ref={loop_to_print}
+      ref={loopToPrint}
     />,
   );
 
@@ -123,8 +123,8 @@ export default makeScene2D(function* (view) {
     <TerminalWindow
       fontSize={36}
       scale={0}
-      rectRef={cargo_run}
-      outputRef={cargo_run_result}
+      rectRef={terminal}
+      outputRef={terminalResult}
       command="cargo run"
       output=""
       cmdRef={null}
@@ -133,7 +133,7 @@ export default makeScene2D(function* (view) {
 
   yield view.add(
     <CustomCodeBlock
-      rectRef={code_block_rect_ref}
+      rectRef={codeBlockRectRef}
       codeBlockRef={codeblock}
       scale={0}
       fontSize={38}
@@ -156,12 +156,12 @@ export default makeScene2D(function* (view) {
   yield* arrayToLoop().points([Vector2.zero, [0, 280]], 0.55, easeInOutQuad);
   yield* waitUntil("what-this-will-do-is");
   yield* openWindowScale(printBtn);
-  yield* loop_to_print().points([[0, 250], Vector2.zero], 0.55, easeInOutQuad);
+  yield* loopToPrint().points([[0, 250], Vector2.zero], 0.55, easeInOutQuad);
   yield* openWindowScale(printResultBtn);
   yield* waitUntil("first-print-mango");
   yield* all(
     arrayToLoop().points([Vector2.zero, [-500, 280]], 0.55, easeInOutQuad),
-    loop_to_print().points(
+    loopToPrint().points(
       [
         [0, 250],
         [-500, -30],
@@ -174,7 +174,7 @@ export default makeScene2D(function* (view) {
   yield* waitUntil("next-print-banana");
   yield* all(
     arrayToLoop().points([Vector2.zero, [-280, 280]], 0.55, easeInOutQuad),
-    loop_to_print().points(
+    loopToPrint().points(
       [
         [0, 250],
         [-270, -30],
@@ -187,7 +187,7 @@ export default makeScene2D(function* (view) {
   yield* waitUntil("next-print-strawberry");
   yield* all(
     arrayToLoop().points([Vector2.zero, [-0, 280]], 0.55, easeInOutQuad),
-    loop_to_print().points(
+    loopToPrint().points(
       [
         [0, 250],
         [-0, -30],
@@ -200,7 +200,7 @@ export default makeScene2D(function* (view) {
   yield* waitUntil("next-print-kiwi");
   yield* all(
     arrayToLoop().points([Vector2.zero, [300, 280]], 0.55, easeInOutQuad),
-    loop_to_print().points(
+    loopToPrint().points(
       [
         [0, 250],
         [300, -30],
@@ -213,7 +213,7 @@ export default makeScene2D(function* (view) {
   yield* waitUntil("next-print-peach");
   yield* all(
     arrayToLoop().points([Vector2.zero, [500, 280]], 0.55, easeInOutQuad),
-    loop_to_print().points(
+    loopToPrint().points(
       [
         [0, 250],
         [500, -30],
@@ -230,10 +230,10 @@ export default makeScene2D(function* (view) {
     closeWindowScale(printBtn),
     closeWindowScale(printResultBtn),
     arrayToLoop().opacity(0, 0.55, easeInOutQuad),
-    loop_to_print().opacity(0, 0.55, easeInOutQuad),
+    loopToPrint().opacity(0, 0.55, easeInOutQuad),
   );
 
-  yield* openWindowScale(code_block_rect_ref);
+  yield* openWindowScale(codeBlockRectRef);
   yield* waitUntil("first-we-will-declare-var-named-fruits");
   yield* codeblock().edit(0.75)`fn main() {\n    ${insert("let fruits = ")}\n}`;
   yield* waitUntil("then-use-vec-macro");
@@ -308,11 +308,14 @@ export default makeScene2D(function* (view) {
   yield* codeblock().selection(lines(0, Infinity));
 
   yield* waitUntil("now-lets-try-running-this-code");
-  yield* closeWindowScale(code_block_rect_ref);
-  yield* openWindowScale(cargo_run);
-  yield* cargo_run_result().opacity(1);
-  yield* cargo_run_result().text(`mango\nbanana\nstrawberry\nkiwi\npeach`, 1),
-    easeInOutQuad;
+  yield* closeWindowScale(codeBlockRectRef);
+  yield* openWindowScale(terminal);
+  yield* terminalResult().opacity(1);
+  yield* terminalResult().text(
+    `mango\nbanana\nstrawberry\nkiwi\npeach`,
+    1,
+    easeInOutQuad,
+  );
   yield* waitUntil("thats-all-about-for-loops");
-  yield* closeWindowScale(cargo_run);
+  yield* closeWindowScale(terminal);
 });
