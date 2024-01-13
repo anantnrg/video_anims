@@ -98,7 +98,7 @@ export default makeScene2D(function* (view) {
   yield view.add(
     <Line
       endArrow
-      lineWidth={8}
+      lineWidth={6}
       stroke={Colors.mauve}
       points={[Vector2.zero, [0, 0]]}
       arrowSize={16}
@@ -110,7 +110,7 @@ export default makeScene2D(function* (view) {
   yield view.add(
     <Line
       startArrow
-      lineWidth={8}
+      lineWidth={6}
       stroke={Colors.blue}
       points={[[0, 0], Vector2.zero]}
       arrowSize={16}

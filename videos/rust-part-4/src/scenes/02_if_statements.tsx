@@ -110,7 +110,7 @@ export default makeScene2D(function* (view) {
   yield view.add(
     <Line
       startArrow
-      lineWidth={8}
+      lineWidth={6}
       stroke={Colors.mauve}
       points={[[0, 0], Vector2.zero]}
       arrowSize={16}
@@ -148,11 +148,11 @@ export default makeScene2D(function* (view) {
   yield view.add(
     <Line
       startArrow
-      lineWidth={8}
+      lineWidth={6}
       stroke={Colors.green}
       points={[[-0, 0], Vector2.zero]}
       arrowSize={16}
-      y={30}
+      y={70}
       ref={ifToLeft}
     />,
   );
@@ -160,11 +160,11 @@ export default makeScene2D(function* (view) {
   yield view.add(
     <Line
       startArrow
-      lineWidth={8}
+      lineWidth={6}
       stroke={Colors.peach}
       points={[[0, 0], Vector2.zero]}
       arrowSize={16}
-      y={30}
+      y={70}
       ref={ifToRight}
     />,
   );
@@ -266,8 +266,7 @@ export default makeScene2D(function* (view) {
   yield* waitUntil("we-want-to-check-if-its-a-multiple-of-64");
   yield* valueRectRef().y(-400, 0.55, easeInOutQuad);
   yield* openWindowScale(ifStatementRectRef);
-  yield* ifStatementRectRef().y(-50, 0.55, easeInOutQuad);
-  yield* all(valueToIf().points([[0, 210], Vector2.zero], 0.75, easeInOutQuad));
+  yield* all(valueToIf().points([[0, 250], Vector2.zero], 0.75, easeInOutQuad));
   yield* all(
     openWindowScale(itsAMultipleRectRef),
     openWindowScale(itsNotAMultipleRectRef),
@@ -275,12 +274,12 @@ export default makeScene2D(function* (view) {
   yield* waitUntil("if-its-a-multiple-of-64");
   yield* trueText().text("True", 0.55, easeInOutQuad);
   yield* all(
-    ifToLeft().points([[-280, 250], Vector2.zero], 0.75, easeInOutQuad),
+    ifToLeft().points([[-300, 220], Vector2.zero], 0.75, easeInOutQuad),
   );
   yield* waitUntil("if-its-not-a-multiple-of-64");
   yield* falseText().text("False", 0.55, easeInOutQuad);
   yield* all(
-    ifToRight().points([[260, 255], Vector2.zero], 0.75, easeInOutQuad),
+    ifToRight().points([[260, 220], Vector2.zero], 0.75, easeInOutQuad),
   );
   yield* waitUntil("now-lets-see-how-we-can-impl-in-rust");
   yield* all(
