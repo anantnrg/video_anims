@@ -1,57 +1,30 @@
-import {
-  makeScene2D,
-  Circle,
-  Txt,
-  Img,
-  Rect,
-  Line,
-  Icon,
-  Latex,
-} from "@motion-canvas/2d";
+import { makeScene2D, Txt, Img, Rect, Line } from "@motion-canvas/2d";
 import {
   all,
-  tween,
   createRef,
-  map,
-  easeInSine,
-  chain,
-  easeInOutSine,
-  waitFor,
-  slideTransition,
-  Direction,
-  easeOutSine,
-  easeInBounce,
-  createSignal,
   Vector2,
   waitUntil,
-  easeOutBack,
   easeInOutQuad,
 } from "@motion-canvas/core";
 import {
   CodeBlock,
   insert,
   lines,
-  range,
-  remove,
 } from "@motion-canvas/2d/lib/components/CodeBlock";
-import {
-  closeWindowScale,
-  openWindowScale,
-  textAppear,
-} from "helpers/animations";
-import ferrisImg from "../assets/ferris.svg";
+import { closeWindowScale, openWindowScale } from "helpers/animations";
 import { Copyright } from "helpers/copyright";
 import { Colors } from "helpers/styles";
 import { Button } from "helpers/button";
 import { TerminalWindow } from "helpers/terminal";
 import { CustomCodeBlock } from "helpers/codeblock";
+import ferrisImg from "../assets/ferris.svg";
 
 export default makeScene2D(function* (view) {
-  const arraylist_text_ref = createRef<Txt>();
-  const result_text_ref = createRef<Txt>();
-  const for_loop_button = createRef<Rect>();
-  const print_button = createRef<Rect>();
-  const print_result_button = createRef<Rect>();
+  const arraylistTextRef = createRef<Txt>();
+  const resultTextRef = createRef<Txt>();
+  const forLoopBtn = createRef<Rect>();
+  const printBtn = createRef<Rect>();
+  const printResultBtn = createRef<Rect>();
   const array_to_loop = createRef<Line>();
   const loop_to_print = createRef<Line>();
   const print_to_result = createRef<Line>();
@@ -63,17 +36,17 @@ export default makeScene2D(function* (view) {
   yield view.add(<Copyright text=" Technologs " />);
 
   yield view.add(
-    <Img src={ferrisImg} width={900} scale={0.15} x={850} y={470}></Img>,
+    <Img src={ferrisImg} width={900} scale={0.15} x={850} y={470} />,
   );
 
   yield view.add(
     <Txt
-      fontFamily={"JetBrains Mono"}
+      fontFamily="JetBrains Mono"
       fontSize={42}
       fontWeight={900}
       fill={Colors.green}
       y={0}
-      ref={arraylist_text_ref}
+      ref={arraylistTextRef}
     />,
   );
 
@@ -83,7 +56,7 @@ export default makeScene2D(function* (view) {
       fontFamily="JetBrains Mono"
       fontSize={48}
       height={100}
-      ref={for_loop_button}
+      ref={forLoopBtn}
       scale={0}
       text="For Loop"
       textRef={null}
@@ -98,7 +71,7 @@ export default makeScene2D(function* (view) {
       fontFamily="JetBrains Mono"
       fontSize={48}
       height={100}
-      ref={print_button}
+      ref={printBtn}
       scale={0}
       text="Print(fruit)"
       textRef={null}
@@ -113,10 +86,10 @@ export default makeScene2D(function* (view) {
       fontFamily="JetBrains Mono"
       fontSize={48}
       height={100}
-      ref={print_result_button}
+      ref={printResultBtn}
       scale={0}
       text=""
-      textRef={result_text_ref}
+      textRef={resultTextRef}
       x={500}
       y={400}
     />,
@@ -153,7 +126,7 @@ export default makeScene2D(function* (view) {
       rectRef={cargo_run}
       outputRef={cargo_run_result}
       command="cargo run"
-      output={``}
+      output=""
       cmdRef={null}
     />,
   );
@@ -164,17 +137,17 @@ export default makeScene2D(function* (view) {
       codeBlockRef={codeblock}
       scale={0}
       fontSize={38}
-      tabTitle={"main.rs"}
+      tabTitle="main.rs"
       lang="rust"
       code={"fn main() {\n\n}"}
     />,
   );
 
   yield* waitUntil("what-are-for-loops");
-  yield* openWindowScale(for_loop_button);
+  yield* openWindowScale(forLoopBtn);
   yield* waitUntil("suppose-we-have-an-array");
-  yield* for_loop_button().y(-400, 0.55, easeInOutQuad);
-  yield* arraylist_text_ref().text(
+  yield* forLoopBtn().y(-400, 0.55, easeInOutQuad);
+  yield* arraylistTextRef().text(
     '["mango", "banana", "strawberry", "kiwi", "peach"]',
     0.75,
     easeInOutQuad,
@@ -182,9 +155,9 @@ export default makeScene2D(function* (view) {
   yield* waitUntil("then-lets-create-a-for-loop");
   yield* array_to_loop().points([Vector2.zero, [0, 280]], 0.55, easeInOutQuad);
   yield* waitUntil("what-this-will-do-is");
-  yield* openWindowScale(print_button);
+  yield* openWindowScale(printBtn);
   yield* loop_to_print().points([[0, 250], Vector2.zero], 0.55, easeInOutQuad);
-  yield* openWindowScale(print_result_button);
+  yield* openWindowScale(printResultBtn);
   yield* waitUntil("first-print-mango");
   yield* all(
     array_to_loop().points([Vector2.zero, [-500, 280]], 0.55, easeInOutQuad),
@@ -197,7 +170,7 @@ export default makeScene2D(function* (view) {
       easeInOutQuad,
     ),
   );
-  yield* result_text_ref().text("mango", 0.5, easeInOutQuad);
+  yield* resultTextRef().text("mango", 0.5, easeInOutQuad);
   yield* waitUntil("next-print-banana");
   yield* all(
     array_to_loop().points([Vector2.zero, [-280, 280]], 0.55, easeInOutQuad),
@@ -210,7 +183,7 @@ export default makeScene2D(function* (view) {
       easeInOutQuad,
     ),
   );
-  yield* result_text_ref().text("banana", 0.5, easeInOutQuad);
+  yield* resultTextRef().text("banana", 0.5, easeInOutQuad);
   yield* waitUntil("next-print-strawberry");
   yield* all(
     array_to_loop().points([Vector2.zero, [-0, 280]], 0.55, easeInOutQuad),
@@ -223,7 +196,7 @@ export default makeScene2D(function* (view) {
       easeInOutQuad,
     ),
   );
-  yield* result_text_ref().text("strawberry", 0.5, easeInOutQuad);
+  yield* resultTextRef().text("strawberry", 0.5, easeInOutQuad);
   yield* waitUntil("next-print-kiwi");
   yield* all(
     array_to_loop().points([Vector2.zero, [300, 280]], 0.55, easeInOutQuad),
@@ -236,7 +209,7 @@ export default makeScene2D(function* (view) {
       easeInOutQuad,
     ),
   );
-  yield* result_text_ref().text("kiwi", 0.5, easeInOutQuad);
+  yield* resultTextRef().text("kiwi", 0.5, easeInOutQuad);
   yield* waitUntil("next-print-peach");
   yield* all(
     array_to_loop().points([Vector2.zero, [500, 280]], 0.55, easeInOutQuad),
@@ -249,13 +222,13 @@ export default makeScene2D(function* (view) {
       easeInOutQuad,
     ),
   );
-  yield* result_text_ref().text("peach", 0.5, easeInOutQuad);
+  yield* resultTextRef().text("peach", 0.5, easeInOutQuad);
   yield* waitUntil("lets-see-how-we-can-implement-in-rust");
   yield* all(
-    closeWindowScale(for_loop_button),
-    arraylist_text_ref().opacity(0, 0.55, easeInOutQuad),
-    closeWindowScale(print_button),
-    closeWindowScale(print_result_button),
+    closeWindowScale(forLoopBtn),
+    arraylistTextRef().opacity(0, 0.55, easeInOutQuad),
+    closeWindowScale(printBtn),
+    closeWindowScale(printResultBtn),
     array_to_loop().opacity(0, 0.55, easeInOutQuad),
     loop_to_print().opacity(0, 0.55, easeInOutQuad),
   );

@@ -1,13 +1,10 @@
+/* eslint-disable react/jsx-filename-extension */
 import {
   makeScene2D,
   Circle,
   Txt,
   Img,
   Rect,
-  Line,
-  Icon,
-  Latex,
-  CubicBezier,
   QuadBezier,
 } from "@motion-canvas/2d";
 import {
@@ -17,39 +14,24 @@ import {
   map,
   easeInSine,
   chain,
-  easeInOutSine,
   waitFor,
-  slideTransition,
-  Direction,
   easeOutSine,
-  easeInBounce,
-  createSignal,
-  Vector2,
   waitUntil,
-  easeOutBack,
   easeInOutCubic,
-  easeInQuad,
 } from "@motion-canvas/core";
-import {
-  CodeBlock,
-  insert,
-  lines,
-  range,
-  remove,
-} from "@motion-canvas/2d/lib/components/CodeBlock";
-import ferrisImg from "../assets/ferris.svg";
 import { Copyright } from "helpers/copyright";
+import ferrisImg from "../assets/ferris.svg";
 
 export default makeScene2D(function* (view) {
   const ferrisLogo = createRef<Img>();
   const thx = createRef<Txt>();
-  const sub_curve = createRef<QuadBezier>();
-  const sub_curve_text = createRef<Txt>();
+  const subCurve = createRef<QuadBezier>();
+  const subCurveText = createRef<Txt>();
   const subscribe = createRef<Circle>();
   const video = createRef<Rect>();
   const playlist = createRef<Rect>();
 
-  yield view.add(<Copyright text=" Technologs " />);
+  yield view.add(<Copyright />);
 
   yield view.add(
     <Img
@@ -59,14 +41,14 @@ export default makeScene2D(function* (view) {
       x={850}
       y={470}
       ref={ferrisLogo}
-    ></Img>,
+    />,
   );
 
   yield view.add(
     <Txt
-      fontFamily={"JetBrains Mono"}
-      fill={"f38ba8"}
-      shadowColor={"f38ba8"}
+      fontFamily="JetBrains Mono"
+      fill="f38ba8"
+      shadowColor="f38ba8"
       shadowBlur={150}
       fontSize={128}
       y={-200}
@@ -81,10 +63,10 @@ export default makeScene2D(function* (view) {
   yield view.add(
     <Circle
       lineWidth={10}
-      stroke={"f38ba8"}
+      stroke="f38ba8"
       width={298}
       height={298}
-      shadowColor={"f38ba8"}
+      shadowColor="f38ba8"
       shadowBlur={60}
       ref={subscribe}
       scale={0}
@@ -94,11 +76,11 @@ export default makeScene2D(function* (view) {
   yield view.add(
     <Rect
       lineWidth={10}
-      stroke={"cba6f7"}
+      stroke="cba6f7"
       width={608}
       height={344}
       radius={20}
-      shadowColor={"cba6f7"}
+      shadowColor="cba6f7"
       shadowBlur={60}
       x={-600}
       ref={video}
@@ -109,11 +91,11 @@ export default makeScene2D(function* (view) {
   yield view.add(
     <Rect
       lineWidth={10}
-      stroke={"f9e2af"}
+      stroke="f9e2af"
       width={608}
       height={344}
       radius={20}
-      shadowColor={"f9e2af"}
+      shadowColor="f9e2af"
       shadowBlur={60}
       x={600}
       ref={playlist}
@@ -124,27 +106,27 @@ export default makeScene2D(function* (view) {
   yield view.add(
     <QuadBezier
       lineWidth={10}
-      stroke={"cdd6f4"}
+      stroke="cdd6f4"
       y={200}
       p0={[200, 200]}
       p1={[-10, 200]}
       endArrow
       arrowSize={20}
-      ref={sub_curve}
+      ref={subCurve}
       opacity={0}
     />,
   );
 
   yield view.add(
     <Txt
-      fontFamily={"JetBrains Mono"}
+      fontFamily="JetBrains Mono"
       fontWeight={900}
       fontSize={64}
-      fill={"cdd6f4"}
+      fill="cdd6f4"
       y={400}
       x={420}
       opacity={0}
-      ref={sub_curve_text}
+      ref={subCurveText}
     >
       Subscribe!
     </Txt>,
@@ -185,108 +167,108 @@ export default makeScene2D(function* (view) {
     }),
     waitFor(1.2),
     tween(0.75, (v) => {
-      sub_curve().opacity(map(0, 1, easeInOutCubic(v)));
-      sub_curve_text().opacity(map(0, 1, easeInOutCubic(v)));
+      subCurve().opacity(map(0, 1, easeInOutCubic(v)));
+      subCurveText().opacity(map(0, 1, easeInOutCubic(v)));
     }),
   );
 
   yield* all(
-    sub_curve().y(180, 1, easeInOutCubic),
-    sub_curve_text().y(380, 1, easeInOutCubic),
+    subCurve().y(180, 1, easeInOutCubic),
+    subCurveText().y(380, 1, easeInOutCubic),
   );
 
   yield* all(
-    sub_curve().y(200, 1, easeInOutCubic),
-    sub_curve_text().y(400, 1, easeInOutCubic),
+    subCurve().y(200, 1, easeInOutCubic),
+    subCurveText().y(400, 1, easeInOutCubic),
   );
 
   yield* all(
-    sub_curve().y(180, 1, easeInOutCubic),
-    sub_curve_text().y(380, 1, easeInOutCubic),
+    subCurve().y(180, 1, easeInOutCubic),
+    subCurveText().y(380, 1, easeInOutCubic),
   );
 
   yield* all(
-    sub_curve().y(200, 1, easeInOutCubic),
-    sub_curve_text().y(400, 1, easeInOutCubic),
+    subCurve().y(200, 1, easeInOutCubic),
+    subCurveText().y(400, 1, easeInOutCubic),
   );
 
   yield* all(
-    sub_curve().y(180, 1, easeInOutCubic),
-    sub_curve_text().y(380, 1, easeInOutCubic),
+    subCurve().y(180, 1, easeInOutCubic),
+    subCurveText().y(380, 1, easeInOutCubic),
   );
 
   yield* all(
-    sub_curve().y(200, 1, easeInOutCubic),
-    sub_curve_text().y(400, 1, easeInOutCubic),
+    subCurve().y(200, 1, easeInOutCubic),
+    subCurveText().y(400, 1, easeInOutCubic),
   );
 
   yield* all(
-    sub_curve().y(180, 1, easeInOutCubic),
-    sub_curve_text().y(380, 1, easeInOutCubic),
+    subCurve().y(180, 1, easeInOutCubic),
+    subCurveText().y(380, 1, easeInOutCubic),
   );
 
   yield* all(
-    sub_curve().y(200, 1, easeInOutCubic),
-    sub_curve_text().y(400, 1, easeInOutCubic),
+    subCurve().y(200, 1, easeInOutCubic),
+    subCurveText().y(400, 1, easeInOutCubic),
   );
 
   yield* all(
-    sub_curve().y(180, 1, easeInOutCubic),
-    sub_curve_text().y(380, 1, easeInOutCubic),
+    subCurve().y(180, 1, easeInOutCubic),
+    subCurveText().y(380, 1, easeInOutCubic),
   );
 
   yield* all(
-    sub_curve().y(200, 1, easeInOutCubic),
-    sub_curve_text().y(400, 1, easeInOutCubic),
+    subCurve().y(200, 1, easeInOutCubic),
+    subCurveText().y(400, 1, easeInOutCubic),
   );
 
   yield* all(
-    sub_curve().y(180, 1, easeInOutCubic),
-    sub_curve_text().y(380, 1, easeInOutCubic),
+    subCurve().y(180, 1, easeInOutCubic),
+    subCurveText().y(380, 1, easeInOutCubic),
   );
 
   yield* all(
-    sub_curve().y(200, 1, easeInOutCubic),
-    sub_curve_text().y(400, 1, easeInOutCubic),
+    subCurve().y(200, 1, easeInOutCubic),
+    subCurveText().y(400, 1, easeInOutCubic),
   );
 
   yield* all(
-    sub_curve().y(180, 1, easeInOutCubic),
-    sub_curve_text().y(380, 1, easeInOutCubic),
+    subCurve().y(180, 1, easeInOutCubic),
+    subCurveText().y(380, 1, easeInOutCubic),
   );
 
   yield* all(
-    sub_curve().y(200, 1, easeInOutCubic),
-    sub_curve_text().y(400, 1, easeInOutCubic),
+    subCurve().y(200, 1, easeInOutCubic),
+    subCurveText().y(400, 1, easeInOutCubic),
   );
 
   yield* all(
-    sub_curve().y(180, 1, easeInOutCubic),
-    sub_curve_text().y(380, 1, easeInOutCubic),
+    subCurve().y(180, 1, easeInOutCubic),
+    subCurveText().y(380, 1, easeInOutCubic),
   );
 
   yield* all(
-    sub_curve().y(200, 1, easeInOutCubic),
-    sub_curve_text().y(400, 1, easeInOutCubic),
+    subCurve().y(200, 1, easeInOutCubic),
+    subCurveText().y(400, 1, easeInOutCubic),
   );
 
   yield* all(
-    sub_curve().y(180, 1, easeInOutCubic),
-    sub_curve_text().y(380, 1, easeInOutCubic),
+    subCurve().y(180, 1, easeInOutCubic),
+    subCurveText().y(380, 1, easeInOutCubic),
   );
 
   yield* all(
-    sub_curve().y(200, 1, easeInOutCubic),
-    sub_curve_text().y(400, 1, easeInOutCubic),
+    subCurve().y(200, 1, easeInOutCubic),
+    subCurveText().y(400, 1, easeInOutCubic),
   );
 
   yield* all(
-    sub_curve().y(180, 1, easeInOutCubic),
-    sub_curve_text().y(380, 1, easeInOutCubic),
+    subCurve().y(180, 1, easeInOutCubic),
+    subCurveText().y(380, 1, easeInOutCubic),
   );
 
   yield* all(
-    sub_curve().y(200, 1, easeInOutCubic),
-    sub_curve_text().y(400, 1, easeInOutCubic),
+    subCurve().y(200, 1, easeInOutCubic),
+    subCurveText().y(400, 1, easeInOutCubic),
   );
 });

@@ -1,3 +1,6 @@
+/* eslint-disable react/jsx-filename-extension */
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable import/prefer-default-export */
 import { Rect, Txt } from "@motion-canvas/2d";
 import { Reference } from "@motion-canvas/core";
 
@@ -12,7 +15,7 @@ interface KeysProps {
   y: number;
 }
 
-export const Keys = (props: KeysProps) => {
+export function Keys(props: KeysProps) {
   const parts = props.keys.split(" + ");
   return (
     <Rect
@@ -35,34 +38,33 @@ export const Keys = (props: KeysProps) => {
         if (index === 0) {
           return (
             <Txt
-              fontFamily={"JetBrains Mono"}
+              fontFamily="JetBrains Mono"
               fontSize={props.fontSize}
               fontWeight={900}
               text={part}
-              fill={"f38ba8"}
+              fill="f38ba8"
             />
           );
-        } else {
-          return (
-            <Rect layout gap={20} height={"100%"} fill="181825" marginLeft={10}>
-              <Txt
-                fontFamily={"JetBrains Mono"}
-                fontSize={props.fontSize}
-                fontWeight={900}
-                text={"+"}
-                fill={"f38ba8"}
-              />
-              <Txt
-                fontFamily={"JetBrains Mono"}
-                fontSize={props.fontSize}
-                fontWeight={900}
-                text={part}
-                fill={"f38ba8"}
-              />
-            </Rect>
-          );
         }
+        return (
+          <Rect layout gap={20} height="100%" fill="181825" marginLeft={10}>
+            <Txt
+              fontFamily="JetBrains Mono"
+              fontSize={props.fontSize}
+              fontWeight={900}
+              text="+"
+              fill="f38ba8"
+            />
+            <Txt
+              fontFamily="JetBrains Mono"
+              fontSize={props.fontSize}
+              fontWeight={900}
+              text={part}
+              fill="f38ba8"
+            />
+          </Rect>
+        );
       })}
     </Rect>
   );
-};
+}

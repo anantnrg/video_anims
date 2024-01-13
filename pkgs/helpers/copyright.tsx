@@ -1,10 +1,6 @@
 import { Txt } from "@motion-canvas/2d";
 
-interface CopyrightProps {
-    text: string;
-}
-
-export const Copyright = (props: CopyrightProps) => (
+export const Copyright = () => (
     <Txt
         y={-500}
         x={-800}
@@ -13,5 +9,5 @@ export const Copyright = (props: CopyrightProps) => (
         fontFamily={"JetBrains Mono"}
         fontWeight={900}
         fontSize={22}
-    > © {props.text} 2024</Txt >,
+    > © TechnoLogs 2024</Txt >,
 );

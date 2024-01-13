@@ -31,7 +31,7 @@ export default makeScene2D(function* (view) {
   const video = createRef<Rect>();
   const playlist = createRef<Rect>();
 
-  yield view.add(<Copyright text=" Technologs " />);
+  yield view.add(<Copyright />);
 
   yield view.add(
     <Img

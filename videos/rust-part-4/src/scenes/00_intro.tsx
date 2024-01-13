@@ -1,13 +1,5 @@
-import {
-  makeScene2D,
-  Circle,
-  Txt,
-  Img,
-  Rect,
-  Line,
-  Icon,
-  Latex,
-} from "@motion-canvas/2d";
+/* eslint-disable react/jsx-filename-extension */
+import { makeScene2D, Img } from "@motion-canvas/2d";
 import {
   all,
   tween,
@@ -15,35 +7,20 @@ import {
   map,
   easeInSine,
   chain,
-  easeInOutSine,
-  waitFor,
-  slideTransition,
-  Direction,
   easeOutSine,
-  easeInBounce,
-  createSignal,
-  Vector2,
   waitUntil,
-  easeOutBack,
   easeInOutCubic,
 } from "@motion-canvas/core";
-import {
-  CodeBlock,
-  insert,
-  lines,
-  range,
-  remove,
-} from "@motion-canvas/2d/lib/components/CodeBlock";
-import ferrisImg from "../assets/ferris.svg";
 import { Copyright } from "helpers/copyright";
+import ferrisImg from "../assets/ferris.svg";
 
 export default makeScene2D(function* (view) {
   const ferrisLogo = createRef<Img>();
 
-  yield view.add(<Copyright text=" Technologs " />);
+  yield view.add(<Copyright />);
 
   yield view.add(
-    <Img ref={ferrisLogo} src={ferrisImg} width={900} scale={0}></Img>,
+    <Img ref={ferrisLogo} src={ferrisImg} width={900} scale={0} />,
   );
 
   yield* waitUntil("start-intro");

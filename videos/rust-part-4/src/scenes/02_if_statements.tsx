@@ -1,31 +1,11 @@
-import {
-  makeScene2D,
-  Circle,
-  Txt,
-  Img,
-  Rect,
-  Line,
-  Icon,
-  Latex,
-} from "@motion-canvas/2d";
+/* eslint-disable react/jsx-filename-extension */
+import { makeScene2D, Txt, Img, Rect, Line } from "@motion-canvas/2d";
 import {
   all,
-  tween,
   createRef,
-  map,
-  easeInSine,
-  chain,
-  easeInOutSine,
   waitFor,
-  slideTransition,
-  Direction,
-  easeOutSine,
-  easeInBounce,
-  createSignal,
   Vector2,
   waitUntil,
-  easeOutBack,
-  easeInQuad,
   easeInOutQuad,
 } from "@motion-canvas/core";
 import {
@@ -33,40 +13,38 @@ import {
   edit,
   insert,
   lines,
-  range,
-  remove,
 } from "@motion-canvas/2d/lib/components/CodeBlock";
-import ferrisImg from "../assets/ferris.svg";
 import { Copyright } from "helpers/copyright";
 import { Button } from "helpers/button";
 import { Colors } from "helpers/styles";
 import { closeWindowScale, openWindowScale } from "helpers/animations";
 import { TerminalWindow } from "helpers/terminal";
 import { CustomCodeBlock } from "helpers/codeblock";
+import ferrisImg from "../assets/ferris.svg";
 
 export default makeScene2D(function* (view) {
-  const if_statement_rect_ref = createRef<Rect>();
-  const value_rect_ref = createRef<Rect>();
-  const its_a_multiple_rect_ref = createRef<Rect>();
-  const its_not_a_multiple_rect_ref = createRef<Rect>();
-  const value_to_if = createRef<Line>();
-  const if_to_left = createRef<Line>();
-  const if_to_right = createRef<Line>();
-  const true_text = createRef<Txt>();
-  const false_text = createRef<Txt>();
-  const code_block_rect_ref = createRef<Rect>();
+  const ifStatementRectRef = createRef<Rect>();
+  const valueRectRef = createRef<Rect>();
+  const itsAMultipleRectRef = createRef<Rect>();
+  const itsNotAMultipleRectRef = createRef<Rect>();
+  const valueToIf = createRef<Line>();
+  const ifToLeft = createRef<Line>();
+  const ifToRight = createRef<Line>();
+  const trueText = createRef<Txt>();
+  const falseText = createRef<Txt>();
+  const codeBlockRectRef = createRef<Rect>();
   const codeblock = createRef<CodeBlock>();
-  const cargo_run = createRef<Rect>();
-  const cargo_run_result = createRef<Txt>();
-  const returns_quotient_text = createRef<Txt>();
-  const returns_remainder_text = createRef<Txt>();
-  const returns_remainder_rect = createRef<Rect>();
-  const returns_quotient_rect = createRef<Rect>();
+  const terminal = createRef<Rect>();
+  const terminalResult = createRef<Txt>();
+  const returnsQuotientText = createRef<Txt>();
+  const returnsRemainderText = createRef<Txt>();
+  const returnsRemainderRect = createRef<Rect>();
+  const returnsQuotientRect = createRef<Rect>();
 
-  yield view.add(<Copyright text=" Technologs " />);
+  yield view.add(<Copyright />);
 
   yield view.add(
-    <Img src={ferrisImg} width={900} scale={0.15} x={850} y={470}></Img>,
+    <Img src={ferrisImg} width={900} scale={0.15} x={850} y={470} />,
   );
 
   yield view.add(
@@ -74,7 +52,7 @@ export default makeScene2D(function* (view) {
       text="If Statement"
       fontFamily="JetBrains Mono"
       fontSize={36}
-      ref={if_statement_rect_ref}
+      ref={ifStatementRectRef}
       height={120}
       color={Colors.red}
       x={0}
@@ -89,7 +67,7 @@ export default makeScene2D(function* (view) {
       text="A number"
       fontFamily="JetBrains Mono"
       fontSize={36}
-      ref={value_rect_ref}
+      ref={valueRectRef}
       height={120}
       color={Colors.mauve}
       x={0}
@@ -104,7 +82,7 @@ export default makeScene2D(function* (view) {
       text="Print('Its a multiple!')"
       fontFamily="JetBrains Mono"
       fontSize={36}
-      ref={its_a_multiple_rect_ref}
+      ref={itsAMultipleRectRef}
       height={120}
       color={Colors.green}
       x={-600}
@@ -119,7 +97,7 @@ export default makeScene2D(function* (view) {
       text="Print('Its NOT a multiple!')"
       fontFamily="JetBrains Mono"
       fontSize={36}
-      ref={its_not_a_multiple_rect_ref}
+      ref={itsNotAMultipleRectRef}
       height={120}
       color={Colors.peach}
       x={600}
@@ -137,33 +115,33 @@ export default makeScene2D(function* (view) {
       points={[[0, 0], Vector2.zero]}
       arrowSize={16}
       y={-330}
-      ref={value_to_if}
+      ref={valueToIf}
     />,
   );
 
   yield view.add(
     <Txt
-      fontFamily={"JetBrains Mono"}
+      fontFamily="JetBrains Mono"
       fontWeight={800}
       fontSize={38}
       fill={Colors.green}
-      text={""}
+      text=""
       x={-200}
       y={120}
-      ref={true_text}
+      ref={trueText}
     />,
   );
 
   yield view.add(
     <Txt
-      fontFamily={"JetBrains Mono"}
+      fontFamily="JetBrains Mono"
       fontWeight={800}
       fontSize={38}
       fill={Colors.peach}
-      text={""}
+      text=""
       x={200}
       y={120}
-      ref={false_text}
+      ref={falseText}
     />,
   );
 
@@ -175,7 +153,7 @@ export default makeScene2D(function* (view) {
       points={[[-0, 0], Vector2.zero]}
       arrowSize={16}
       y={30}
-      ref={if_to_left}
+      ref={ifToLeft}
     />,
   );
 
@@ -187,7 +165,7 @@ export default makeScene2D(function* (view) {
       points={[[0, 0], Vector2.zero]}
       arrowSize={16}
       y={30}
-      ref={if_to_right}
+      ref={ifToRight}
     />,
   );
 
@@ -195,21 +173,21 @@ export default makeScene2D(function* (view) {
     <TerminalWindow
       fontSize={36}
       scale={0}
-      rectRef={cargo_run}
-      outputRef={cargo_run_result}
+      rectRef={terminal}
+      outputRef={terminalResult}
       command="cargo run"
-      output={``}
+      output=""
       cmdRef={null}
     />,
   );
 
   yield view.add(
     <CustomCodeBlock
-      rectRef={code_block_rect_ref}
+      rectRef={codeBlockRectRef}
       codeBlockRef={codeblock}
       scale={0}
       fontSize={38}
-      tabTitle={"main.rs"}
+      tabTitle="main.rs"
       lang="rust"
       code={"fn main() {\n\n}"}
     />,
@@ -221,30 +199,30 @@ export default makeScene2D(function* (view) {
       padding={20}
       height={100}
       y={300}
-      ref={returns_quotient_rect}
+      ref={returnsQuotientRect}
       width={550}
       scale={0}
-      alignItems={"center"}
-      justifyContent={"center"}
+      alignItems="center"
+      justifyContent="center"
     >
       <Txt
-        fontFamily={"JetBrains Mono"}
+        fontFamily="JetBrains Mono"
         fontWeight={800}
         fontSize={38}
         fill={Colors.peach}
-        text={"/"}
+        text="/"
         x={200}
         y={120}
       />
       <Txt
-        fontFamily={"JetBrains Mono"}
+        fontFamily="JetBrains Mono"
         fontWeight={800}
         fontSize={38}
         fill={Colors.text}
-        text={""}
+        text=""
         x={200}
         y={120}
-        ref={returns_quotient_text}
+        ref={returnsQuotientText}
       />
     </Rect>,
   );
@@ -255,70 +233,68 @@ export default makeScene2D(function* (view) {
       padding={20}
       height={100}
       y={400}
-      ref={returns_remainder_rect}
+      ref={returnsRemainderRect}
       scale={0}
       width={550}
-      alignItems={"center"}
-      justifyContent={"center"}
+      alignItems="center"
+      justifyContent="center"
     >
       <Txt
-        fontFamily={"JetBrains Mono"}
+        fontFamily="JetBrains Mono"
         fontWeight={800}
         fontSize={38}
         fill={Colors.green}
-        text={"%"}
+        text="%"
         x={200}
         y={120}
       />
       <Txt
-        fontFamily={"JetBrains Mono"}
+        fontFamily="JetBrains Mono"
         fontWeight={800}
         fontSize={38}
         fill={Colors.text}
-        text={""}
+        text=""
         x={200}
         y={120}
-        ref={returns_remainder_text}
+        ref={returnsRemainderText}
       />
     </Rect>,
   );
 
   yield* waitUntil("lets-say-we-have-a-number");
-  yield* openWindowScale(value_rect_ref);
+  yield* openWindowScale(valueRectRef);
   yield* waitUntil("we-want-to-check-if-its-a-multiple-of-64");
-  yield* value_rect_ref().y(-400, 0.55, easeInOutQuad);
-  yield* openWindowScale(if_statement_rect_ref);
-  yield* if_statement_rect_ref().y(-50, 0.55, easeInOutQuad);
+  yield* valueRectRef().y(-400, 0.55, easeInOutQuad);
+  yield* openWindowScale(ifStatementRectRef);
+  yield* ifStatementRectRef().y(-50, 0.55, easeInOutQuad);
+  yield* all(valueToIf().points([[0, 210], Vector2.zero], 0.75, easeInOutQuad));
   yield* all(
-    value_to_if().points([[0, 210], Vector2.zero], 0.75, easeInOutQuad),
-  );
-  yield* all(
-    openWindowScale(its_a_multiple_rect_ref),
-    openWindowScale(its_not_a_multiple_rect_ref),
+    openWindowScale(itsAMultipleRectRef),
+    openWindowScale(itsNotAMultipleRectRef),
   );
   yield* waitUntil("if-its-a-multiple-of-64");
-  yield* true_text().text("True", 0.55, easeInOutQuad);
+  yield* trueText().text("True", 0.55, easeInOutQuad);
   yield* all(
-    if_to_left().points([[-280, 250], Vector2.zero], 0.75, easeInOutQuad),
+    ifToLeft().points([[-280, 250], Vector2.zero], 0.75, easeInOutQuad),
   );
   yield* waitUntil("if-its-not-a-multiple-of-64");
-  yield* false_text().text("False", 0.55, easeInOutQuad);
+  yield* falseText().text("False", 0.55, easeInOutQuad);
   yield* all(
-    if_to_right().points([[260, 255], Vector2.zero], 0.75, easeInOutQuad),
+    ifToRight().points([[260, 255], Vector2.zero], 0.75, easeInOutQuad),
   );
   yield* waitUntil("now-lets-see-how-we-can-impl-in-rust");
   yield* all(
-    closeWindowScale(value_rect_ref),
-    closeWindowScale(if_statement_rect_ref),
-    closeWindowScale(its_a_multiple_rect_ref),
-    closeWindowScale(its_not_a_multiple_rect_ref),
-    if_to_left().scale(0, 0.55, easeInOutQuad),
-    if_to_right().scale(0, 0.55, easeInOutQuad),
-    value_to_if().scale(0, 0.55, easeInOutQuad),
-    true_text().text("", 0.55, easeInOutQuad),
-    false_text().text("", 0.55, easeInOutQuad),
+    closeWindowScale(valueRectRef),
+    closeWindowScale(ifStatementRectRef),
+    closeWindowScale(itsAMultipleRectRef),
+    closeWindowScale(itsNotAMultipleRectRef),
+    ifToLeft().scale(0, 0.55, easeInOutQuad),
+    ifToRight().scale(0, 0.55, easeInOutQuad),
+    valueToIf().scale(0, 0.55, easeInOutQuad),
+    trueText().text("", 0.55, easeInOutQuad),
+    falseText().text("", 0.55, easeInOutQuad),
   );
-  yield* openWindowScale(code_block_rect_ref);
+  yield* openWindowScale(codeBlockRectRef);
   yield* waitUntil("lets-create-var-named-x");
   yield* codeblock().edit(0.75)`fn main() {\n${insert("    let x = ")}\n}`;
   yield* waitUntil("init-it-to-value");
@@ -341,21 +317,17 @@ export default makeScene2D(function* (view) {
   )`fn main() {\n    let x = 2048;\n    if x %${insert(" 64")}\n}`;
   yield* waitUntil("difference-between-slash-and-modulus");
   yield* codeblock().selection(lines(0, Infinity));
-  yield* returns_quotient_rect().scale(1, 0.55, easeInOutQuad);
-  yield* returns_quotient_text().text(
-    " - Returns quotient",
-    0.55,
-    easeInOutQuad,
-  );
-  yield* returns_remainder_rect().scale(1, 0.55, easeInOutQuad);
-  yield* returns_remainder_text().text(
+  yield* returnsQuotientRect().scale(1, 0.55, easeInOutQuad);
+  yield* returnsQuotientText().text(" - Returns quotient", 0.55, easeInOutQuad);
+  yield* returnsRemainderRect().scale(1, 0.55, easeInOutQuad);
+  yield* returnsRemainderText().text(
     " - Returns remainder",
     0.55,
     easeInOutQuad,
   );
   yield* waitUntil("we-will-use-the-modulus-sign");
-  yield* returns_quotient_rect().scale(0, 0.55, easeInOutQuad);
-  yield* returns_remainder_rect().scale(0, 0.55, easeInOutQuad);
+  yield* returnsQuotientRect().scale(0, 0.55, easeInOutQuad);
+  yield* returnsRemainderRect().scale(0, 0.55, easeInOutQuad);
   yield* waitUntil("put-two-equal-signs");
   yield* codeblock().edit(
     0.75,
@@ -387,13 +359,13 @@ export default makeScene2D(function* (view) {
   yield* waitFor(0.7);
   yield* codeblock().selection(lines(0, Infinity));
   yield* waitUntil("lets-try-running-our-code");
-  yield* closeWindowScale(code_block_rect_ref);
-  yield* openWindowScale(cargo_run);
-  yield* cargo_run_result().opacity(1, 0);
-  yield* cargo_run_result().text("x is a multiple of 64", 0.55, easeInOutQuad);
+  yield* closeWindowScale(codeBlockRectRef);
+  yield* openWindowScale(terminal);
+  yield* terminalResult().opacity(1, 0);
+  yield* terminalResult().text("x is a multiple of 64", 0.55, easeInOutQuad);
   yield* waitUntil("lets-go-back-and-change-x-value");
-  yield* closeWindowScale(cargo_run);
-  yield* openWindowScale(code_block_rect_ref);
+  yield* closeWindowScale(terminal);
+  yield* openWindowScale(codeBlockRectRef);
   yield* waitUntil("say-3500");
   yield* codeblock().edit(0.75)`fn main() {\n    let x = ${edit(
     "2048",
@@ -402,12 +374,12 @@ export default makeScene2D(function* (view) {
   yield* codeblock().selection(lines(0, Infinity));
   yield* waitFor(1);
   yield* waitUntil("if-we-run-our-code-again");
-  yield* cargo_run_result().text("", 0, easeInOutQuad);
-  yield* closeWindowScale(code_block_rect_ref);
-  yield* openWindowScale(cargo_run);
+  yield* terminalResult().text("", 0, easeInOutQuad);
+  yield* closeWindowScale(codeBlockRectRef);
+  yield* openWindowScale(terminal);
   yield* waitUntil("lets-go-back-and-use-else-statement");
-  yield* closeWindowScale(cargo_run);
-  yield* openWindowScale(code_block_rect_ref);
+  yield* closeWindowScale(terminal);
+  yield* openWindowScale(codeBlockRectRef);
   yield* waitUntil("after-closing-brace-of-if-type-else");
   yield* codeblock().edit(
     0.75,
@@ -439,16 +411,16 @@ export default makeScene2D(function* (view) {
   yield* waitFor(1);
   yield* codeblock().selection(lines(0, Infinity));
   yield* waitUntil("lets-run-code-again-again");
-  yield* closeWindowScale(code_block_rect_ref);
-  yield* openWindowScale(cargo_run);
-  yield* cargo_run_result().text(
+  yield* closeWindowScale(codeBlockRectRef);
+  yield* openWindowScale(terminal);
+  yield* terminalResult().text(
     "x is NOT a multiple of 64",
     0.55,
     easeInOutQuad,
   );
   yield* waitUntil("lets-do-one-more-thing");
-  yield* closeWindowScale(cargo_run);
-  yield* openWindowScale(code_block_rect_ref);
+  yield* closeWindowScale(terminal);
+  yield* openWindowScale(codeBlockRectRef);
   yield* waitUntil("use-if-else-statement");
   yield* codeblock().edit(
     0.75,
@@ -479,15 +451,15 @@ export default makeScene2D(function* (view) {
     '"x is a multiple of 70 but not 64"',
   )});\n    } else {\n        println!("x is NOT a multiple of 64");\n    \}\n}`;
   yield* waitUntil("lets-run-code-once-more");
-  yield* closeWindowScale(code_block_rect_ref);
-  yield* cargo_run().width(800);
-  yield* cargo_run_result().text("", 0, easeInOutQuad);
-  yield* openWindowScale(cargo_run);
-  yield* cargo_run_result().text(
+  yield* closeWindowScale(codeBlockRectRef);
+  yield* terminal().width(800);
+  yield* terminalResult().text("", 0, easeInOutQuad);
+  yield* openWindowScale(terminal);
+  yield* terminalResult().text(
     "x is a multiple of 70 but not 64",
     0.55,
     easeInOutQuad,
   );
   yield* waitUntil("that-sums-up-if-statements");
-  yield* closeWindowScale(cargo_run);
+  yield* closeWindowScale(terminal);
 });

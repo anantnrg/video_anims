@@ -1,30 +1,12 @@
-import {
-  makeScene2D,
-  Circle,
-  Txt,
-  Img,
-  Rect,
-  Line,
-  Icon,
-  Latex,
-} from "@motion-canvas/2d";
+/* eslint-disable react/jsx-filename-extension */
+import { makeScene2D, Txt, Img, Rect, Icon } from "@motion-canvas/2d";
 import {
   all,
   tween,
   createRef,
   map,
-  easeInSine,
   chain,
-  easeInOutSine,
-  waitFor,
-  slideTransition,
-  Direction,
-  easeOutSine,
-  easeInBounce,
-  createSignal,
-  Vector2,
   waitUntil,
-  easeOutBack,
   easeInOutQuad,
   loop,
 } from "@motion-canvas/core";
@@ -32,10 +14,7 @@ import {
   CodeBlock,
   insert,
   lines,
-  range,
-  remove,
 } from "@motion-canvas/2d/lib/components/CodeBlock";
-import ferrisImg from "../assets/ferris.svg";
 import { Copyright } from "helpers/copyright";
 import { TerminalWindow } from "helpers/terminal";
 import { CustomCodeBlock } from "helpers/codeblock";
@@ -44,20 +23,20 @@ import {
   openWindowScale,
   closeWindowScale,
   textAppear,
-  textDisappear,
 } from "helpers/animations";
 import { Colors } from "helpers/styles";
+import ferrisImg from "../assets/ferris.svg";
 
 export default makeScene2D(function* (view) {
-  const code_block_rect_ref = createRef<Rect>();
-  const keys_ref = createRef<Rect>();
-  const cmd_ref = createRef<Txt>();
-  const infinite_loop_circle = createRef<Icon>();
-  const cargo_run = createRef<Rect>();
-  const cargo_run_result = createRef<Txt>();
+  const codeBlockRectRef = createRef<Rect>();
+  const keysRef = createRef<Rect>();
+  const cmdRef = createRef<Txt>();
+  const infiniteLoopCircle = createRef<Icon>();
+  const terminal = createRef<Rect>();
+  const terminalResult = createRef<Txt>();
   const codeblock = createRef<CodeBlock>();
 
-  yield view.add(<Copyright text=" Technologs " />);
+  yield view.add(<Copyright />);
 
   yield view.add(
     <Img src={ferrisImg} width={900} scale={0.15} x={850} y={470} />,
@@ -65,10 +44,10 @@ export default makeScene2D(function* (view) {
 
   yield view.add(
     <Icon
-      icon={"octicon:sync"}
+      icon="octicon:sync"
       scale={0}
       color={Colors.mauve}
-      ref={infinite_loop_circle}
+      ref={infiniteLoopCircle}
     />,
   );
 
@@ -76,11 +55,11 @@ export default makeScene2D(function* (view) {
     <TerminalWindow
       fontSize={36}
       scale={0}
-      rectRef={cargo_run}
-      outputRef={cargo_run_result}
+      rectRef={terminal}
+      outputRef={terminalResult}
       command="cargo run"
       output="This prints forever!"
-      cmdRef={cmd_ref}
+      cmdRef={cmdRef}
     />,
   );
 
@@ -89,7 +68,7 @@ export default makeScene2D(function* (view) {
       fontSize={48}
       keys="Ctrl + C"
       height={100}
-      rectRef={keys_ref}
+      rectRef={keysRef}
       scale={0}
       width={200}
       x={0}
@@ -99,11 +78,11 @@ export default makeScene2D(function* (view) {
 
   yield view.add(
     <CustomCodeBlock
-      rectRef={code_block_rect_ref}
+      rectRef={codeBlockRectRef}
       codeBlockRef={codeblock}
       scale={0}
       fontSize={38}
-      tabTitle={"main.rs"}
+      tabTitle="main.rs"
       lang="rust"
       code={"fn main() {\n\n}"}
     />,
@@ -111,23 +90,20 @@ export default makeScene2D(function* (view) {
 
   yield* waitUntil("what-is-infinite-loop");
   yield* tween(0.55, (v) => {
-    infinite_loop_circle().scale(map(0, 16, easeInOutQuad(v)));
+    infiniteLoopCircle().scale(map(0, 16, easeInOutQuad(v)));
   });
 
-  yield* loop(360, (i) =>
-    infinite_loop_circle().rotation(
-      infinite_loop_circle().rotation() + 1,
-      0.005,
-    ),
+  yield* loop(360, () =>
+    infiniteLoopCircle().rotation(infiniteLoopCircle().rotation() + 1, 0.005),
   );
-  yield* infinite_loop_circle().rotation(0);
+  yield* infiniteLoopCircle().rotation(0);
 
   yield* waitUntil("how-to-define-loop-in-rust");
   yield* chain(
     tween(0.55, (v) => {
-      infinite_loop_circle().scale(map(16, 0, easeInOutQuad(v)));
+      infiniteLoopCircle().scale(map(16, 0, easeInOutQuad(v)));
     }),
-    openWindowScale(code_block_rect_ref),
+    openWindowScale(codeBlockRectRef),
     waitUntil("to-create-infinite-loop-use-keyword"),
     codeblock().edit(0.75)`fn main() {\n${insert("    loop")}\n}`,
     waitUntil("put-a-pair-of-curly-braces-1"),
@@ -153,21 +129,21 @@ export default makeScene2D(function* (view) {
 
   yield* chain(
     waitUntil("lets-try-running-code-1"),
-    closeWindowScale(code_block_rect_ref),
-    openWindowScale(cargo_run),
+    closeWindowScale(codeBlockRectRef),
+    openWindowScale(terminal),
     waitUntil("it-will-print-our-string-infinitely"),
-    textAppear(cargo_run_result),
-    loop(15, (i) =>
-      cargo_run_result().text(
-        cargo_run_result().text().concat("\nThis prints forever!"),
+    textAppear(terminalResult),
+    loop(15, () =>
+      terminalResult().text(
+        terminalResult().text().concat("\nThis prints forever!"),
         0.25,
       ),
     ),
     waitUntil("to-quit-press-ctrl-c"),
-    openWindowScale(keys_ref),
+    openWindowScale(keysRef),
     waitUntil("lets-go-back-to-our-loop-1"),
-    all(closeWindowScale(cargo_run), closeWindowScale(keys_ref)),
-    openWindowScale(code_block_rect_ref),
+    all(closeWindowScale(terminal), closeWindowScale(keysRef)),
+    openWindowScale(codeBlockRectRef),
     waitUntil("now-after-the-println-statement-1"),
     codeblock().edit(
       0.75,
@@ -175,13 +151,13 @@ export default makeScene2D(function* (view) {
       "        break;\n",
     )}    \}\n}`,
     waitUntil("lets-try-running-code-2"),
-    cargo_run_result().text("This prints forever!", 0),
-    cargo_run_result().opacity(0, 0),
-    closeWindowScale(code_block_rect_ref),
-    openWindowScale(cargo_run),
+    terminalResult().text("This prints forever!", 0),
+    terminalResult().opacity(0, 0),
+    closeWindowScale(codeBlockRectRef),
+    openWindowScale(terminal),
     waitUntil("it-will-print-our-string-once"),
-    textAppear(cargo_run_result),
+    textAppear(terminalResult),
     waitUntil("thats-all-bout-infinite-loops"),
-    closeWindowScale(cargo_run),
+    closeWindowScale(terminal),
   );
 });

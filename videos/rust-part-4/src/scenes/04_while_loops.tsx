@@ -1,40 +1,18 @@
-import {
-  makeScene2D,
-  Circle,
-  Txt,
-  Img,
-  Rect,
-  Line,
-  Icon,
-  Latex,
-} from "@motion-canvas/2d";
+/* eslint-disable react/jsx-filename-extension */
+import { makeScene2D, Txt, Img, Rect, Line, Icon } from "@motion-canvas/2d";
 import {
   all,
-  tween,
   createRef,
-  map,
-  easeInSine,
-  chain,
-  easeInOutSine,
   waitFor,
-  slideTransition,
-  Direction,
-  easeOutSine,
-  easeInBounce,
-  createSignal,
   Vector2,
   waitUntil,
-  easeOutBack,
   easeInOutQuad,
 } from "@motion-canvas/core";
 import {
   CodeBlock,
   insert,
   lines,
-  range,
-  remove,
 } from "@motion-canvas/2d/lib/components/CodeBlock";
-import ferrisImg from "../assets/ferris.svg";
 import { Copyright } from "helpers/copyright";
 import { Button } from "helpers/button";
 import {
@@ -45,24 +23,25 @@ import {
 import { Colors } from "helpers/styles";
 import { CustomCodeBlock } from "helpers/codeblock";
 import { TerminalWindow } from "helpers/terminal";
+import ferrisImg from "../assets/ferris.svg";
 
 export default makeScene2D(function* (view) {
-  const while_loop_button_ref = createRef<Rect>();
-  const value_button_ref = createRef<Rect>();
-  const value_text_ref = createRef<Txt>();
-  const function_button_ref = createRef<Rect>();
-  const value_to_loop_arrow_ref = createRef<Line>();
-  const loop_to_function_arrow_ref = createRef<Line>();
-  const break_loop_icon = createRef<Icon>();
-  const code_block_rect_ref = createRef<Rect>();
+  const whileLoopBtnRef = createRef<Rect>();
+  const valueBtnRef = createRef<Rect>();
+  const valueTextRef = createRef<Txt>();
+  const fnBtnRef = createRef<Rect>();
+  const valueToLoopArrowRef = createRef<Line>();
+  const LoopToFnArrowRef = createRef<Line>();
+  const breakLoopIcon = createRef<Icon>();
+  const codeBlockRectRef = createRef<Rect>();
   const codeblock = createRef<CodeBlock>();
-  const cargo_run = createRef<Rect>();
-  const cargo_run_result = createRef<Txt>();
+  const terminal = createRef<Rect>();
+  const terminalResult = createRef<Txt>();
 
-  yield view.add(<Copyright text=" Technologs " />);
+  yield view.add(<Copyright />);
 
   yield view.add(
-    <Img src={ferrisImg} width={900} scale={0.15} x={850} y={470}></Img>,
+    <Img src={ferrisImg} width={900} scale={0.15} x={850} y={470} />,
   );
 
   yield view.add(
@@ -71,12 +50,12 @@ export default makeScene2D(function* (view) {
       fontFamily="JetBrains Mono"
       fontSize={42}
       height={100}
-      ref={value_button_ref}
+      ref={valueBtnRef}
       scale={0}
       text="True"
       x={0}
       y={-300}
-      textRef={value_text_ref}
+      textRef={valueTextRef}
     />,
   );
 
@@ -86,7 +65,7 @@ export default makeScene2D(function* (view) {
       fontFamily="JetBrains Mono"
       fontSize={42}
       height={100}
-      ref={while_loop_button_ref}
+      ref={whileLoopBtnRef}
       scale={0}
       text="While(True)"
       x={0}
@@ -101,7 +80,7 @@ export default makeScene2D(function* (view) {
       fontFamily="JetBrains Mono"
       fontSize={42}
       height={100}
-      ref={function_button_ref}
+      ref={fnBtnRef}
       scale={0}
       text="Some Function"
       x={0}
@@ -118,7 +97,7 @@ export default makeScene2D(function* (view) {
       points={[Vector2.zero, [0, 0]]}
       arrowSize={16}
       y={-230}
-      ref={value_to_loop_arrow_ref}
+      ref={valueToLoopArrowRef}
     />,
   );
 
@@ -130,17 +109,17 @@ export default makeScene2D(function* (view) {
       points={[Vector2.zero, [0, 0]]}
       arrowSize={16}
       y={70}
-      ref={loop_to_function_arrow_ref}
+      ref={LoopToFnArrowRef}
     />,
   );
 
   yield view.add(
     <Icon
-      icon={"ic:baseline-cancel"}
+      icon="ic:baseline-cancel"
       color={Colors.red}
       scale={0}
       y={150}
-      ref={break_loop_icon}
+      ref={breakLoopIcon}
     />,
   );
 
@@ -148,8 +127,8 @@ export default makeScene2D(function* (view) {
     <TerminalWindow
       fontSize={36}
       scale={0}
-      rectRef={cargo_run}
-      outputRef={cargo_run_result}
+      rectRef={terminal}
+      outputRef={terminalResult}
       command="cargo run"
       output={`0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n10`}
       cmdRef={null}
@@ -158,53 +137,53 @@ export default makeScene2D(function* (view) {
 
   yield view.add(
     <CustomCodeBlock
-      rectRef={code_block_rect_ref}
+      rectRef={codeBlockRectRef}
       codeBlockRef={codeblock}
       scale={0}
       fontSize={38}
-      tabTitle={"main.rs"}
+      tabTitle="main.rs"
       lang="rust"
       code={"fn main() {\n\n}"}
     />,
   );
 
   yield* waitUntil("we-will-look-at-while-loops");
-  yield* openWindowScale(while_loop_button_ref);
+  yield* openWindowScale(whileLoopBtnRef);
 
   yield* waitUntil("lets-say-we-have-a-var");
-  yield* openWindowScale(value_button_ref);
+  yield* openWindowScale(valueBtnRef);
 
-  yield* value_to_loop_arrow_ref().points(
+  yield* valueToLoopArrowRef().points(
     [Vector2.zero, [0, 150]],
     0.75,
     easeInOutQuad,
   );
 
   yield* waitUntil("performs-associated-function");
-  yield* openWindowScale(function_button_ref);
+  yield* openWindowScale(fnBtnRef);
 
-  yield* loop_to_function_arrow_ref().points(
+  yield* LoopToFnArrowRef().points(
     [Vector2.zero, [0, 150]],
     0.75,
     easeInOutQuad,
   );
 
   yield* waitUntil("if-the-value-becomes-false");
-  yield* value_text_ref().text("False", 0.5);
-  yield* loop_to_function_arrow_ref().opacity(0, 0.55, easeInOutQuad);
-  yield* break_loop_icon().scale(6, 0.75, easeInOutQuad);
+  yield* valueTextRef().text("False", 0.5);
+  yield* LoopToFnArrowRef().opacity(0, 0.55, easeInOutQuad);
+  yield* breakLoopIcon().scale(6, 0.75, easeInOutQuad);
   yield* waitUntil("now-we-know-what-while-loops-are");
 
   yield* all(
-    break_loop_icon().scale(0, 0.75, easeInOutQuad),
-    closeWindowScale(while_loop_button_ref),
-    closeWindowScale(value_button_ref),
-    closeWindowScale(function_button_ref),
-    value_to_loop_arrow_ref().opacity(0, 0.55),
+    breakLoopIcon().scale(0, 0.75, easeInOutQuad),
+    closeWindowScale(whileLoopBtnRef),
+    closeWindowScale(valueBtnRef),
+    closeWindowScale(fnBtnRef),
+    valueToLoopArrowRef().opacity(0, 0.55),
   );
 
   yield* waitUntil("lets-see-how-we-can-create-while-loop");
-  yield* openWindowScale(code_block_rect_ref);
+  yield* openWindowScale(codeBlockRectRef);
   yield* waitUntil("first-we-need-to-create-mutable-var-x");
   yield* codeblock().edit(0.75)`fn main() {\n    ${insert("let mut x;")}\n}`;
   yield* waitUntil("set-x-to-0");
@@ -262,10 +241,10 @@ export default makeScene2D(function* (view) {
   yield* waitFor(1);
   yield* codeblock().selection(lines(0, Infinity));
   yield* waitUntil("lets-try-running-code-2");
-  yield* closeWindowScale(code_block_rect_ref);
-  yield* openWindowScale(cargo_run);
+  yield* closeWindowScale(codeBlockRectRef);
+  yield* openWindowScale(terminal);
   yield* waitUntil("it-will-print-every-number");
-  yield* textAppear(cargo_run_result);
+  yield* textAppear(terminalResult);
   yield* waitUntil("finish-while");
-  yield* closeWindowScale(cargo_run);
+  yield* closeWindowScale(terminal);
 });

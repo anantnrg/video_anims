@@ -1,56 +1,19 @@
-import {
-  makeScene2D,
-  Circle,
-  Txt,
-  Img,
-  Rect,
-  Line,
-  Icon,
-  Latex,
-} from "@motion-canvas/2d";
-import {
-  all,
-  tween,
-  createRef,
-  map,
-  easeInSine,
-  chain,
-  easeInOutSine,
-  waitFor,
-  slideTransition,
-  Direction,
-  easeOutSine,
-  easeInBounce,
-  createSignal,
-  Vector2,
-  waitUntil,
-  easeOutBack,
-} from "@motion-canvas/core";
-import {
-  CodeBlock,
-  insert,
-  lines,
-  range,
-  remove,
-} from "@motion-canvas/2d/lib/components/CodeBlock";
-import ferrisImg from "../assets/ferris.svg";
+/* eslint-disable react/jsx-filename-extension */
+import { makeScene2D, Img, Rect } from "@motion-canvas/2d";
+import { all, createRef, waitUntil } from "@motion-canvas/core";
 import { Copyright } from "helpers/copyright";
 import { Button } from "helpers/button";
-import {
-  openWindowScale,
-  closeWindowScale,
-  textAppear,
-  textDisappear,
-} from "helpers/animations";
+import { openWindowScale, closeWindowScale } from "helpers/animations";
 import { Colors } from "helpers/styles";
+import ferrisImg from "../assets/ferris.svg";
 
 export default makeScene2D(function* (view) {
-  const infinite_loop_rect_ref = createRef<Rect>();
-  const while_loop_rect_ref = createRef<Rect>();
-  const for_loop_rect_ref = createRef<Rect>();
-  const if_statement_rect_ref = createRef<Rect>();
+  const infiniteLoopRectRef = createRef<Rect>();
+  const whileLoopRectRef = createRef<Rect>();
+  const forLoopRectRef = createRef<Rect>();
+  const ifStatementRectRef = createRef<Rect>();
 
-  yield view.add(<Copyright text=" Technologs " />);
+  yield view.add(<Copyright />);
 
   yield view.add(
     <Img src={ferrisImg} width={900} scale={0.15} x={850} y={470} />,
@@ -59,16 +22,16 @@ export default makeScene2D(function* (view) {
   yield view.add(
     <Rect
       layout
-      direction={"column"}
-      alignItems={"center"}
-      justifyContent={"center"}
+      direction="column"
+      alignItems="center"
+      justifyContent="center"
       gap={100}
     >
       <Button
         text="If/Else Statements"
         fontFamily="JetBrains Mono"
         fontSize={36}
-        ref={infinite_loop_rect_ref}
+        ref={infiniteLoopRectRef}
         height={120}
         color={Colors.red}
         x={0}
@@ -80,7 +43,7 @@ export default makeScene2D(function* (view) {
         text="Infinite Loops"
         fontFamily="JetBrains Mono"
         fontSize={36}
-        ref={while_loop_rect_ref}
+        ref={whileLoopRectRef}
         height={120}
         color={Colors.blue}
         x={0}
@@ -92,7 +55,7 @@ export default makeScene2D(function* (view) {
         text="While Loops"
         fontFamily="JetBrains Mono"
         fontSize={36}
-        ref={for_loop_rect_ref}
+        ref={forLoopRectRef}
         height={120}
         color={Colors.yellow}
         x={0}
@@ -104,7 +67,7 @@ export default makeScene2D(function* (view) {
         text="For Loops "
         fontFamily="JetBrains Mono"
         fontSize={36}
-        ref={if_statement_rect_ref}
+        ref={ifStatementRectRef}
         height={120}
         color={Colors.green}
         x={0}
@@ -115,18 +78,18 @@ export default makeScene2D(function* (view) {
     </Rect>,
   );
   yield* waitUntil("first-we-talk-about-infinite-loop");
-  yield* openWindowScale(infinite_loop_rect_ref);
+  yield* openWindowScale(infiniteLoopRectRef);
   yield* waitUntil("then-we-look-at-while");
-  yield* openWindowScale(while_loop_rect_ref);
+  yield* openWindowScale(whileLoopRectRef);
   yield* waitUntil("next-we-learn-for-loop");
-  yield* openWindowScale(for_loop_rect_ref);
+  yield* openWindowScale(forLoopRectRef);
   yield* waitUntil("finally-if-statement");
-  yield* openWindowScale(if_statement_rect_ref);
+  yield* openWindowScale(ifStatementRectRef);
   yield* waitUntil("finish-diff-statements");
   yield* all(
-    closeWindowScale(infinite_loop_rect_ref),
-    closeWindowScale(while_loop_rect_ref),
-    closeWindowScale(for_loop_rect_ref),
-    closeWindowScale(if_statement_rect_ref),
+    closeWindowScale(infiniteLoopRectRef),
+    closeWindowScale(whileLoopRectRef),
+    closeWindowScale(forLoopRectRef),
+    closeWindowScale(ifStatementRectRef),
   );
 });

@@ -28,7 +28,6 @@
     ],
     "rules": {
         "semi": ["error", "always"],
-        "quotes": ["error", "double"],
         "prettier/prettier": ["error"],
         "eqeqeq": "error",
         "no-console": "warn",
@@ -37,7 +36,12 @@
         "react/react-in-jsx-scope": "off",
         "react-hooks/rules-of-hooks": "error",
         "react-hooks/exhaustive-deps": "warn",
-        "import/no-unresolved": ["off"]
+        "import/no-unresolved": ["off"],
+        "react/destructuring-assignment": "off",
+        "react/jsx-filename-extension ": "off",
+        "import/prefer-default-export": "off",
+        "react/jsx-props-no-spreading": "off",
+        "import/extensions": "off"
     },
     "ignorePatterns": [
         "node_modules",

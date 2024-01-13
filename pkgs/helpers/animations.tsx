@@ -3,8 +3,6 @@ import {
   Reference,
   chain,
   easeInOutCubic,
-  easeInSine,
-  easeOutSine,
   map,
   tween,
 } from "@motion-canvas/core";
