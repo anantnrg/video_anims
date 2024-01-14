@@ -4,6 +4,26 @@
     {
       "name": "learn basics",
       "targetTime": 2.505875706214689
+    },
+    {
+      "name": "stack memory",
+      "targetTime": 7.505875706214689
+    },
+    {
+      "name": "heap memory",
+      "targetTime": 8.805875706214689
+    },
+    {
+      "name": "stack mem can be used",
+      "targetTime": 10.337050896639063
+    },
+    {
+      "name": "stack consists of frames",
+      "targetTime": 12.463093696784147
+    },
+    {
+      "name": "program will allocate",
+      "targetTime": 14.24787788249325
     }
   ],
   "seed": 302519928
