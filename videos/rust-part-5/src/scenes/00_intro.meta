@@ -2,12 +2,8 @@
   "version": 0,
   "timeEvents": [
     {
-      "name": "start-intro",
-      "targetTime": 0
-    },
-    {
-      "name": "finish-intro",
-      "targetTime": 1.9319520281470954
+      "name": "learn basics",
+      "targetTime": 2.505875706214689
     }
   ],
   "seed": 302519928
