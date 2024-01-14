@@ -33,13 +33,13 @@ import {
   range,
   remove,
 } from "@motion-canvas/2d/lib/components/CodeBlock";
-import ferrisImg from "../assets/ferris.svg";
 import { Copyright } from "helpers/copyright";
+import ferrisImg from "../assets/ferris.svg";
 
 export default makeScene2D(function* (view) {
   yield view.add(<Copyright text=" Technologs " />);
 
   yield view.add(
-    <Img src={ferrisImg} width={900} scale={0.15} x={850} y={470}></Img>,
+    <Img src={ferrisImg} width={900} scale={0.15} x={850} y={470} />,
   );
 });
