@@ -1,6 +1,7 @@
-import { Rect, Txt } from "@motion-canvas/2d";
+import { Rect, Txt, Node } from "@motion-canvas/2d";
 import {
   Reference,
+  ThreadGenerator,
   chain,
   easeInOutCubic,
   map,
@@ -37,4 +38,20 @@ export function* textDisappear(txt: Reference<Txt>) {
       txt().opacity(map(1, 0, easeInOutCubic(value)));
     }),
   );
+}
+
+export function* animateClone<T extends Node>(
+  scene: Node,
+  node: T,
+  callback: (clone: T) => ThreadGenerator,
+) {
+  const clone = node.clone();
+  scene.add(clone);
+  clone.absolutePosition(node.absolutePosition());
+  node.opacity(0);
+
+  yield* callback(clone);
+
+  clone.remove();
+  node.opacity(1);
 }
