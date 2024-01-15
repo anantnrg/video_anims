@@ -111,13 +111,41 @@ export default makeScene2D(function* (view) {
   /* ---- Intro End ---- */
 
   /* ---- Memory Allocation Start ---- */
+  const memBox = createRef<Rect>();
   const stackContMemBox = createRef<Rect>();
   const heapContMemBox = createRef<Rect>();
   const stackMemBox = createRef<Rect>();
   const heapMemBox = createRef<Rect>();
   const mainStackFrameCont = createRef<Rect>();
   const mainStackFrame = createRef<Rect>();
+  const mainStackFrameTitle = createRef<Txt>();
   const mainStackFrameSampleValue = createRef<Txt>();
+
+  yield view.add(
+    <Rect layout direction="column" alignItems="center" ref={memBox} scale={0}>
+      <Txt
+        fontFamily="JetBrains Mono"
+        fontSize={48}
+        fontWeight={600}
+        fill="cdd6f4"
+        text="Memory"
+        marginBottom={10}
+      />
+      <Rect
+        layout
+        direction="column"
+        width={400}
+        height={600}
+        radius={15}
+        stroke="cdd6f4"
+        lineWidth={6}
+        alignItems="center"
+        paddingLeft={15}
+        paddingRight={15}
+        paddingTop={5}
+      />
+    </Rect>,
+  );
 
   yield view.add(
     <Rect
@@ -125,7 +153,7 @@ export default makeScene2D(function* (view) {
       direction="column"
       alignItems="center"
       ref={stackContMemBox}
-      scale={0}
+      opacity={0}
     >
       <Txt
         fontFamily="JetBrains Mono"
@@ -158,7 +186,7 @@ export default makeScene2D(function* (view) {
       direction="column"
       alignItems="center"
       ref={heapContMemBox}
-      scale={0}
+      opacity={0}
     >
       <Txt
         fontFamily="JetBrains Mono"
@@ -183,13 +211,17 @@ export default makeScene2D(function* (view) {
     </Rect>,
   );
 
-  yield* waitUntil("stack memory");
-  yield* stackContMemBox().scale(1, 0.75, easeInOutQuad);
-  yield* stackContMemBox().x(-400, 0.55, easeInOutQuad);
+  yield* waitUntil("we utilize memory");
+  yield* memBox().scale(1, 0.75, easeInOutQuad);
 
-  yield* waitUntil("heap memory");
-  yield* heapContMemBox().scale(1, 0.75, easeInOutQuad);
-  yield* heapContMemBox().x(400, 0.55, easeInOutQuad);
+  yield* waitUntil("memory is divided into two parts");
+  yield* all(
+    memBox().opacity(0, 1, easeInOutQuad),
+    stackContMemBox().opacity(1, 1, easeInOutQuad),
+    stackContMemBox().x(-450, 0.75, easeInOutQuad),
+    heapContMemBox().opacity(1, 1, easeInOutQuad),
+    heapContMemBox().x(450, 0.75, easeInOutQuad),
+  );
 
   yield* waitUntil("stack mem can be used");
   yield* all(
@@ -211,7 +243,6 @@ export default makeScene2D(function* (view) {
       radius={15}
       clip
       ref={mainStackFrameCont}
-      scale={0}
     >
       <Txt
         fontFamily="JetBrains Mono"
@@ -220,6 +251,7 @@ export default makeScene2D(function* (view) {
         fill="cba6f7"
         marginTop={10}
         text="main"
+        scale={0}
       />
       <Rect width="100%" stroke="cba6f7" lineWidth={4} marginTop={10} />
       <Rect
@@ -234,8 +266,10 @@ export default makeScene2D(function* (view) {
     </Rect>,
   );
 
-  yield* waitUntil("stack consists of frames");
-  yield* mainStackFrameCont().scale(1, 0.75, easeInOutQuad);
+  // yield view.add(<Rect width={100} height={40} fill="cdd5f4" x={40} y={200} />);
+
+  // yield* waitUntil("stack consists of frames");
+  // yield* mainStackFrameCont().scale(1, 0.75, easeInOutQuad);
 
   mainStackFrame().add(
     <Txt

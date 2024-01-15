@@ -6,24 +6,20 @@
       "targetTime": 2.505875706214689
     },
     {
-      "name": "stack memory",
-      "targetTime": 7.505875706214689
+      "name": "we utilize memory",
+      "targetTime": 7.641468926553673
     },
     {
-      "name": "heap memory",
-      "targetTime": 8.805875706214689
+      "name": "memory is divided into two parts",
+      "targetTime": 10.832146892655366
     },
     {
       "name": "stack mem can be used",
-      "targetTime": 10.337050896639063
-    },
-    {
-      "name": "stack consists of frames",
-      "targetTime": 12.463093696784147
+      "targetTime": 14.008418079096046
     },
     {
       "name": "program will allocate",
-      "targetTime": 14.24787788249325
+      "targetTime": 17.40042025537461
     }
   ],
   "seed": 302519928
