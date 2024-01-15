@@ -16,6 +16,30 @@
     {
       "name": "lets see how they're different",
       "targetTime": 9.787269303201505
+    },
+    {
+      "name": "integers",
+      "targetTime": 12.034059292320112
+    },
+    {
+      "name": "floats",
+      "targetTime": 12.913330239001287
+    },
+    {
+      "name": "booleans",
+      "targetTime": 13.663330239001287
+    },
+    {
+      "name": "last value pushed",
+      "targetTime": 14.413330239001287
+    },
+    {
+      "name": "first one to be popped off",
+      "targetTime": 14.663330239001287
+    },
+    {
+      "name": "efficient access to data",
+      "targetTime": 15.61311261114492
     }
   ],
   "seed": 302519928

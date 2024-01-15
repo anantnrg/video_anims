@@ -1,3 +1,4 @@
+/* eslint-disable func-names */
 /* eslint-disable no-plusplus */
 /* eslint-disable react/jsx-filename-extension */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -20,6 +21,7 @@ import {
   waitFor,
   waitUntil,
 } from "@motion-canvas/core";
+import { animateClone } from "helpers/animations";
 
 export default makeScene2D(function* (view) {
   /* ---- Background Start ---- */
@@ -173,7 +175,9 @@ export default makeScene2D(function* (view) {
         stroke="a6e3a1"
         direction="column"
         ref={stackMemBoxRef}
-        layout={null}
+        alignItems="center"
+        gap={40}
+        padding={20}
         clip
       />
     </Rect>,
@@ -226,6 +230,8 @@ export default makeScene2D(function* (view) {
     heapMemBoxContRef().opacity(0, 0.75, easeInOutQuart),
   );
 
+  yield* stackMemBoxContRef().scale(1, 1, easeInOutQuart);
+
   const stackMemSampleIntValue = createRef<Rect>();
   const stackMemSampleFloatValue = createRef<Rect>();
   const stackMemSampleBoolValue = createRef<Rect>();
@@ -234,7 +240,6 @@ export default makeScene2D(function* (view) {
     <Rect
       width={310}
       height={70}
-      margin={20}
       radius={10}
       lineWidth={5}
       stroke="74c7ec"
@@ -243,6 +248,7 @@ export default makeScene2D(function* (view) {
       justifyContent="center"
       ref={stackMemSampleIntValue}
       clip
+      opacity={0}
     >
       <Txt
         fontFamily="JetBrains Mono"
@@ -257,7 +263,6 @@ export default makeScene2D(function* (view) {
     <Rect
       width={310}
       height={70}
-      margin={20}
       radius={10}
       lineWidth={5}
       stroke="74c7ec"
@@ -265,6 +270,7 @@ export default makeScene2D(function* (view) {
       alignItems="center"
       justifyContent="center"
       ref={stackMemSampleFloatValue}
+      opacity={0}
     >
       <Txt
         fontFamily="JetBrains Mono"
@@ -279,7 +285,6 @@ export default makeScene2D(function* (view) {
     <Rect
       width={310}
       height={70}
-      margin={20}
       radius={10}
       lineWidth={5}
       stroke="74c7ec"
@@ -287,6 +292,7 @@ export default makeScene2D(function* (view) {
       alignItems="center"
       justifyContent="center"
       ref={stackMemSampleBoolValue}
+      opacity={0}
     >
       <Txt
         fontFamily="JetBrains Mono"
@@ -297,5 +303,52 @@ export default makeScene2D(function* (view) {
       />
     </Rect>,
   );
+
+  yield* waitUntil("integers");
+  yield* animateClone(view, stackMemSampleIntValue(), function* (clone) {
+    yield* clone.y(100);
+    yield* all(
+      clone.opacity(1, 0.75, easeInOutQuart),
+      clone.y(-181, 0.75, easeInOutQuart),
+    );
+  });
+
+  yield* waitUntil("floats");
+  yield* animateClone(view, stackMemSampleFloatValue(), function* (clone) {
+    yield* clone.y(140);
+    yield* all(
+      clone.opacity(1, 0.75, easeInOutQuart),
+      clone.y(-70, 0.75, easeInOutQuart),
+    );
+  });
+
+  yield* waitUntil("booleans");
+  yield* animateClone(view, stackMemSampleBoolValue(), function* (clone) {
+    yield* clone.y(240);
+    yield* all(
+      clone.opacity(1, 0.75, easeInOutQuart),
+      clone.y(38, 0.75, easeInOutQuart),
+    );
+  });
+
+  yield* waitUntil("last value pushed");
+  yield* stackMemSampleBoolValue().stroke("f38ba8", 0.25, easeInOutQuart);
+
+  yield* waitUntil("first one to be popped off");
+  yield* animateClone(view, stackMemSampleBoolValue(), function* (clone) {
+    yield* all(
+      clone.opacity(0, 0.75, easeInOutQuart),
+      clone.y(180, 0.75, easeInOutQuart),
+    );
+  });
+  yield* stackMemSampleBoolValue().opacity(0, 0);
+
+  yield* waitUntil("efficient access to data");
+  yield* stackMemSampleFloatValue().stroke("f9e2af", 0.35, easeInOutQuart);
+  yield* waitFor(0.5);
+  yield* stackMemSampleFloatValue().stroke("74c7ec", 0.35, easeInOutQuart);
+  yield* stackMemSampleIntValue().stroke("f9e2af", 0.35, easeInOutQuart);
+  yield* waitFor(0.5);
+  yield* stackMemSampleIntValue().stroke("74c7ec", 0.35, easeInOutQuart);
   /* ---- Memory Allocation End ---- */
 });
