@@ -2,25 +2,12 @@
 /* eslint-disable no-plusplus */
 /* eslint-disable react/jsx-filename-extension */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { Circle, Icon, Line, Rect, Txt, makeScene2D } from "@motion-canvas/2d";
 import {
-  Bezier,
-  Circle,
-  CubicBezier,
-  Icon,
-  Line,
-  QuadBezier,
-  Rect,
-  Txt,
-  makeScene2D,
-} from "@motion-canvas/2d";
-import {
-  Vector2,
   all,
-  chain,
   createRef,
   easeInOutQuad,
   easeInOutQuart,
-  easeInSine,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   loop,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -35,6 +22,50 @@ import {
 import { animateClone } from "helpers/animations";
 
 export default makeScene2D(function* (view) {
+  /* ---- Background Start ---- */
+  //   const circles: Circle[] = [];
+  //   yield view.add(
+  //     <Rect
+  //       height="97%"
+  //       maxHeight="97%"
+  //       width="100%"
+  //       maxWidth="97%"
+  //       clip
+  //       layout
+  //       direction="column"
+  //       gap={45}
+  //       alignItems="center"
+  //       justifyContent="center"
+  //       wrap="wrap"
+  //     >
+  //       {range(759).map((i) => (
+  //         <Circle
+  //           width={2}
+  //           height={2}
+  //           fill="rgba(255, 255, 255, 0.35)"
+  //           ref={makeRef(circles, i)}
+  //           opacity={0}
+  //         />
+  //       ))}
+  //     </Rect>,
+  //   );
+
+  //   const random = useRandom();
+
+  //   yield* all(
+  //     ...circles.map((circle) =>
+  //       circle.opacity(random.nextFloat() > 0.5 ? 0 : 1, 0),
+  //     ),
+  //   );
+  //   yield loop(Infinity, () =>
+  //     all(
+  //       ...circles.map((circle) =>
+  //         circle.opacity(random.nextFloat() > 0.5 ? 0 : 1, 2),
+  //       ),
+  //     ),
+  //   );
+  /* ---- Background End ---- */
+
   const memBoxRef = createRef<Rect>();
 
   yield view.add(
