@@ -40,6 +40,30 @@
     {
       "name": "efficient access to data",
       "targetTime": 15.61311261114492
+    },
+    {
+      "name": "but most of the time",
+      "targetTime": 18.013112611144926
+    },
+    {
+      "name": "strings",
+      "targetTime": 19.213402881940883
+    },
+    {
+      "name": "vectors",
+      "targetTime": 20.233577044418457
+    },
+    {
+      "name": "sizes can change",
+      "targetTime": 20.983577044418457
+    },
+    {
+      "name": "cannot be stored in the stack",
+      "targetTime": 24.34380926105522
+    },
+    {
+      "name": "this is were the heap memory comes into play",
+      "targetTime": 25.574118883237574
     }
   ],
   "seed": 302519928

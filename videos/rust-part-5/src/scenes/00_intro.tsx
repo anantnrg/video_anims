@@ -2,7 +2,7 @@
 /* eslint-disable no-plusplus */
 /* eslint-disable react/jsx-filename-extension */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { Circle, Rect, Txt, makeScene2D } from "@motion-canvas/2d";
+import { Circle, Icon, Rect, Txt, makeScene2D } from "@motion-canvas/2d";
 import {
   Vector2,
   all,
@@ -208,7 +208,12 @@ export default makeScene2D(function* (view) {
         height={550}
         lineWidth={8}
         radius={15}
-        stroke="fab387"
+        stroke="a6e3a1"
+        direction="column"
+        alignItems="center"
+        gap={40}
+        padding={20}
+        clip
         ref={heapMemBoxRef}
       />
     </Rect>,
@@ -350,5 +355,70 @@ export default makeScene2D(function* (view) {
   yield* stackMemSampleIntValue().stroke("f9e2af", 0.35, easeInOutQuart);
   yield* waitFor(0.5);
   yield* stackMemSampleIntValue().stroke("74c7ec", 0.35, easeInOutQuart);
+
+  const stringTextRef = createRef<Txt>();
+  const vectorsTextRef = createRef<Txt>();
+  const xmark = createRef<Icon>();
+
+  yield view.add(
+    <Txt
+      fontFamily="JetBrains Mono"
+      fontSize={48}
+      fontWeight={600}
+      fill="f9e2af"
+      text=""
+      ref={stringTextRef}
+      x={300}
+    />,
+  );
+
+  yield view.add(
+    <Txt
+      fontFamily="JetBrains Mono"
+      fontSize={48}
+      fontWeight={600}
+      fill="89b4fa"
+      text=""
+      ref={vectorsTextRef}
+      x={300}
+      y={100}
+    />,
+  );
+
+  yield view.add(
+    <Icon
+      icon="f7:xmark-circle-fill"
+      color="f38ba8"
+      width={100}
+      ref={xmark}
+      x={-300}
+      y={60}
+      scale={0}
+    />,
+  );
+
+  yield* waitUntil("but most of the time");
+  yield* stackMemBoxContRef().x(-300, 0.75, easeInOutQuart);
+  yield* waitUntil("strings");
+  yield* stringTextRef().text('"Hello World"', 0.75, easeInOutQuart);
+  yield* waitUntil("vectors");
+  yield* vectorsTextRef().text("Vec<42, 23, 53>", 0.75, easeInOutQuart);
+  yield* waitUntil("sizes can change");
+  yield* stringTextRef().text('"Hello World!!!"', 0.75, easeInOutQuart);
+  yield* vectorsTextRef().text("Vec<42, 23, 53, 69, 72>", 0.75, easeInOutQuart);
+  yield* stringTextRef().text('"Hello"', 0.75, easeInOutQuart);
+  yield* vectorsTextRef().text("Vec<42, 23>", 0.75, easeInOutQuart);
+
+  yield* waitUntil("cannot be stored in the stack");
+  yield* xmark().scale(1, 0.75, easeInOutQuart);
+
+  yield* waitUntil("this is were the heap memory comes into play");
+  yield* all(
+    stringTextRef().scale(0, 0.75, easeInOutQuart),
+    vectorsTextRef().scale(0, 0.75, easeInOutQuart),
+    stackMemBoxContRef().scale(0, 0.75, easeInOutQuart),
+    xmark().scale(0, 0.75, easeInOutQuart),
+  );
+
   /* ---- Memory Allocation End ---- */
 });
