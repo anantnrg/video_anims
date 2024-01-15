@@ -208,7 +208,7 @@ export default makeScene2D(function* (view) {
         height={550}
         lineWidth={8}
         radius={15}
-        stroke="a6e3a1"
+        stroke="fab387"
         direction="column"
         alignItems="center"
         gap={40}
@@ -419,6 +419,141 @@ export default makeScene2D(function* (view) {
     stackMemBoxContRef().scale(0, 0.75, easeInOutQuart),
     xmark().scale(0, 0.75, easeInOutQuart),
   );
+
+  yield* heapMemBoxContRef().opacity(1);
+  yield* heapMemBoxContRef().scale(0);
+  yield* heapMemBoxContRef().x(0);
+
+  yield* heapMemBoxContRef().scale(1, 0.75, easeInOutQuart);
+
+  const heapMemSampleValueCont = createRef<Rect>();
+  const heapMemSampleValue1 = createRef<Rect>();
+  const heapMemSampleValue2 = createRef<Rect>();
+  const heapMemSampleValueText = createRef<Txt>();
+
+  heapMemBoxRef().add(
+    <Rect
+      width={310}
+      height={70}
+      radius={10}
+      lineWidth={5}
+      stroke="b4befe"
+      layout
+      alignItems="center"
+      justifyContent="center"
+      ref={heapMemSampleValueCont}
+      opacity={0}
+    >
+      <Txt
+        fontFamily="JetBrains Mono"
+        fontSize={32}
+        fontWeight={600}
+        fill="b4befe"
+        ref={heapMemSampleValueText}
+        text='"Hello"'
+      />
+    </Rect>,
+  );
+
+  yield* waitUntil("store values of any size");
+  yield* animateClone(view, heapMemSampleValueCont(), function* (clone) {
+    yield* clone.y(100);
+    yield* all(
+      clone.opacity(1, 0.75, easeInOutQuart),
+      clone.y(-181, 0.75, easeInOutQuart),
+    );
+  });
+
+  yield* waitUntil("can grow or shrink");
+  yield* heapMemSampleValueText().text('"Hello World"', 0.75, easeInOutQuart);
+  yield* heapMemSampleValueText().text('"Hi"', 0.75, easeInOutQuart);
+
+  heapMemBoxRef().add(
+    <Rect
+      width={310}
+      height={70}
+      radius={10}
+      lineWidth={5}
+      stroke="b4befe"
+      layout
+      alignItems="center"
+      justifyContent="center"
+      ref={heapMemSampleValue1}
+      opacity={0}
+    >
+      <Txt
+        fontFamily="JetBrains Mono"
+        fontSize={32}
+        fontWeight={600}
+        fill="b4befe"
+        text="[42.2, 69.9]"
+      />
+    </Rect>,
+  );
+
+  heapMemBoxRef().add(
+    <Rect
+      width={310}
+      height={70}
+      radius={10}
+      lineWidth={5}
+      stroke="b4befe"
+      layout
+      alignItems="center"
+      justifyContent="center"
+      ref={heapMemSampleValue2}
+      opacity={0}
+    >
+      <Txt
+        fontFamily="JetBrains Mono"
+        fontSize={32}
+        fontWeight={600}
+        fill="b4befe"
+        text='"Some Text"'
+      />
+    </Rect>,
+  );
+
+  yield* waitUntil("unlike the stack");
+  yield* animateClone(view, heapMemSampleValue2(), function* (clone) {
+    yield* clone.y(180);
+    yield* all(
+      clone.opacity(1, 0.75, easeInOutQuart),
+      clone.y(41, 0.75, easeInOutQuart),
+    );
+  });
+
+  yield* animateClone(view, heapMemSampleValue1(), function* (clone) {
+    yield* clone.y(240);
+    yield* all(
+      clone.opacity(1, 0.75, easeInOutQuart),
+      clone.y(-72, 0.75, easeInOutQuart),
+    );
+  });
+
+  yield* animateClone(view, heapMemSampleValue1(), function* (clone) {
+    yield* all(
+      clone.opacity(0, 0.75, easeInOutQuart),
+      clone.y(140, 0.75, easeInOutQuart),
+    );
+  });
+  yield* heapMemSampleValue1().opacity(0);
+
+  yield* animateClone(view, heapMemSampleValueCont(), function* (clone) {
+    yield* all(
+      clone.opacity(0, 0.75, easeInOutQuart),
+      clone.y(140, 0.75, easeInOutQuart),
+    );
+  });
+  yield* heapMemSampleValueCont().opacity(0);
+
+  yield* waitUntil("cannot directly access value");
+  yield* heapMemSampleValue2().stroke("f38ba8", 0.25, easeInOutQuad);
+  yield* heapMemSampleValue2().stroke("b4befe", 0.15, easeInOutQuad);
+  yield* heapMemSampleValue2().stroke("f38ba8", 0.55, easeInOutQuad);
+  yield* heapMemSampleValue2().stroke("b4befe", 0.15, easeInOutQuad);
+
+  yield* waitUntil("instead, you need");
 
   /* ---- Memory Allocation End ---- */
 });

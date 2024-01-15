@@ -64,6 +64,26 @@
     {
       "name": "this is were the heap memory comes into play",
       "targetTime": 25.574118883237574
+    },
+    {
+      "name": "store values of any size",
+      "targetTime": 27.554428505419928
+    },
+    {
+      "name": "can grow or shrink",
+      "targetTime": 29.53522191226221
+    },
+    {
+      "name": "unlike the stack",
+      "targetTime": 31.03522191226221
+    },
+    {
+      "name": "cannot directly access value",
+      "targetTime": 34.03522191226221
+    },
+    {
+      "name": "instead, you need",
+      "targetTime": 35.1352219122622
     }
   ],
   "seed": 302519928
