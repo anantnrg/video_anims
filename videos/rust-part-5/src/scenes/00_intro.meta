@@ -18,8 +18,32 @@
       "targetTime": 14.008418079096046
     },
     {
-      "name": "program will allocate",
-      "targetTime": 17.40042025537461
+      "name": "integers",
+      "targetTime": 14.758418079096046
+    },
+    {
+      "name": "floats",
+      "targetTime": 15.508418079096046
+    },
+    {
+      "name": "booleans",
+      "targetTime": 16.258418079096046
+    },
+    {
+      "name": "are organized",
+      "targetTime": 17.742580037664784
+    },
+    {
+      "name": "the last value",
+      "targetTime": 19.16
+    },
+    {
+      "name": "popped off",
+      "targetTime": 19.91
+    },
+    {
+      "name": "values in the stack",
+      "targetTime": 22.444500941619584
     }
   ],
   "seed": 302519928
