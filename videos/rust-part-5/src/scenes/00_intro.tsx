@@ -23,6 +23,7 @@ import {
 import { animateClone } from "helpers/animations";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { Background } from "helpers/background";
+import { blur } from "@motion-canvas/2d";
 
 export default makeScene2D(function* (view) {
   /* ---- Background Start ---- */
@@ -673,7 +674,7 @@ export default makeScene2D(function* (view) {
     yield* clone.y(240);
     yield* all(
       clone.opacity(1, 0.75, easeInOutQuart),
-      clone.y(-71, 0.75, easeInOutQuart),
+      clone.y(-111, 0.75, easeInOutQuart),
     );
   });
 
@@ -813,7 +814,7 @@ export default makeScene2D(function* (view) {
             fontSize={32}
             fontWeight={600}
             fill="89b4fa"
-            text="9"
+            text="11"
           />
         </Rect>
       </Rect>
@@ -839,7 +840,7 @@ export default makeScene2D(function* (view) {
       radius={20}
       arrowSize={20}
       zIndex={1000}
-      ref={stackMemPointerValueArrow1}
+      ref={stackMemPointerValueArrowBkg1}
       end={0}
     />,
   );
@@ -847,6 +848,7 @@ export default makeScene2D(function* (view) {
   yield view.add(
     <Line
       lineWidth={9}
+      lineDash={[15, 0]}
       stroke="cba6f7"
       points={[
         [-200, 125],
@@ -858,7 +860,7 @@ export default makeScene2D(function* (view) {
       radius={20}
       arrowSize={18}
       zIndex={1000}
-      ref={stackMemPointerValueArrowBkg1}
+      ref={stackMemPointerValueArrow1}
       end={0}
     />,
   );
@@ -908,7 +910,7 @@ export default makeScene2D(function* (view) {
         fontSize={32}
         fontWeight={600}
         fill="b4befe"
-        text='"I use Arch"'
+        text='"I use Arch!"'
       />
     </Rect>,
   );
@@ -939,26 +941,114 @@ export default makeScene2D(function* (view) {
       clone.y(-181, 0.75, easeInOutQuart),
     );
   });
-  yield* animateClone(view, heapMemSampleValue4(), function* (clone) {
-    yield* clone.y(240);
-    yield* all(
-      clone.opacity(1, 0.75, easeInOutQuart),
-      clone.y(151, 0.75, easeInOutQuart),
-    );
-  });
 
   yield* waitUntil("memory leaks");
   yield* all(
     heapMemSampleValue1().stroke("f38ba8", 0.55, easeInOutQuart),
     heapMemSampleValueCont().stroke("f38ba8", 0.55, easeInOutQuart),
-    heapMemSampleValue4().stroke("f38ba8", 0.55, easeInOutQuart),
   );
+
+  yield* waitUntil("dangling pointers");
   yield* animateClone(view, heapMemSampleValue3(), function* (clone) {
     yield* all(
       clone.opacity(0, 0.75, easeInOutQuart),
       clone.y(340, 0.75, easeInOutQuart),
     );
-    heapMemSampleValue3().opacity(0);
   });
+  yield* heapMemSampleValue3().opacity(0);
+  yield* all(
+    stackMemPointerValueArrow1().lineDash([15, 20], 0.75),
+    stackMemPointerValueArrow1().stroke("6c7086", 0.75),
+  );
+
+  const overlayRef = createRef<Rect>();
+  yield* view.add(
+    <Rect
+      width={1920}
+      height={1080}
+      fill="181825"
+      opacity={0}
+      zIndex={1000}
+      ref={overlayRef}
+      filters={[blur(125)]}
+    />,
+  );
+
+  yield* waitUntil("there are two primary approaches");
+  yield* all(
+    stackMemBoxContRef().opacity(0, 0.75, easeInOutQuart),
+    heapMemBoxContRef().opacity(0, 0.75, easeInOutQuart),
+    stackMemPointerArrow().opacity(0, 0.75, easeInOutQuart),
+    stackMemPointerValueArrow1().opacity(0, 0.75, easeInOutQuart),
+    stackMemPointerArrowBkg().opacity(0, 0.55, easeInOutQuart),
+    stackMemPointerValueArrowBkg1().opacity(0, 0.55, easeInOutQuart),
+  );
+  yield* heapMemSampleValueCont().opacity(0);
+  yield* heapMemSampleValue1().opacity(0);
+  yield* heapMemSampleValue3().opacity(0);
+  yield* stackMemPointerValue1().opacity(0);
+
+  const manualManagementTitleRef = createRef<Rect>();
+  const garbageCollectorTitleRef = createRef<Rect>();
+
+  yield view.add(
+    <Rect
+      width={700}
+      height={140}
+      radius={15}
+      lineWidth={10}
+      stroke="fab387"
+      zIndex={1005}
+      scale={0}
+      ref={manualManagementTitleRef}
+      y={-50}
+    >
+      <Txt
+        fontFamily="JetBrains Mono"
+        fontSize={56}
+        fontWeight={800}
+        fill="fab387"
+        text="Manual Management"
+      />
+    </Rect>,
+  );
+
+  yield view.add(
+    <Rect
+      width={700}
+      height={140}
+      radius={15}
+      lineWidth={10}
+      stroke="89dceb"
+      zIndex={1005}
+      scale={0}
+      y={50}
+      ref={garbageCollectorTitleRef}
+    >
+      <Txt
+        fontFamily="JetBrains Mono"
+        fontSize={56}
+        fontWeight={800}
+        fill="89dceb"
+        text="Garbage Collection"
+      />
+    </Rect>,
+  );
+
+  yield* waitUntil("manual management");
+  yield* manualManagementTitleRef().scale(1, 0.75, easeInOutQuart);
+  yield* manualManagementTitleRef().y(-160, 0.75, easeInOutQuart);
+  yield* waitUntil("garbage collection");
+  yield* garbageCollectorTitleRef().scale(1, 0.75, easeInOutQuart);
+  yield* garbageCollectorTitleRef().y(160, 0.75, easeInOutQuart);
+
+  // yield* animateClone(view, heapMemSampleValue4(), function* (clone) {
+  //   yield* clone.y(240);
+  //   yield* all(
+  //     clone.opacity(1, 0.75, easeInOutQuart),
+  //     clone.y(151, 0.75, easeInOutQuart),
+  //   );
+  // });
+
   /* ---- Memory Manangement End ---- */
 });

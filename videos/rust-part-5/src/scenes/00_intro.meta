@@ -100,6 +100,22 @@
     {
       "name": "memory leaks",
       "targetTime": 48.736924664665544
+    },
+    {
+      "name": "dangling pointers",
+      "targetTime": 49.28692466466554
+    },
+    {
+      "name": "there are two primary approaches",
+      "targetTime": 52.364631255106396
+    },
+    {
+      "name": "manual management",
+      "targetTime": 55.15109462259022
+    },
+    {
+      "name": "garbage collection",
+      "targetTime": 58.80069484382315
     }
   ],
   "seed": 302519928
