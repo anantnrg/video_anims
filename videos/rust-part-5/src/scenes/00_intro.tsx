@@ -1,29 +1,35 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable func-names */
 /* eslint-disable no-plusplus */
 /* eslint-disable react/jsx-filename-extension */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { Circle, Icon, Line, Rect, Txt, makeScene2D } from "@motion-canvas/2d";
 import {
+  Circle,
+  Icon,
+  Line,
+  Rect,
+  Txt,
+  makeScene2D,
+  blur,
+} from "@motion-canvas/2d";
+import {
+  Vector2,
   all,
   createRef,
   easeInOutQuad,
   easeInOutQuart,
+  easeInOutSine,
   easeInSine,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   loop,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   makeRef,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   range,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   useRandom,
   waitFor,
   waitUntil,
 } from "@motion-canvas/core";
 import { animateClone } from "helpers/animations";
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { Background } from "helpers/background";
-import { blur } from "@motion-canvas/2d";
+import { CustomCodeBlock } from "helpers/codeblock";
 
 export default makeScene2D(function* (view) {
   /* ---- Background Start ---- */
@@ -983,7 +989,6 @@ export default makeScene2D(function* (view) {
     stackMemPointerArrowBkg().opacity(0, 0.55, easeInOutQuart),
     stackMemPointerValueArrowBkg1().opacity(0, 0.55, easeInOutQuart),
   );
-  yield* heapMemSampleValueCont().opacity(0);
   yield* heapMemSampleValue1().opacity(0);
   yield* heapMemSampleValue3().opacity(0);
   yield* stackMemPointerValue1().opacity(0);
@@ -1041,6 +1046,173 @@ export default makeScene2D(function* (view) {
   yield* waitUntil("garbage collection");
   yield* garbageCollectorTitleRef().scale(1, 0.75, easeInOutQuart);
   yield* garbageCollectorTitleRef().y(160, 0.75, easeInOutQuart);
+
+  yield* waitUntil("first lets talk about manual");
+  yield* all(
+    garbageCollectorTitleRef().opacity(0, 0.75, easeInOutQuart),
+    manualManagementTitleRef().y(0, 0.75, easeInOutQuart),
+    manualManagementTitleRef().scale(1.1, 0.75, easeInOutQuart),
+  );
+
+  yield* waitUntil("for example c provides");
+  yield* manualManagementTitleRef().opacity(0, 0.75, easeInOutQuart);
+
+  const mallocRef = createRef<Txt>();
+  const freeRef = createRef<Txt>();
+  const cIconRef = createRef<Icon>();
+
+  yield view.add(
+    <Icon icon="skill-icons:c" width={256} y={-300} scale={0} ref={cIconRef} />,
+  );
+  yield view.add(
+    <Txt
+      fontFamily="JetBrains Mono"
+      fontSize={64}
+      fontWeight={600}
+      fill="89b4fa"
+      text="malloc()"
+      y={-70}
+      scale={0}
+      ref={mallocRef}
+    />,
+  );
+
+  yield view.add(
+    <Txt
+      fontFamily="JetBrains Mono"
+      fontSize={64}
+      fontWeight={600}
+      fill="a6e3a1"
+      text="free()"
+      y={70}
+      scale={0}
+      ref={freeRef}
+    />,
+  );
+
+  yield* cIconRef().scale(1, 0.75, easeInOutQuart);
+  yield* waitUntil("like malloc");
+  yield* mallocRef().scale(1, 0.75, easeInOutQuart);
+  yield* waitUntil("and free");
+  yield* freeRef().scale(1, 0.75, easeInOutQuart);
+
+  yield* waitUntil("next lets talk about garbage collection");
+  yield* all(
+    cIconRef().scale(0, 0.75, easeInOutQuart),
+    mallocRef().scale(0, 0.75, easeInOutQuart),
+    freeRef().scale(0, 0.75, easeInOutQuart),
+  );
+  yield* garbageCollectorTitleRef().y(0);
+  yield* garbageCollectorTitleRef().scale(0);
+  yield* garbageCollectorTitleRef().opacity(1);
+
+  yield* garbageCollectorTitleRef().scale(1, 0.75, easeInOutQuart);
+
+  const goIconRef = createRef<Icon>();
+  const jsIconRef = createRef<Icon>();
+
+  yield view.add(
+    <Icon
+      icon="skill-icons:golang"
+      width={200}
+      y={-300}
+      scale={0}
+      x={-200}
+      ref={goIconRef}
+    />,
+  );
+
+  yield view.add(
+    <Icon
+      icon="skill-icons:javascript"
+      width={200}
+      y={-300}
+      x={200}
+      scale={0}
+      ref={jsIconRef}
+    />,
+  );
+
+  yield* waitUntil("langs such as go");
+  yield* goIconRef().scale(1, 0.75, easeInOutQuart);
+  yield* waitUntil("or javascript");
+  yield* jsIconRef().scale(1, 0.75, easeInOutQuart);
+
+  yield* heapMemSampleValueCont().stroke("b4befe");
+
+  yield* waitUntil("it identifies and recalims");
+  yield* all(
+    goIconRef().scale(0, 0.75, easeInOutQuart),
+    jsIconRef().scale(0, 0.75, easeInOutQuart),
+    garbageCollectorTitleRef().opacity(0, 0.75, easeInOutQuart),
+  );
+  yield* all(
+    stackMemBoxContRef().opacity(1, 0.75, easeInOutQuart),
+    heapMemBoxContRef().opacity(1, 0.75, easeInOutQuart),
+    stackMemPointerArrow().opacity(1, 0.75, easeInOutQuart),
+    stackMemPointerArrowBkg().opacity(1, 0.55, easeInOutQuart),
+  );
+
+  const scanningArrow = createRef<Line>();
+
+  yield view.add(
+    <Line
+      stroke="f38ba8"
+      lineWidth={9}
+      startArrow
+      points={[Vector2.zero, [150, 0]]}
+      y={-50}
+      x={500}
+      arrowSize={20}
+      ref={scanningArrow}
+      opacity={0}
+    />,
+  );
+  yield* scanningArrow().opacity(1, 0.5, easeInOutQuart);
+
+  yield* scanningArrow().y(250, 1, easeInOutSine);
+  yield* scanningArrow().y(-180, 1, easeInOutSine);
+  yield* heapMemSampleValueCont().stroke("f38ba8", 0.45);
+  yield* animateClone(view, heapMemSampleValueCont(), function* (clone) {
+    yield* all(
+      clone.opacity(0, 0.75, easeInOutQuart),
+      clone.y(140, 0.75, easeInOutQuart),
+    );
+  });
+  heapMemSampleValueCont().opacity(0);
+  yield* scanningArrow().opacity(0, 0.5, easeInOutQuart);
+
+  yield* waitFor(1);
+
+  yield* all(
+    stackMemBoxContRef().opacity(0, 0.75, easeInOutQuart),
+    heapMemBoxContRef().opacity(0, 0.75, easeInOutQuart),
+    stackMemPointerArrow().opacity(0, 0.75, easeInOutQuart),
+    stackMemPointerArrowBkg().opacity(0, 0.55, easeInOutQuart),
+  );
+
+  const rustmemTextRef = createRef<Txt>();
+
+  yield view.add(
+    <Txt
+      fontFamily="JetBrains Mono"
+      fontWeight={900}
+      fontSize={118}
+      ref={rustmemTextRef}
+      fill="fab387"
+    />,
+  );
+
+  yield* waitUntil("lets see how rust achieves memory safety");
+
+  yield* rustmemTextRef().text("Memory Management in Rust", 1, easeInOutQuart);
+
+  // yield* all(
+  //   heapMemBoxContRef().x(750, 0.75, easeInOutQuart),
+  //   stackMemBoxContRef().x(150, 0.75, easeInOutQuart),
+  //   stackMemPointerArrow().x(450, 0.75, easeInOutQuart),
+  //   stackMemPointerArrowBkg().x(450, 0.75, easeInOutQuart),
+  // );
 
   // yield* animateClone(view, heapMemSampleValue4(), function* (clone) {
   //   yield* clone.y(240);

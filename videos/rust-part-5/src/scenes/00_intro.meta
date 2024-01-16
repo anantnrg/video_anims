@@ -116,6 +116,42 @@
     {
       "name": "garbage collection",
       "targetTime": 58.80069484382315
+    },
+    {
+      "name": "first lets talk about manual",
+      "targetTime": 60.30069484382315
+    },
+    {
+      "name": "for example c provides",
+      "targetTime": 61.80069484382315
+    },
+    {
+      "name": "like malloc",
+      "targetTime": 62.55069484382315
+    },
+    {
+      "name": "and free",
+      "targetTime": 63.30069484382315
+    },
+    {
+      "name": "next lets talk about garbage collection",
+      "targetTime": 64.80069484382315
+    },
+    {
+      "name": "langs such as go",
+      "targetTime": 66.30069484382315
+    },
+    {
+      "name": "or javascript",
+      "targetTime": 67.05069484382315
+    },
+    {
+      "name": "it identifies and recalims",
+      "targetTime": 67.80069484382315
+    },
+    {
+      "name": "lets see how rust achieves memory safety",
+      "targetTime": 75.25069484382315
     }
   ],
   "seed": 302519928
