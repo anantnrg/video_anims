@@ -21,49 +21,27 @@ import {
   waitUntil,
 } from "@motion-canvas/core";
 import { animateClone } from "helpers/animations";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { Background } from "helpers/background";
 
 export default makeScene2D(function* (view) {
   /* ---- Background Start ---- */
-  const circles: Circle[] = [];
-  yield view.add(
-    <Rect
-      height="97%"
-      maxHeight="97%"
-      width="100%"
-      maxWidth="97%"
-      clip
-      layout
-      direction="column"
-      gap={45}
-      alignItems="center"
-      justifyContent="center"
-      wrap="wrap"
-    >
-      {range(759).map((i) => (
-        <Circle
-          width={2}
-          height={2}
-          fill="rgba(255, 255, 255, 0.35)"
-          ref={makeRef(circles, i)}
-          opacity={0}
-        />
-      ))}
-    </Rect>,
-  );
-  const random = useRandom();
+  // const circles: Circle[] = [];
+  // yield view.add(<Background circles={circles} />);
+  // const random = useRandom();
 
-  yield* all(
-    ...circles.map((circle) =>
-      circle.opacity(random.nextFloat() > 0.5 ? 0 : 1, 1),
-    ),
-  );
-  yield loop(Infinity, () =>
-    all(
-      ...circles.map((circle) =>
-        circle.opacity(random.nextFloat() > 0.5 ? 0 : 1, 2),
-      ),
-    ),
-  );
+  // yield* all(
+  //   ...circles.map((circle) =>
+  //     circle.opacity(random.nextFloat() > 0.5 ? 0 : 1, 1),
+  //   ),
+  // );
+  // yield loop(Infinity, () =>
+  //   all(
+  //     ...circles.map((circle) =>
+  //       circle.opacity(random.nextFloat() > 0.5 ? 0 : 1, 2),
+  //     ),
+  //   ),
+  // );
   /* ---- Background End ---- */
 
   const introTextRef = createRef<Txt>();
@@ -116,6 +94,7 @@ export default makeScene2D(function* (view) {
     introTextRef().y(-700, 0.5, easeInSine),
   );
 
+  introSubTextRef().remove();
   /* ---- Memory Allocation Start ---- */
 
   const memBoxRef = createRef<Rect>();
@@ -237,6 +216,8 @@ export default makeScene2D(function* (view) {
     stackMemBoxContRef().scale(1.1, 1, easeInOutQuart),
     heapMemBoxContRef().opacity(0, 0.75, easeInOutQuart),
   );
+
+  memBoxRef().remove();
 
   yield* stackMemBoxContRef().scale(1, 1, easeInOutQuart);
 
@@ -422,6 +403,9 @@ export default makeScene2D(function* (view) {
     stackMemBoxContRef().scale(0, 0.75, easeInOutQuart),
     xmark().scale(0, 0.75, easeInOutQuart),
   );
+  stackMemSampleBoolValue().remove();
+  stackMemSampleFloatValue().remove();
+  stackMemSampleIntValue().remove();
 
   yield* heapMemBoxContRef().opacity(1);
   yield* heapMemBoxContRef().scale(0);
@@ -576,7 +560,6 @@ export default makeScene2D(function* (view) {
       alignItems="center"
       ref={stackMemPointerValue}
       paddingTop={10}
-      paddingBottom={20}
       direction="column"
       opacity={0}
     >
@@ -588,49 +571,89 @@ export default makeScene2D(function* (view) {
         text="string_1"
       />
       <Rect stroke="74c7ec" lineWidth={5} width="100%" marginTop={10} />
-      <Rect
-        layout
-        direction="column"
-        alignItems="start"
-        justifyContent="center"
-        width="100%"
-        height="100%"
-        paddingLeft={40}
-        paddingTop={20}
-        gap={20}
-      >
-        <Txt
-          fontFamily="JetBrains Mono"
-          fontSize={32}
-          fontWeight={600}
-          fill="74c7ec"
-          text="pointer: "
-        />
-        <Txt
-          fontFamily="JetBrains Mono"
-          fontSize={32}
-          fontWeight={600}
-          fill="74c7ec"
-          text="length: 9"
-        />
-        <Txt
-          fontFamily="JetBrains Mono"
-          fontSize={32}
-          fontWeight={600}
-          fill="74c7ec"
-          text="capacity: 9"
-        />
+      <Rect layout direction="row" width="100%" height="100%">
+        <Rect
+          layout
+          direction="column"
+          alignItems="end"
+          justifyContent="center"
+          width="65%"
+          height="100%"
+          paddingTop={20}
+          paddingBottom={20}
+          gap={20}
+          clip
+        >
+          <Txt
+            fontFamily="JetBrains Mono"
+            fontSize={32}
+            fontWeight={600}
+            fill="74c7ec"
+            text="pointer:"
+          />
+          <Rect stroke="74c7ec" lineWidth={5} width="100%" />
+          <Txt
+            fontFamily="JetBrains Mono"
+            fontSize={32}
+            fontWeight={600}
+            fill="74c7ec"
+            text="length:"
+          />
+          <Rect stroke="74c7ec" lineWidth={5} width="100%" />
+          <Txt
+            fontFamily="JetBrains Mono"
+            fontSize={32}
+            fontWeight={600}
+            fill="74c7ec"
+            text="capacity:"
+          />
+        </Rect>
+        <Rect
+          layout
+          direction="column"
+          alignItems="center"
+          justifyContent="center"
+          width="35%"
+          height="100%"
+          paddingTop={20}
+          paddingBottom={20}
+          gap={20}
+        >
+          <Txt
+            fontFamily="JetBrains Mono"
+            fontSize={32}
+            fontWeight={600}
+            fill="74c7ec"
+            text="⠀"
+          />
+          <Rect stroke="74c7ec" lineWidth={5} width="100%" />
+          <Txt
+            fontFamily="JetBrains Mono"
+            fontSize={32}
+            fontWeight={600}
+            fill="74c7ec"
+            text="9"
+          />
+          <Rect stroke="74c7ec" lineWidth={5} width="100%" />
+          <Txt
+            fontFamily="JetBrains Mono"
+            fontSize={32}
+            fontWeight={600}
+            fill="74c7ec"
+            text="9"
+          />
+        </Rect>
       </Rect>
     </Rect>,
   );
 
   yield view.add(
     <Line
-      lineWidth={50}
+      lineWidth={72}
       stroke="000"
       points={[
-        [-520, -120],
-        [-300, -120],
+        [-500, -118],
+        [-300, -118],
         [-300, 40],
         [-160, 40],
       ]}
@@ -647,7 +670,7 @@ export default makeScene2D(function* (view) {
       lineWidth={9}
       stroke="f38ba8"
       points={[
-        [-520, -120],
+        [-500, -120],
         [-300, -120],
         [-300, 40],
         [-160, 40],
@@ -666,7 +689,7 @@ export default makeScene2D(function* (view) {
     yield* clone.y(240);
     yield* all(
       clone.opacity(1, 0.75, easeInOutQuart),
-      clone.y(-91, 0.75, easeInOutQuart),
+      clone.y(-71, 0.75, easeInOutQuart),
     );
   });
 

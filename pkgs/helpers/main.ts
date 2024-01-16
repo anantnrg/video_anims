@@ -5,3 +5,4 @@ export * from "./styles";
 export * from "./terminal";
 export * from "./button";
 export * from "./keys";
+export * from "./background";
