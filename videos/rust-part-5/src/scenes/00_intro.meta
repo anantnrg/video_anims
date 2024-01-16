@@ -176,6 +176,22 @@
     {
       "name": "we will take a look at first two",
       "targetTime": 82.75069484382315
+    },
+    {
+      "name": "first we will learn about the three rules",
+      "targetTime": 86.25069484382315
+    },
+    {
+      "name": "each value has one owner",
+      "targetTime": 87.00069484382315
+    },
+    {
+      "name": "there can only be one owner",
+      "targetTime": 87.00069484382315
+    },
+    {
+      "name": "when owner gone, value gone",
+      "targetTime": 87.00069484382315
     }
   ],
   "seed": 302519928

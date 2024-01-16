@@ -1324,6 +1324,108 @@ export default makeScene2D(function* (view) {
     ownershipSystemBorrowingTitle().opacity(0, 0.75, easeInOutQuart),
     ownershipSystemLifetimesTitle().opacity(0, 0.75, easeInOutQuart),
   );
+  yield* waitFor(2);
+  yield* ownershipSystemOwnershipTitle().opacity(0, 0.75, easeInOutQuart);
+
+  yield* waitUntil("first we will learn about the three rules");
+
+  const ownershipRule1 = createRef<Txt>();
+  const ownershipRule2 = createRef<Txt>();
+  const ownershipRule3 = createRef<Txt>();
+
+  yield view.add(
+    <Rect
+      layout
+      alignItems="center"
+      justifyContent="start"
+      width={1100}
+      clip
+      y={-100}
+      ref={ownershipRule1}
+      opacity={0}
+      gap={20}
+    >
+      <Txt
+        fontFamily="JetBrains Mono"
+        fontSize={42}
+        fontWeight={700}
+        fill="#f9e2af"
+        text="1."
+      />
+      <Txt
+        fontFamily="JetBrains Mono"
+        fontSize={42}
+        fontWeight={700}
+        fill="#f9e2af"
+        text="Each value has one owner."
+      />
+    </Rect>,
+  );
+  yield view.add(
+    <Rect
+      layout
+      alignItems="center"
+      justifyContent="start"
+      width={1100}
+      clip
+      ref={ownershipRule2}
+      opacity={0}
+      gap={20}
+    >
+      <Txt
+        fontFamily="JetBrains Mono"
+        fontSize={42}
+        fontWeight={700}
+        fill="#f9e2af"
+        text="2."
+      />
+      <Txt
+        fontFamily="JetBrains Mono"
+        fontSize={42}
+        fontWeight={700}
+        fill="#f9e2af"
+        text="There can only be one owner at any time."
+      />
+    </Rect>,
+  );
+  yield view.add(
+    <Rect
+      layout
+      alignItems="start"
+      justifyContent="start"
+      width={1100}
+      clip
+      y={130}
+      ref={ownershipRule3}
+      opacity={0}
+      gap={20}
+    >
+      <Txt
+        fontFamily="JetBrains Mono"
+        fontSize={42}
+        fontWeight={700}
+        fill="#f9e2af"
+        text="3."
+      />
+      <Txt
+        fontFamily="JetBrains Mono"
+        fontSize={42}
+        fontWeight={700}
+        fill="#f9e2af"
+        text={`When the owner goes out of scope, \nthe value is dropped.`}
+        lineHeight={60}
+      />
+    </Rect>,
+  );
+
+  yield* waitUntil("each value has one owner");
+  yield* ownershipRule1().opacity(1, 0.75, easeInOutQuart);
+
+  yield* waitUntil("there can only be one owner");
+  yield* ownershipRule2().opacity(1, 0.75, easeInOutQuart);
+
+  yield* waitUntil("when owner gone, value gone");
+  yield* ownershipRule3().opacity(1, 0.75, easeInOutQuart);
   // yield* all(
   //   heapMemBoxContRef().x(750, 0.75, easeInOutQuart),
   //   stackMemBoxContRef().x(150, 0.75, easeInOutQuart),
