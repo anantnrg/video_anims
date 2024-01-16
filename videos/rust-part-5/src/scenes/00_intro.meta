@@ -152,6 +152,30 @@
     {
       "name": "lets see how rust achieves memory safety",
       "targetTime": 75.25069484382315
+    },
+    {
+      "name": "instead rust uses ownership system",
+      "targetTime": 79.00069484382315
+    },
+    {
+      "name": "consists of three concepts",
+      "targetTime": 79.75069484382315
+    },
+    {
+      "name": "ownership",
+      "targetTime": 80.50069484382315
+    },
+    {
+      "name": "borrowing",
+      "targetTime": 81.25069484382315
+    },
+    {
+      "name": "lifetimes",
+      "targetTime": 82.00069484382315
+    },
+    {
+      "name": "we will take a look at first two",
+      "targetTime": 82.75069484382315
     }
   ],
   "seed": 302519928

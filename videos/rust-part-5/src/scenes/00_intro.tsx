@@ -1002,7 +1002,7 @@ export default makeScene2D(function* (view) {
       height={140}
       radius={15}
       lineWidth={10}
-      stroke="fab387"
+      stroke="#f38ba8"
       zIndex={1005}
       scale={0}
       ref={manualManagementTitleRef}
@@ -1012,7 +1012,7 @@ export default makeScene2D(function* (view) {
         fontFamily="JetBrains Mono"
         fontSize={56}
         fontWeight={800}
-        fill="fab387"
+        fill="#f38ba8"
         text="Manual Management"
       />
     </Rect>,
@@ -1206,7 +1206,124 @@ export default makeScene2D(function* (view) {
   yield* waitUntil("lets see how rust achieves memory safety");
 
   yield* rustmemTextRef().text("Memory Management in Rust", 1, easeInOutQuart);
+  yield* waitFor(2);
+  yield* all(
+    rustmemTextRef().opacity(0, 0.55, easeInOutQuart),
+    rustmemTextRef().x(-300, 0.75, easeInOutQuart),
+  );
 
+  const ownershipSystemTitle = createRef<Rect>();
+  const ownershipSystemBorrowingTitle = createRef<Rect>();
+  const ownershipSystemOwnershipTitle = createRef<Rect>();
+  const ownershipSystemLifetimesTitle = createRef<Rect>();
+
+  yield view.add(
+    <Rect
+      width={700}
+      height={140}
+      radius={15}
+      lineWidth={10}
+      stroke="fab387"
+      zIndex={1005}
+      scale={0}
+      ref={ownershipSystemTitle}
+    >
+      <Txt
+        fontFamily="JetBrains Mono"
+        fontSize={56}
+        fontWeight={800}
+        fill="fab387"
+        text="Ownership System"
+      />
+    </Rect>,
+  );
+
+  yield view.add(
+    <Rect
+      width={400}
+      height={100}
+      radius={15}
+      lineWidth={6}
+      stroke="cba6f7"
+      zIndex={1005}
+      scale={0}
+      ref={ownershipSystemOwnershipTitle}
+    >
+      <Txt
+        fontFamily="JetBrains Mono"
+        fontSize={48}
+        fontWeight={600}
+        fill="cba6f7"
+        text="Ownership"
+      />
+    </Rect>,
+  );
+
+  yield view.add(
+    <Rect
+      width={400}
+      height={100}
+      radius={15}
+      lineWidth={6}
+      stroke="cba6f7"
+      zIndex={1005}
+      y={200}
+      scale={0}
+      ref={ownershipSystemBorrowingTitle}
+    >
+      <Txt
+        fontFamily="JetBrains Mono"
+        fontSize={48}
+        fontWeight={600}
+        fill="cba6f7"
+        text="Borrowing"
+      />
+    </Rect>,
+  );
+
+  yield view.add(
+    <Rect
+      width={400}
+      height={100}
+      radius={15}
+      lineWidth={6}
+      stroke="cba6f7"
+      zIndex={1005}
+      y={400}
+      scale={0}
+      ref={ownershipSystemLifetimesTitle}
+    >
+      <Txt
+        fontFamily="JetBrains Mono"
+        fontSize={48}
+        fontWeight={600}
+        fill="cba6f7"
+        text="Lifetimes"
+      />
+    </Rect>,
+  );
+
+  yield* waitUntil("instead rust uses ownership system");
+
+  yield* ownershipSystemTitle().scale(1, 0.75, easeInOutQuart);
+
+  yield* waitUntil("consists of three concepts");
+  yield* ownershipSystemTitle().y(-200, 0.75, easeInOutQuart);
+
+  yield* waitUntil("ownership");
+  yield* ownershipSystemOwnershipTitle().scale(1, 0.75, easeInOutQuart);
+  yield* waitUntil("borrowing");
+  yield* ownershipSystemBorrowingTitle().scale(1, 0.75, easeInOutQuart);
+  yield* waitUntil("lifetimes");
+  yield* ownershipSystemLifetimesTitle().scale(1, 0.75, easeInOutQuart);
+
+  yield* waitUntil("we will take a look at first two");
+  yield* all(
+    ownershipSystemTitle().opacity(0, 0.75, easeInOutQuart),
+    ownershipSystemOwnershipTitle().opacity(0, 0.75, easeInOutQuart),
+    ownershipSystemBorrowingTitle().opacity(0, 0.75, easeInOutQuart),
+    ownershipSystemLifetimesTitle().opacity(0, 0.75, easeInOutQuart),
+  );
   // yield* all(
   //   heapMemBoxContRef().x(750, 0.75, easeInOutQuart),
   //   stackMemBoxContRef().x(150, 0.75, easeInOutQuart),
