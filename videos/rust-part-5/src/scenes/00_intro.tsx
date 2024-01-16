@@ -1320,7 +1320,7 @@ export default makeScene2D(function* (view) {
   yield* waitUntil("we will take a look at first two");
   yield* all(
     ownershipSystemTitle().opacity(0, 0.75, easeInOutQuart),
-    ownershipSystemOwnershipTitle().opacity(0, 0.75, easeInOutQuart),
+    ownershipSystemOwnershipTitle().scale(1.5, 0.75, easeInOutQuart),
     ownershipSystemBorrowingTitle().opacity(0, 0.75, easeInOutQuart),
     ownershipSystemLifetimesTitle().opacity(0, 0.75, easeInOutQuart),
   );
