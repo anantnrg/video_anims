@@ -231,7 +231,7 @@ export default makeScene2D(function* (view) {
       height={70}
       radius={10}
       lineWidth={5}
-      stroke="74c7ec"
+      stroke="89b4fa"
       layout
       alignItems="center"
       justifyContent="center"
@@ -243,7 +243,7 @@ export default makeScene2D(function* (view) {
         fontFamily="JetBrains Mono"
         fontSize={32}
         fontWeight={600}
-        fill="74c7ec"
+        fill="89b4fa"
         text="some_int: 420"
       />
     </Rect>,
@@ -254,7 +254,7 @@ export default makeScene2D(function* (view) {
       height={70}
       radius={10}
       lineWidth={5}
-      stroke="74c7ec"
+      stroke="89b4fa"
       layout
       alignItems="center"
       justifyContent="center"
@@ -265,7 +265,7 @@ export default makeScene2D(function* (view) {
         fontFamily="JetBrains Mono"
         fontSize={32}
         fontWeight={600}
-        fill="74c7ec"
+        fill="89b4fa"
         text="a_float: 3.004"
       />
     </Rect>,
@@ -276,7 +276,7 @@ export default makeScene2D(function* (view) {
       height={70}
       radius={10}
       lineWidth={5}
-      stroke="74c7ec"
+      stroke="89b4fa"
       layout
       alignItems="center"
       justifyContent="center"
@@ -287,7 +287,7 @@ export default makeScene2D(function* (view) {
         fontFamily="JetBrains Mono"
         fontSize={32}
         fontWeight={600}
-        fill="74c7ec"
+        fill="89b4fa"
         text="bool: true"
       />
     </Rect>,
@@ -335,10 +335,10 @@ export default makeScene2D(function* (view) {
   yield* waitUntil("efficient access to data");
   yield* stackMemSampleFloatValue().stroke("f9e2af", 0.35, easeInOutQuart);
   yield* waitFor(0.5);
-  yield* stackMemSampleFloatValue().stroke("74c7ec", 0.35, easeInOutQuart);
+  yield* stackMemSampleFloatValue().stroke("89b4fa", 0.35, easeInOutQuart);
   yield* stackMemSampleIntValue().stroke("f9e2af", 0.35, easeInOutQuart);
   yield* waitFor(0.5);
-  yield* stackMemSampleIntValue().stroke("74c7ec", 0.35, easeInOutQuart);
+  yield* stackMemSampleIntValue().stroke("89b4fa", 0.35, easeInOutQuart);
 
   const stringTextRef = createRef<Txt>();
   const vectorsTextRef = createRef<Txt>();
@@ -555,7 +555,7 @@ export default makeScene2D(function* (view) {
       minHeight={200}
       radius={10}
       lineWidth={5}
-      stroke="74c7ec"
+      stroke="89b4fa"
       layout
       alignItems="center"
       ref={stackMemPointerValue}
@@ -567,10 +567,10 @@ export default makeScene2D(function* (view) {
         fontFamily="JetBrains Mono"
         fontSize={32}
         fontWeight={600}
-        fill="74c7ec"
+        fill="89b4fa"
         text="string_1"
       />
-      <Rect stroke="74c7ec" lineWidth={5} width="100%" marginTop={10} />
+      <Rect stroke="89b4fa" lineWidth={5} width="100%" marginTop={10} />
       <Rect layout direction="row" width="100%" height="100%">
         <Rect
           layout
@@ -588,24 +588,16 @@ export default makeScene2D(function* (view) {
             fontFamily="JetBrains Mono"
             fontSize={32}
             fontWeight={600}
-            fill="74c7ec"
+            fill="89b4fa"
             text="pointer:"
           />
-          <Rect stroke="74c7ec" lineWidth={5} width="100%" />
+          <Rect stroke="89b4fa" lineWidth={5} width="100%" />
           <Txt
             fontFamily="JetBrains Mono"
             fontSize={32}
             fontWeight={600}
-            fill="74c7ec"
+            fill="89b4fa"
             text="length:"
-          />
-          <Rect stroke="74c7ec" lineWidth={5} width="100%" />
-          <Txt
-            fontFamily="JetBrains Mono"
-            fontSize={32}
-            fontWeight={600}
-            fill="74c7ec"
-            text="capacity:"
           />
         </Rect>
         <Rect
@@ -623,23 +615,15 @@ export default makeScene2D(function* (view) {
             fontFamily="JetBrains Mono"
             fontSize={32}
             fontWeight={600}
-            fill="74c7ec"
+            fill="89b4fa"
             text="⠀"
           />
-          <Rect stroke="74c7ec" lineWidth={5} width="100%" />
+          <Rect stroke="89b4fa" lineWidth={5} width="100%" />
           <Txt
             fontFamily="JetBrains Mono"
             fontSize={32}
             fontWeight={600}
-            fill="74c7ec"
-            text="9"
-          />
-          <Rect stroke="74c7ec" lineWidth={5} width="100%" />
-          <Txt
-            fontFamily="JetBrains Mono"
-            fontSize={32}
-            fontWeight={600}
-            fill="74c7ec"
+            fill="89b4fa"
             text="9"
           />
         </Rect>
@@ -697,5 +681,284 @@ export default makeScene2D(function* (view) {
     stackMemPointerArrow().end(1, 1, easeInOutQuad),
     stackMemPointerArrowBkg().end(1, 1, easeInOutQuad),
   );
+
+  yield* waitUntil("this brings us to our next topic");
+
+  yield* all(
+    stackMemBoxContRef().opacity(0, 0.75, easeInOutQuart),
+    heapMemBoxContRef().opacity(0, 0.75, easeInOutQuart),
+    stackMemPointerArrow().opacity(0, 0.75, easeInOutQuart),
+    stackMemPointerArrowBkg().opacity(0, 0.75, easeInOutQuart),
+  );
   /* ---- Memory Allocation End ---- */
+
+  /* ---- Memory Manangement Start ---- */
+  yield* introTextRef().text("");
+  yield* introTextRef().opacity(1);
+  yield* introTextRef().y(0);
+
+  yield* introTextRef().text("Memory Management", 1, easeInOutQuart);
+  yield* waitFor(2);
+  yield* all(
+    introTextRef().x(700, 0.75, easeInOutQuart),
+    introTextRef().opacity(0, 0.55, easeInOutQuart),
+  );
+  yield* stackMemBoxContRef().x(-400);
+  yield* heapMemBoxContRef().x(0);
+  yield* stackMemPointerArrow().opacity(1);
+  yield* stackMemPointerArrowBkg().opacity(1);
+  yield* stackMemPointerArrow().end(0);
+  yield* stackMemPointerArrowBkg().end(0);
+
+  yield* stackMemPointerArrow().points([
+    [-200, -121],
+    [0, -121],
+    [0, 40],
+    [140, 40],
+  ]);
+  yield* stackMemPointerArrowBkg().points([
+    [-200, -118],
+    [0, -118],
+    [0, 40],
+    [140, 40],
+  ]);
+
+  yield* all(
+    stackMemBoxContRef().x(-300, 0.75, easeInOutQuart),
+    heapMemBoxContRef().x(300, 0.75, easeInOutQuart),
+    stackMemBoxContRef().opacity(1, 0.75, easeInOutQuart),
+    heapMemBoxContRef().opacity(1, 0.75, easeInOutQuart),
+    stackMemPointerArrow().end(1, 0.75, easeInOutQuart),
+    stackMemPointerArrowBkg().end(1, 0.75, easeInOutQuart),
+  );
+
+  yield* waitUntil("allocation and deallocation");
+
+  const stackMemPointerValue1 = createRef<Rect>();
+  const stackMemPointerValueArrow1 = createRef<Line>();
+  const stackMemPointerValueArrowBkg1 = createRef<Line>();
+
+  stackMemBoxRef().add(
+    <Rect
+      width={310}
+      minHeight={200}
+      radius={10}
+      lineWidth={5}
+      stroke="89b4fa"
+      layout
+      alignItems="center"
+      ref={stackMemPointerValue1}
+      paddingTop={10}
+      direction="column"
+      opacity={0}
+    >
+      <Txt
+        fontFamily="JetBrains Mono"
+        fontSize={32}
+        fontWeight={600}
+        fill="89b4fa"
+        text="string_2"
+      />
+      <Rect stroke="89b4fa" lineWidth={5} width="100%" marginTop={10} />
+      <Rect layout direction="row" width="100%" height="100%">
+        <Rect
+          layout
+          direction="column"
+          alignItems="end"
+          justifyContent="center"
+          width="65%"
+          height="100%"
+          paddingTop={20}
+          paddingBottom={20}
+          gap={20}
+          clip
+        >
+          <Txt
+            fontFamily="JetBrains Mono"
+            fontSize={32}
+            fontWeight={600}
+            fill="89b4fa"
+            text="pointer:"
+          />
+          <Rect stroke="89b4fa" lineWidth={5} width="100%" />
+          <Txt
+            fontFamily="JetBrains Mono"
+            fontSize={32}
+            fontWeight={600}
+            fill="89b4fa"
+            text="length:"
+          />
+        </Rect>
+        <Rect
+          layout
+          direction="column"
+          alignItems="center"
+          justifyContent="center"
+          width="35%"
+          height="100%"
+          paddingTop={20}
+          paddingBottom={20}
+          gap={20}
+        >
+          <Txt
+            fontFamily="JetBrains Mono"
+            fontSize={32}
+            fontWeight={600}
+            fill="89b4fa"
+            text="⠀"
+          />
+          <Rect stroke="89b4fa" lineWidth={5} width="100%" />
+          <Txt
+            fontFamily="JetBrains Mono"
+            fontSize={32}
+            fontWeight={600}
+            fill="89b4fa"
+            text="9"
+          />
+        </Rect>
+      </Rect>
+    </Rect>,
+  );
+  yield* animateClone(view, stackMemPointerValue1(), function* (clone) {
+    yield* clone.y(340);
+    yield* all(
+      clone.opacity(1, 0.75, easeInOutQuart),
+      clone.y(140, 0.75, easeInOutQuart),
+    );
+  });
+  yield view.add(
+    <Line
+      lineWidth={72}
+      stroke="000"
+      points={[
+        [-200, 128],
+        [0, 128],
+        [0, 260],
+        [140, 260],
+      ]}
+      radius={20}
+      arrowSize={20}
+      zIndex={1000}
+      ref={stackMemPointerValueArrow1}
+      end={0}
+    />,
+  );
+
+  yield view.add(
+    <Line
+      lineWidth={9}
+      stroke="cba6f7"
+      points={[
+        [-200, 125],
+        [0, 125],
+        [0, 260],
+        [140, 260],
+      ]}
+      endArrow
+      radius={20}
+      arrowSize={18}
+      zIndex={1000}
+      ref={stackMemPointerValueArrowBkg1}
+      end={0}
+    />,
+  );
+
+  const heapMemSampleValue4 = createRef<Rect>();
+
+  heapMemBoxRef().add(
+    <Rect
+      width={310}
+      height={70}
+      radius={10}
+      lineWidth={5}
+      stroke="b4befe"
+      layout
+      alignItems="center"
+      justifyContent="center"
+      opacity={0}
+      ref={heapMemSampleValue4}
+    >
+      <Txt
+        fontFamily="JetBrains Mono"
+        fontSize={32}
+        fontWeight={600}
+        fill="b4befe"
+        text="[3.14, 6.9]"
+      />
+    </Rect>,
+  );
+
+  const heapMemSampleValue3 = createRef<Rect>();
+
+  heapMemBoxRef().add(
+    <Rect
+      width={310}
+      height={70}
+      radius={10}
+      lineWidth={5}
+      stroke="b4befe"
+      layout
+      alignItems="center"
+      justifyContent="center"
+      ref={heapMemSampleValue3}
+      opacity={0}
+    >
+      <Txt
+        fontFamily="JetBrains Mono"
+        fontSize={32}
+        fontWeight={600}
+        fill="b4befe"
+        text='"I use Arch"'
+      />
+    </Rect>,
+  );
+
+  yield* animateClone(view, heapMemSampleValue3(), function* (clone) {
+    yield* clone.y(100);
+    yield* all(
+      clone.opacity(1, 0.75, easeInOutQuart),
+      clone.y(261, 0.75, easeInOutQuart),
+    );
+  });
+
+  yield* all(
+    stackMemPointerValueArrow1().end(1, 0.75, easeInOutQuart),
+    stackMemPointerValueArrowBkg1().end(1, 0.75, easeInOutQuart),
+  );
+  yield* animateClone(view, heapMemSampleValue1(), function* (clone) {
+    yield* clone.y(240);
+    yield* all(
+      clone.opacity(1, 0.75, easeInOutQuart),
+      clone.y(-72, 0.75, easeInOutQuart),
+    );
+  });
+  yield* animateClone(view, heapMemSampleValueCont(), function* (clone) {
+    yield* clone.y(240);
+    yield* all(
+      clone.opacity(1, 0.75, easeInOutQuart),
+      clone.y(-181, 0.75, easeInOutQuart),
+    );
+  });
+  yield* animateClone(view, heapMemSampleValue4(), function* (clone) {
+    yield* clone.y(240);
+    yield* all(
+      clone.opacity(1, 0.75, easeInOutQuart),
+      clone.y(151, 0.75, easeInOutQuart),
+    );
+  });
+
+  yield* waitUntil("memory leaks");
+  yield* all(
+    heapMemSampleValue1().stroke("f38ba8", 0.55, easeInOutQuart),
+    heapMemSampleValueCont().stroke("f38ba8", 0.55, easeInOutQuart),
+    heapMemSampleValue4().stroke("f38ba8", 0.55, easeInOutQuart),
+  );
+  yield* animateClone(view, heapMemSampleValue3(), function* (clone) {
+    yield* all(
+      clone.opacity(0, 0.75, easeInOutQuart),
+      clone.y(340, 0.75, easeInOutQuart),
+    );
+    heapMemSampleValue3().opacity(0);
+  });
+  /* ---- Memory Manangement End ---- */
 });

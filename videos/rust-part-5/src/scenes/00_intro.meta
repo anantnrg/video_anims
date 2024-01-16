@@ -88,6 +88,18 @@
     {
       "name": "create a pointer",
       "targetTime": 36.78580245385412
+    },
+    {
+      "name": "this brings us to our next topic",
+      "targetTime": 38.986924664665544
+    },
+    {
+      "name": "allocation and deallocation",
+      "targetTime": 44.236924664665544
+    },
+    {
+      "name": "memory leaks",
+      "targetTime": 48.736924664665544
     }
   ],
   "seed": 302519928
