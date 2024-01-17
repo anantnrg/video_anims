@@ -1426,6 +1426,15 @@ export default makeScene2D(function* (view) {
 
   yield* waitUntil("when owner gone, value gone");
   yield* ownershipRule3().opacity(1, 0.75, easeInOutQuart);
+
+  yield* waitUntil("lets look at the first one");
+  yield* all(
+    ownershipRule2().opacity(0, 0.75, easeInOutQuart),
+    ownershipRule3().opacity(0, 0.75, easeInOutQuart),
+    ownershipRule1().x(-300, 0.75, easeInOutQuart),
+    ownershipRule1().y(-400, 0.75, easeInOutQuart),
+  );
+
   // yield* all(
   //   heapMemBoxContRef().x(750, 0.75, easeInOutQuart),
   //   stackMemBoxContRef().x(150, 0.75, easeInOutQuart),

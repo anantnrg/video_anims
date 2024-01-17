@@ -192,6 +192,10 @@
     {
       "name": "when owner gone, value gone",
       "targetTime": 87.00069484382315
+    },
+    {
+      "name": "lets look at the first one",
+      "targetTime": 89.25069484382315
     }
   ],
   "seed": 302519928
