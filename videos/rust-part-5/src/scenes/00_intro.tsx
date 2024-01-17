@@ -1452,6 +1452,8 @@ export default makeScene2D(function* (view) {
 
   const codeblock = createRef<CodeBlock>();
 
+  yield view.add();
+
   // yield* animateClone(view, heapMemSampleValue4(), function* (clone) {
   //   yield* clone.y(240);
   //   yield* all(
