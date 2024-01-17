@@ -1450,9 +1450,22 @@ export default makeScene2D(function* (view) {
     stackMemPointerArrowBkg().x(450, 0.75, easeInOutQuart),
   );
 
+  const codeblockRect = createRef<Rect>();
   const codeblock = createRef<CodeBlock>();
 
-  yield view.add();
+  yield view.add(
+    <CustomCodeBlock
+      codeBlockRef={codeblock}
+      rectRef={codeblockRect}
+      code=""
+      fontSize={36}
+      lang="rust"
+      scale={1}
+      tabTitle="main.rs"
+    />,
+  );
+
+  yield* codeblockRect().x(-500);
 
   // yield* animateClone(view, heapMemSampleValue4(), function* (clone) {
   //   yield* clone.y(240);
