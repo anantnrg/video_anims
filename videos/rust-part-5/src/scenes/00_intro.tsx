@@ -12,6 +12,7 @@ import {
   makeScene2D,
   blur,
 } from "@motion-canvas/2d";
+import { CodeBlock } from "@motion-canvas/2d/lib/components/CodeBlock";
 import {
   Vector2,
   all,
@@ -1435,12 +1436,21 @@ export default makeScene2D(function* (view) {
     ownershipRule1().y(-400, 0.75, easeInOutQuart),
   );
 
-  // yield* all(
-  //   heapMemBoxContRef().x(750, 0.75, easeInOutQuart),
-  //   stackMemBoxContRef().x(150, 0.75, easeInOutQuart),
-  //   stackMemPointerArrow().x(450, 0.75, easeInOutQuart),
-  //   stackMemPointerArrowBkg().x(450, 0.75, easeInOutQuart),
-  // );
+  yield* all(
+    stackMemBoxContRef().opacity(1, 0.75, easeInOutQuart),
+    heapMemBoxContRef().opacity(1, 0.75, easeInOutQuart),
+    stackMemPointerArrow().opacity(1, 0.75, easeInOutQuart),
+    stackMemPointerArrowBkg().opacity(1, 0.55, easeInOutQuart),
+  );
+
+  yield* all(
+    heapMemBoxContRef().x(750, 0.75, easeInOutQuart),
+    stackMemBoxContRef().x(150, 0.75, easeInOutQuart),
+    stackMemPointerArrow().x(450, 0.75, easeInOutQuart),
+    stackMemPointerArrowBkg().x(450, 0.75, easeInOutQuart),
+  );
+
+  const codeblock = createRef<CodeBlock>();
 
   // yield* animateClone(view, heapMemSampleValue4(), function* (clone) {
   //   yield* clone.y(240);
