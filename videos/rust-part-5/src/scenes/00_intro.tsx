@@ -12,7 +12,7 @@ import {
   makeScene2D,
   blur,
 } from "@motion-canvas/2d";
-import { CodeBlock, insert } from "@motion-canvas/2d/lib/components/CodeBlock";
+import { CodeBlock, insert, lines } from "@motion-canvas/2d/lib/components/CodeBlock";
 import {
   Vector2,
   all,
@@ -1454,15 +1454,27 @@ export default makeScene2D(function*(view) {
 
   yield* codeblockRect().zIndex(100000000);
 
-  // yield* codeblockRect().x(-500);
-
   yield* waitUntil("lets assume we have a string");
   yield* codeblockRect().scale(1, 0.75, easeInOutQuart);
 
   yield* codeblock().edit(0.75)`${insert('"Hi"')}`;
+
   yield* waitUntil("this string has an owner")
 
   yield* codeblock().edit(0.75)`${insert("let x = ")}"Hi"${insert(";")}`
+
+  yield* codeblock().selection(lines(0, Infinity));
+
+  yield* waitUntil("what this will do is");
+
+  yield* all(
+    heapMemBoxContRef().x(750, 0, easeInOutQuart),
+    stackMemBoxContRef().x(150, 0, easeInOutQuart),
+    stackMemPointerArrow().x(450, 0, easeInOutQuart),
+    stackMemPointerArrowBkg().x(450, 0, easeInOutQuart),
+  );
+  
+  yield* codeblockRect().x(-500, 0.75, easeInOutQuart);
 
   yield* all(
     stackMemBoxContRef().opacity(1, 0.75, easeInOutQuart),
@@ -1471,12 +1483,6 @@ export default makeScene2D(function*(view) {
     stackMemPointerArrowBkg().opacity(1, 0.55, easeInOutQuart),
   );
 
-  yield* all(
-    heapMemBoxContRef().x(750, 0.75, easeInOutQuart),
-    stackMemBoxContRef().x(150, 0.75, easeInOutQuart),
-    stackMemPointerArrow().x(450, 0.75, easeInOutQuart),
-    stackMemPointerArrowBkg().x(450, 0.75, easeInOutQuart),
-  );
 
   // yield* animateClone(view, heapMemSampleValue4(), function* (clone) {
   //   yield* clone.y(240);
