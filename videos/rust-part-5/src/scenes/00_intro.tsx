@@ -12,7 +12,7 @@ import {
   makeScene2D,
   blur,
 } from "@motion-canvas/2d";
-import { CodeBlock } from "@motion-canvas/2d/lib/components/CodeBlock";
+import { CodeBlock, insert } from "@motion-canvas/2d/lib/components/CodeBlock";
 import {
   Vector2,
   all,
@@ -32,7 +32,7 @@ import { animateClone } from "helpers/animations";
 import { Background } from "helpers/background";
 import { CustomCodeBlock } from "helpers/codeblock";
 
-export default makeScene2D(function* (view) {
+export default makeScene2D(function*(view) {
   /* ---- Background Start ---- */
   // const circles: Circle[] = [];
   // yield view.add(<Background circles={circles} />);
@@ -57,8 +57,8 @@ export default makeScene2D(function* (view) {
 
   yield view.add(
     <Txt
-      fontFamily="JetBrains Mono"
-      fontWeight={900}
+      fontFamily="Poppins"
+      fontWeight={600}
       fontSize={102}
       ref={introTextRef}
       fill="cdd6f4"
@@ -67,7 +67,7 @@ export default makeScene2D(function* (view) {
 
   yield view.add(
     <Txt
-      fontFamily="JetBrains Mono"
+      fontFamily="Poppins"
       fontWeight={600}
       fontSize={42}
       ref={introSubTextRef}
@@ -117,9 +117,9 @@ export default makeScene2D(function* (view) {
       scale={0}
     >
       <Txt
-        fontFamily="JetBrains Mono"
+        fontFamily="Poppins"
         fontSize={56}
-        fontWeight={800}
+        fontWeight={600}
         fill="b4befe"
         text="Memory"
         marginBottom={10}
@@ -150,9 +150,9 @@ export default makeScene2D(function* (view) {
       opacity={0}
     >
       <Txt
-        fontFamily="JetBrains Mono"
+        fontFamily="Poppins"
         fontSize={56}
-        fontWeight={800}
+        fontWeight={600}
         fill="a6e3a1"
         text="Stack"
         marginBottom={10}
@@ -186,9 +186,9 @@ export default makeScene2D(function* (view) {
       opacity={0}
     >
       <Txt
-        fontFamily="JetBrains Mono"
+        fontFamily="Poppins"
         fontSize={56}
-        fontWeight={800}
+        fontWeight={600}
         fill="fab387"
         text="Heap"
         marginBottom={10}
@@ -302,7 +302,7 @@ export default makeScene2D(function* (view) {
   );
 
   yield* waitUntil("integers");
-  yield* animateClone(view, stackMemSampleIntValue(), function* (clone) {
+  yield* animateClone(view, stackMemSampleIntValue(), function*(clone) {
     yield* clone.y(100);
     yield* all(
       clone.opacity(1, 0.75, easeInOutQuart),
@@ -311,7 +311,7 @@ export default makeScene2D(function* (view) {
   });
 
   yield* waitUntil("floats");
-  yield* animateClone(view, stackMemSampleFloatValue(), function* (clone) {
+  yield* animateClone(view, stackMemSampleFloatValue(), function*(clone) {
     yield* clone.y(140);
     yield* all(
       clone.opacity(1, 0.75, easeInOutQuart),
@@ -320,7 +320,7 @@ export default makeScene2D(function* (view) {
   });
 
   yield* waitUntil("booleans");
-  yield* animateClone(view, stackMemSampleBoolValue(), function* (clone) {
+  yield* animateClone(view, stackMemSampleBoolValue(), function*(clone) {
     yield* clone.y(240);
     yield* all(
       clone.opacity(1, 0.75, easeInOutQuart),
@@ -332,7 +332,7 @@ export default makeScene2D(function* (view) {
   yield* stackMemSampleBoolValue().stroke("f38ba8", 0.25, easeInOutQuart);
 
   yield* waitUntil("first one to be popped off");
-  yield* animateClone(view, stackMemSampleBoolValue(), function* (clone) {
+  yield* animateClone(view, stackMemSampleBoolValue(), function*(clone) {
     yield* all(
       clone.opacity(0, 0.75, easeInOutQuart),
       clone.y(180, 0.75, easeInOutQuart),
@@ -451,7 +451,7 @@ export default makeScene2D(function* (view) {
   );
 
   yield* waitUntil("store values of any size");
-  yield* animateClone(view, heapMemSampleValueCont(), function* (clone) {
+  yield* animateClone(view, heapMemSampleValueCont(), function*(clone) {
     yield* clone.y(100);
     yield* all(
       clone.opacity(1, 0.75, easeInOutQuart),
@@ -510,7 +510,7 @@ export default makeScene2D(function* (view) {
   );
 
   yield* waitUntil("unlike the stack");
-  yield* animateClone(view, heapMemSampleValue2(), function* (clone) {
+  yield* animateClone(view, heapMemSampleValue2(), function*(clone) {
     yield* clone.y(180);
     yield* all(
       clone.opacity(1, 0.75, easeInOutQuart),
@@ -518,7 +518,7 @@ export default makeScene2D(function* (view) {
     );
   });
 
-  yield* animateClone(view, heapMemSampleValue1(), function* (clone) {
+  yield* animateClone(view, heapMemSampleValue1(), function*(clone) {
     yield* clone.y(240);
     yield* all(
       clone.opacity(1, 0.75, easeInOutQuart),
@@ -526,7 +526,7 @@ export default makeScene2D(function* (view) {
     );
   });
 
-  yield* animateClone(view, heapMemSampleValue1(), function* (clone) {
+  yield* animateClone(view, heapMemSampleValue1(), function*(clone) {
     yield* all(
       clone.opacity(0, 0.75, easeInOutQuart),
       clone.y(140, 0.75, easeInOutQuart),
@@ -534,7 +534,7 @@ export default makeScene2D(function* (view) {
   });
   yield* heapMemSampleValue1().opacity(0);
 
-  yield* animateClone(view, heapMemSampleValueCont(), function* (clone) {
+  yield* animateClone(view, heapMemSampleValueCont(), function*(clone) {
     yield* all(
       clone.opacity(0, 0.75, easeInOutQuart),
       clone.y(140, 0.75, easeInOutQuart),
@@ -677,7 +677,7 @@ export default makeScene2D(function* (view) {
   );
 
   yield* waitUntil("create a pointer");
-  yield* animateClone(view, stackMemPointerValue(), function* (clone) {
+  yield* animateClone(view, stackMemPointerValue(), function*(clone) {
     yield* clone.y(240);
     yield* all(
       clone.opacity(1, 0.75, easeInOutQuart),
@@ -704,6 +704,7 @@ export default makeScene2D(function* (view) {
   yield* introTextRef().text("");
   yield* introTextRef().opacity(1);
   yield* introTextRef().y(0);
+  yield* introTextRef().fill("f38ba8");
 
   yield* introTextRef().text("Memory Management", 1, easeInOutQuart);
   yield* waitFor(2);
@@ -827,7 +828,7 @@ export default makeScene2D(function* (view) {
       </Rect>
     </Rect>,
   );
-  yield* animateClone(view, stackMemPointerValue1(), function* (clone) {
+  yield* animateClone(view, stackMemPointerValue1(), function*(clone) {
     yield* clone.y(340);
     yield* all(
       clone.opacity(1, 0.75, easeInOutQuart),
@@ -922,7 +923,7 @@ export default makeScene2D(function* (view) {
     </Rect>,
   );
 
-  yield* animateClone(view, heapMemSampleValue3(), function* (clone) {
+  yield* animateClone(view, heapMemSampleValue3(), function*(clone) {
     yield* clone.y(100);
     yield* all(
       clone.opacity(1, 0.75, easeInOutQuart),
@@ -934,14 +935,14 @@ export default makeScene2D(function* (view) {
     stackMemPointerValueArrow1().end(1, 0.75, easeInOutQuart),
     stackMemPointerValueArrowBkg1().end(1, 0.75, easeInOutQuart),
   );
-  yield* animateClone(view, heapMemSampleValue1(), function* (clone) {
+  yield* animateClone(view, heapMemSampleValue1(), function*(clone) {
     yield* clone.y(240);
     yield* all(
       clone.opacity(1, 0.75, easeInOutQuart),
       clone.y(-72, 0.75, easeInOutQuart),
     );
   });
-  yield* animateClone(view, heapMemSampleValueCont(), function* (clone) {
+  yield* animateClone(view, heapMemSampleValueCont(), function*(clone) {
     yield* clone.y(240);
     yield* all(
       clone.opacity(1, 0.75, easeInOutQuart),
@@ -956,7 +957,7 @@ export default makeScene2D(function* (view) {
   );
 
   yield* waitUntil("dangling pointers");
-  yield* animateClone(view, heapMemSampleValue3(), function* (clone) {
+  yield* animateClone(view, heapMemSampleValue3(), function*(clone) {
     yield* all(
       clone.opacity(0, 0.75, easeInOutQuart),
       clone.y(340, 0.75, easeInOutQuart),
@@ -1010,9 +1011,9 @@ export default makeScene2D(function* (view) {
       y={-50}
     >
       <Txt
-        fontFamily="JetBrains Mono"
+        fontFamily="Poppins"
         fontSize={56}
-        fontWeight={800}
+        fontWeight={600}
         fill="#f38ba8"
         text="Manual Management"
       />
@@ -1032,9 +1033,9 @@ export default makeScene2D(function* (view) {
       ref={garbageCollectorTitleRef}
     >
       <Txt
-        fontFamily="JetBrains Mono"
+        fontFamily="Poppins"
         fontSize={56}
-        fontWeight={800}
+        fontWeight={600}
         fill="89dceb"
         text="Garbage Collection"
       />
@@ -1174,7 +1175,7 @@ export default makeScene2D(function* (view) {
   yield* scanningArrow().y(250, 1, easeInOutSine);
   yield* scanningArrow().y(-180, 1, easeInOutSine);
   yield* heapMemSampleValueCont().stroke("f38ba8", 0.45);
-  yield* animateClone(view, heapMemSampleValueCont(), function* (clone) {
+  yield* animateClone(view, heapMemSampleValueCont(), function*(clone) {
     yield* all(
       clone.opacity(0, 0.75, easeInOutQuart),
       clone.y(140, 0.75, easeInOutQuart),
@@ -1196,8 +1197,8 @@ export default makeScene2D(function* (view) {
 
   yield view.add(
     <Txt
-      fontFamily="JetBrains Mono"
-      fontWeight={900}
+      fontFamily="Poppins"
+      fontWeight={600}
       fontSize={118}
       ref={rustmemTextRef}
       fill="fab387"
@@ -1230,9 +1231,9 @@ export default makeScene2D(function* (view) {
       ref={ownershipSystemTitle}
     >
       <Txt
-        fontFamily="JetBrains Mono"
+        fontFamily="Poppins"
         fontSize={56}
-        fontWeight={800}
+        fontWeight={600}
         fill="fab387"
         text="Ownership System"
       />
@@ -1251,8 +1252,8 @@ export default makeScene2D(function* (view) {
       ref={ownershipSystemOwnershipTitle}
     >
       <Txt
-        fontFamily="JetBrains Mono"
-        fontSize={48}
+        fontFamily="Poppins"
+        fontSize={42}
         fontWeight={600}
         fill="cba6f7"
         text="Ownership"
@@ -1273,8 +1274,8 @@ export default makeScene2D(function* (view) {
       ref={ownershipSystemBorrowingTitle}
     >
       <Txt
-        fontFamily="JetBrains Mono"
-        fontSize={48}
+        fontFamily="Poppins"
+        fontSize={42}
         fontWeight={600}
         fill="cba6f7"
         text="Borrowing"
@@ -1295,8 +1296,8 @@ export default makeScene2D(function* (view) {
       ref={ownershipSystemLifetimesTitle}
     >
       <Txt
-        fontFamily="JetBrains Mono"
-        fontSize={48}
+        fontFamily="Poppins"
+        fontSize={42}
         fontWeight={600}
         fill="cba6f7"
         text="Lifetimes"
@@ -1344,19 +1345,19 @@ export default makeScene2D(function* (view) {
       y={-100}
       ref={ownershipRule1}
       opacity={0}
-      gap={20}
+      gap={30}
     >
       <Txt
-        fontFamily="JetBrains Mono"
+        fontFamily="Poppins"
         fontSize={42}
-        fontWeight={700}
+        fontWeight={600}
         fill="#f9e2af"
         text="1."
       />
       <Txt
-        fontFamily="JetBrains Mono"
+        fontFamily="Poppins"
         fontSize={42}
-        fontWeight={700}
+        fontWeight={600}
         fill="#f9e2af"
         text="Each value has one owner."
       />
@@ -1374,16 +1375,16 @@ export default makeScene2D(function* (view) {
       gap={20}
     >
       <Txt
-        fontFamily="JetBrains Mono"
+        fontFamily="Poppins"
         fontSize={42}
-        fontWeight={700}
+        fontWeight={600}
         fill="#f9e2af"
         text="2."
       />
       <Txt
-        fontFamily="JetBrains Mono"
+        fontFamily="Poppins"
         fontSize={42}
-        fontWeight={700}
+        fontWeight={600}
         fill="#f9e2af"
         text="There can only be one owner at any time."
       />
@@ -1402,16 +1403,16 @@ export default makeScene2D(function* (view) {
       gap={20}
     >
       <Txt
-        fontFamily="JetBrains Mono"
+        fontFamily="Poppins"
         fontSize={42}
-        fontWeight={700}
+        fontWeight={600}
         fill="#f9e2af"
         text="3."
       />
       <Txt
-        fontFamily="JetBrains Mono"
+        fontFamily="Poppins"
         fontSize={42}
-        fontWeight={700}
+        fontWeight={600}
         fill="#f9e2af"
         text={`When the owner goes out of scope, \nthe value is dropped.`}
         lineHeight={60}
@@ -1436,6 +1437,33 @@ export default makeScene2D(function* (view) {
     ownershipRule1().y(-400, 0.75, easeInOutQuart),
   );
 
+  const codeblockRect = createRef<Rect>();
+  const codeblock = createRef<CodeBlock>();
+
+  yield view.add(
+    <CustomCodeBlock
+      codeBlockRef={codeblock}
+      rectRef={codeblockRect}
+      code=""
+      fontSize={36}
+      lang="rust"
+      scale={0}
+      tabTitle="main.rs"
+    />,
+  );
+
+  yield* codeblockRect().zIndex(100000000);
+
+  // yield* codeblockRect().x(-500);
+
+  yield* waitUntil("lets assume we have a string");
+  yield* codeblockRect().scale(1, 0.75, easeInOutQuart);
+
+  yield* codeblock().edit(0.75)`${insert('"Hi"')}`;
+  yield* waitUntil("this string has an owner")
+
+  yield* codeblock().edit(0.75)`${insert("let x = ")}"Hi"${insert(";")}`
+
   yield* all(
     stackMemBoxContRef().opacity(1, 0.75, easeInOutQuart),
     heapMemBoxContRef().opacity(1, 0.75, easeInOutQuart),
@@ -1449,23 +1477,6 @@ export default makeScene2D(function* (view) {
     stackMemPointerArrow().x(450, 0.75, easeInOutQuart),
     stackMemPointerArrowBkg().x(450, 0.75, easeInOutQuart),
   );
-
-  const codeblockRect = createRef<Rect>();
-  const codeblock = createRef<CodeBlock>();
-
-  yield view.add(
-    <CustomCodeBlock
-      codeBlockRef={codeblock}
-      rectRef={codeblockRect}
-      code=""
-      fontSize={36}
-      lang="rust"
-      scale={1}
-      tabTitle="main.rs"
-    />,
-  );
-
-  yield* codeblockRect().x(-500);
 
   // yield* animateClone(view, heapMemSampleValue4(), function* (clone) {
   //   yield* clone.y(240);

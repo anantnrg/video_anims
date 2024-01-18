@@ -127,11 +127,11 @@
     },
     {
       "name": "like malloc",
-      "targetTime": 62.55069484382315
+      "targetTime": 63.30069484382315
     },
     {
       "name": "and free",
-      "targetTime": 63.30069484382315
+      "targetTime": 64.05069484382315
     },
     {
       "name": "next lets talk about garbage collection",
@@ -187,15 +187,23 @@
     },
     {
       "name": "there can only be one owner",
-      "targetTime": 87.00069484382315
+      "targetTime": 87.75069484382315
     },
     {
       "name": "when owner gone, value gone",
-      "targetTime": 87.00069484382315
+      "targetTime": 88.50069484382315
     },
     {
       "name": "lets look at the first one",
       "targetTime": 89.25069484382315
+    },
+    {
+      "name": "lets assume we have a string",
+      "targetTime": 92.61076859296004
+    },
+    {
+      "name": "this string has an owner",
+      "targetTime": 95.47025493768784
     }
   ],
   "seed": 302519928
