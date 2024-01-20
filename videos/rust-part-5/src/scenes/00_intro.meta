@@ -3,211 +3,223 @@
   "timeEvents": [
     {
       "name": "learn basics",
-      "targetTime": 2.505875706214689
+      "targetTime": 3.2170166714159456
     },
     {
       "name": "we utilize memory",
-      "targetTime": 7.505875706214689
+      "targetTime": 8.217016671415946
     },
     {
       "name": "memory is divided into two parts",
-      "targetTime": 8.595612052730695
+      "targetTime": 8.967016671415946
     },
     {
       "name": "lets see how they're different",
-      "targetTime": 9.787269303201505
+      "targetTime": 9.717016671415946
     },
     {
       "name": "integers",
-      "targetTime": 12.034059292320112
+      "targetTime": 11.717016671415946
     },
     {
       "name": "floats",
-      "targetTime": 12.913330239001287
+      "targetTime": 12.467016671415946
     },
     {
       "name": "booleans",
-      "targetTime": 13.663330239001287
+      "targetTime": 13.217016671415946
     },
     {
       "name": "last value pushed",
-      "targetTime": 14.413330239001287
+      "targetTime": 14.514674173553122
     },
     {
       "name": "first one to be popped off",
-      "targetTime": 14.663330239001287
+      "targetTime": 15.46445875961729
     },
     {
       "name": "efficient access to data",
-      "targetTime": 15.61311261114492
+      "targetTime": 16.21445875961729
     },
     {
       "name": "but most of the time",
-      "targetTime": 18.013112611144926
+      "targetTime": 18.614458759617296
     },
     {
       "name": "strings",
-      "targetTime": 19.213402881940883
+      "targetTime": 19.364458759617296
     },
     {
       "name": "vectors",
-      "targetTime": 20.233577044418457
+      "targetTime": 20.114458759617296
     },
     {
       "name": "sizes can change",
-      "targetTime": 20.983577044418457
+      "targetTime": 20.864458759617296
     },
     {
       "name": "cannot be stored in the stack",
-      "targetTime": 24.34380926105522
+      "targetTime": 24.412116261754473
     },
     {
       "name": "this is were the heap memory comes into play",
-      "targetTime": 25.574118883237574
+      "targetTime": 26.16615501567263
     },
     {
       "name": "store values of any size",
-      "targetTime": 27.554428505419928
+      "targetTime": 27.66615501567263
     },
     {
       "name": "can grow or shrink",
-      "targetTime": 29.53522191226221
+      "targetTime": 28.41615501567263
     },
     {
       "name": "unlike the stack",
-      "targetTime": 31.03522191226221
+      "targetTime": 29.91615501567263
     },
     {
       "name": "cannot directly access value",
-      "targetTime": 34.03522191226221
+      "targetTime": 32.91615501567263
     },
     {
       "name": "instead, you need to",
-      "targetTime": 36.03580245385412
+      "targetTime": 34.016155015672624
     },
     {
       "name": "create a pointer",
-      "targetTime": 36.78580245385412
+      "targetTime": 34.766155015672624
     },
     {
       "name": "this brings us to our next topic",
-      "targetTime": 38.986924664665544
+      "targetTime": 38.61550877386513
     },
     {
       "name": "allocation and deallocation",
-      "targetTime": 44.236924664665544
+      "targetTime": 43.86550877386513
     },
     {
       "name": "memory leaks",
-      "targetTime": 48.736924664665544
+      "targetTime": 47.61550877386513
     },
     {
       "name": "dangling pointers",
-      "targetTime": 49.28692466466554
+      "targetTime": 48.16550877386513
     },
     {
       "name": "there are two primary approaches",
-      "targetTime": 52.364631255106396
+      "targetTime": 49.66550877386513
     },
     {
       "name": "manual management",
-      "targetTime": 55.15109462259022
+      "targetTime": 50.77997484153742
     },
     {
       "name": "garbage collection",
-      "targetTime": 58.80069484382315
+      "targetTime": 52.84692205791654
     },
     {
       "name": "first lets talk about manual",
-      "targetTime": 60.30069484382315
+      "targetTime": 55.23783911222658
     },
     {
       "name": "for example c provides",
-      "targetTime": 61.80069484382315
+      "targetTime": 56.75726747731253
     },
     {
       "name": "like malloc",
-      "targetTime": 63.30069484382315
+      "targetTime": 58.25726747731253
     },
     {
       "name": "and free",
-      "targetTime": 64.05069484382315
+      "targetTime": 59.00726747731253
     },
     {
       "name": "next lets talk about garbage collection",
-      "targetTime": 64.80069484382315
+      "targetTime": 60.729176991105305
     },
     {
       "name": "langs such as go",
-      "targetTime": 66.30069484382315
+      "targetTime": 62.715131748001696
     },
     {
       "name": "or javascript",
-      "targetTime": 67.05069484382315
+      "targetTime": 63.951086504898086
     },
     {
       "name": "it identifies and recalims",
-      "targetTime": 67.80069484382315
+      "targetTime": 65.95646962688042
     },
     {
       "name": "lets see how rust achieves memory safety",
-      "targetTime": 75.25069484382315
+      "targetTime": 73.40646962688042
     },
     {
       "name": "instead rust uses ownership system",
-      "targetTime": 79.00069484382315
+      "targetTime": 77.15646962688042
     },
     {
       "name": "consists of three concepts",
-      "targetTime": 79.75069484382315
+      "targetTime": 77.90646962688042
     },
     {
       "name": "ownership",
-      "targetTime": 80.50069484382315
+      "targetTime": 78.65646962688042
     },
     {
       "name": "borrowing",
-      "targetTime": 81.25069484382315
+      "targetTime": 79.40646962688042
     },
     {
       "name": "lifetimes",
-      "targetTime": 82.00069484382315
+      "targetTime": 80.15646962688042
     },
     {
       "name": "we will take a look at first two",
-      "targetTime": 82.75069484382315
+      "targetTime": 81.7568904514491
     },
     {
       "name": "first we will learn about the three rules",
-      "targetTime": 86.25069484382315
+      "targetTime": 85.2568904514491
     },
     {
       "name": "each value has one owner",
-      "targetTime": 87.00069484382315
+      "targetTime": 86.0680929137814
     },
     {
       "name": "there can only be one owner",
-      "targetTime": 87.75069484382315
+      "targetTime": 87.22305521119506
     },
     {
       "name": "when owner gone, value gone",
-      "targetTime": 88.50069484382315
+      "targetTime": 88.61198896368843
     },
     {
       "name": "lets look at the first one",
-      "targetTime": 89.25069484382315
+      "targetTime": 89.36198896368843
     },
     {
       "name": "lets assume we have a string",
-      "targetTime": 92.61076859296004
+      "targetTime": 90.17517756939641
     },
     {
       "name": "this string has an owner",
-      "targetTime": 95.47025493768784
+      "targetTime": 92.87576107784804
     },
     {
       "name": "what this will do is",
-      "targetTime": 96.22025493768784
+      "targetTime": 93.62576107784804
+    },
+    {
+      "name": "create a value in the heap",
+      "targetTime": 96.19996737488371
+    },
+    {
+      "name": "that points to this value",
+      "targetTime": 97.69996737488371
+    },
+    {
+      "name": "we've satisfied the first rule",
+      "targetTime": 98.44996737488371
     }
   ],
   "seed": 302519928
