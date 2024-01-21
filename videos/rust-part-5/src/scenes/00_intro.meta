@@ -220,6 +220,50 @@
     {
       "name": "we've satisfied the first rule",
       "targetTime": 98.44996737488371
+    },
+    {
+      "name": "next lets look at another scenario",
+      "targetTime": 99.19996737488371
+    },
+    {
+      "name": "putting let x = y",
+      "targetTime": 100.69996737488371
+    },
+    {
+      "name": "it will transfer ownership of x to y",
+      "targetTime": 101.44996737488371
+    },
+    {
+      "name": "if we try to print x",
+      "targetTime": 102.19996737488371
+    },
+    {
+      "name": "in rust terms, we say",
+      "targetTime": 104.69996737488371
+    },
+    {
+      "name": "lets look at the third and final rule",
+      "targetTime": 106.69996737488371
+    },
+    {
+      "name": "what do we mean by scope",
+      "targetTime": 108.94996737488371
+    },
+    {
+      "name": "when the main function ends",
+      "targetTime": 109.69996737488371
+    },
+    {
+      "name": "the y variable is dropped",
+      "targetTime": 110.44996737488371
+    },
+    {
+      "name": "string doesnt have an owner",
+      "targetTime": 111.19996737488371
+    },
+    {
+      "name": "so rust drops this value",
+      "targetTime": 111.74996737488371
     }
   ],
   "seed": 302519928

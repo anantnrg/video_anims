@@ -11,11 +11,14 @@ import {
   Txt,
   makeScene2D,
   blur,
+  QuadBezier,
+  CubicBezier,
 } from "@motion-canvas/2d";
 import {
   CodeBlock,
   insert,
   lines,
+  range,
 } from "@motion-canvas/2d/lib/components/CodeBlock";
 import {
   Vector2,
@@ -27,7 +30,6 @@ import {
   easeInSine,
   loop,
   makeRef,
-  range,
   useRandom,
   waitFor,
   waitUntil,
@@ -1454,7 +1456,7 @@ export default makeScene2D(function* (view) {
     <CustomCodeBlock
       codeBlockRef={codeblock}
       rectRef={codeblockRect}
-      code=""
+      code={`fn main() {\n\n}`}
       fontSize={36}
       lang="rust"
       scale={0}
@@ -1467,11 +1469,13 @@ export default makeScene2D(function* (view) {
   yield* waitUntil("lets assume we have a string");
   yield* codeblockRect().scale(1, 0.75, easeInOutQuart);
 
-  yield* codeblock().edit(0.75)`${insert('"Hi"')}`;
+  yield* codeblock().edit(0.75)`fn main() {\n${insert('    "Hi"')}\n}`;
 
   yield* waitUntil("this string has an owner");
 
-  yield* codeblock().edit(0.75)`${insert("let x = ")}"Hi"${insert(";")}`;
+  yield* codeblock().edit(0.75)`fn main() {\n    ${insert(
+    "let x = ",
+  )}"Hi"${insert(";")}\n}`;
 
   yield* codeblock().selection(lines(0, Infinity));
 
@@ -1545,6 +1549,157 @@ export default makeScene2D(function* (view) {
   yield* waitUntil("we've satisfied the first rule");
 
   yield* checkmarkRef().scale(1, 0.75, easeInOutQuart);
+
+  yield* waitUntil("next lets look at another scenario");
+  yield* all(
+    ownershipRule1().opacity(0, 0.75, easeInOutQuart),
+    ownershipRule1().x(-800, 0.75, easeInOutQuart),
+    checkmarkRef().opacity(0, 0.75, easeInOutQuart),
+  );
+  yield* ownershipRule2().y(-400);
+  yield* ownershipRule2().x(-700);
+
+  yield* all(
+    ownershipRule2().opacity(1, 0.75, easeInOutQuart),
+    ownershipRule2().x(-300, 0.75, easeInOutQuart),
+  );
+
+  yield* waitUntil("putting let x = y");
+  yield* codeblock().edit(0.75)`fn main() {\n    let x = "Hi";${insert(
+    "\n    let y = x;",
+  )}\n}`;
+  yield* waitUntil("it will transfer ownership of x to y");
+  yield* stackMemPointerValueText().text("y", 0.75, easeInOutQuart);
+
+  yield* waitUntil("if we try to print x");
+  yield* codeblock().edit(
+    0.75,
+  )`fn main() {\n    let x = "Hi";\n    let y = x;${insert(
+    '\n    println!("{}", x);',
+  )}\n}`;
+  yield* xmark().zIndex(1000000000);
+  yield* xmark().y(80);
+  yield* xmark().x(-260);
+  yield* xmark().scale(1, 0.75, easeInOutQuart);
+  yield* waitFor(1);
+  yield* codeblock().selection(lines(0, Infinity));
+
+  yield* waitUntil("in rust terms, we say");
+
+  const moveLine = createRef<Line>();
+  const moveLineBkg = createRef<Line>();
+  yield view.add(
+    <Line
+      ref={moveLine}
+      lineWidth={9}
+      endArrow
+      arrowSize={18}
+      stroke="f38ba8"
+      points={[
+        [-530, -110],
+        [-450, -110],
+        [-450, -40],
+        [-600, -40],
+      ]}
+      radius={10000}
+      zIndex={200000000000}
+      end={0}
+      y={50}
+      x={80}
+    />,
+  );
+  yield view.add(
+    <Line
+      ref={moveLineBkg}
+      lineWidth={60}
+      stroke="1e1e2e"
+      points={[
+        [-550, -110],
+        [-450, -110],
+        [-450, -40],
+        [-610, -40],
+      ]}
+      radius={10000}
+      zIndex={20000000000}
+      end={0}
+      y={50}
+      x={80}
+    />,
+  );
+  yield* all(
+    moveLine().end(1, 1, easeInOutQuart),
+    moveLineBkg().end(1, 1, easeInOutQuart),
+  );
+  yield* all(
+    moveLine().start(1, 1, easeInOutQuart),
+    moveLineBkg().start(1, 1, easeInOutQuart),
+  );
+
+  yield* waitUntil("lets look at the third and final rule");
+  yield* xmark().scale(0, 0.75, easeInOutQuart);
+  yield* all(
+    ownershipRule2().opacity(0, 0.75, easeInOutQuart),
+    ownershipRule2().x(-700, 0.75, easeInOutQuart),
+  );
+  yield* ownershipRule3().y(-350);
+  yield* all(
+    ownershipRule3().opacity(1, 0.75, easeInOutQuart),
+    ownershipRule3().x(-300, 0.75, easeInOutQuart),
+  );
+
+  yield* waitUntil("what do we mean by scope");
+  yield* waitFor(0.75);
+  yield* codeblock().selection(range(0, 10, 4, 1));
+  yield* waitUntil("when the main function ends");
+
+  yield* codeblock().selection(lines(0, Infinity));
+
+  const endOfScopeArrow = createRef<Line>();
+  yield view.add(
+    <Line
+      lineWidth={8}
+      stroke="f38ba8"
+      points={[
+        [-100, 0],
+        [0, 0],
+      ]}
+      startArrow
+      arrowSize={16}
+      x={-660}
+      y={155}
+      ref={endOfScopeArrow}
+      zIndex={200000000}
+      opacity={0}
+    />,
+  );
+
+  yield* endOfScopeArrow().opacity(1, 0.75, easeInOutQuart);
+  yield* waitUntil("the y variable is dropped");
+
+  yield* all(
+    stackMemPointerArrow().opacity(0, 0.75, easeInOutQuart),
+    stackMemPointerArrowBkg().opacity(0, 0.75, easeInOutQuart),
+    animateClone(view, stackMemPointerValue(), function* (clone) {
+      yield* all(
+        clone.opacity(0, 0.75, easeInOutQuart),
+        clone.y(240, 0.75, easeInOutQuart),
+      );
+    }),
+  );
+  yield* stackMemPointerValue().opacity(0);
+
+  yield* waitUntil("string doesnt have an owner");
+
+  yield* heapMemSampleValue2().stroke("f38ba8", 0.55, easeInOutQuart);
+
+  yield* waitUntil("so rust drops this value");
+  yield* animateClone(view, heapMemSampleValue2(), function* (clone) {
+    yield* all(
+      clone.opacity(0, 0.75, easeInOutQuart),
+      clone.y(240, 0.75, easeInOutQuart),
+    );
+  });
+  yield* heapMemSampleValue2().opacity(0);
 
   /* ---- Memory Manangement End ---- */
 });
