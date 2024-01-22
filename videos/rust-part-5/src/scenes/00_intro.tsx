@@ -16,6 +16,7 @@ import {
 } from "@motion-canvas/2d";
 import {
   CodeBlock,
+  edit,
   insert,
   lines,
   range,
@@ -419,7 +420,6 @@ export default makeScene2D(function* (view) {
   );
   stackMemSampleBoolValue().remove();
   stackMemSampleFloatValue().remove();
-  stackMemSampleIntValue().remove();
 
   yield* heapMemBoxContRef().opacity(1);
   yield* heapMemBoxContRef().scale(0);
@@ -979,19 +979,6 @@ export default makeScene2D(function* (view) {
   yield* all(
     stackMemPointerValueArrow1().lineDash([15, 20], 0.75),
     stackMemPointerValueArrow1().stroke("6c7086", 0.75),
-  );
-
-  const overlayRef = createRef<Rect>();
-  yield* view.add(
-    <Rect
-      width={1920}
-      height={1080}
-      fill="181825"
-      opacity={0}
-      zIndex={1000}
-      ref={overlayRef}
-      filters={[blur(125)]}
-    />,
   );
 
   yield* waitUntil("there are two primary approaches");
@@ -1700,6 +1687,102 @@ export default makeScene2D(function* (view) {
     );
   });
   yield* heapMemSampleValue2().opacity(0);
+  yield* endOfScopeArrow().opacity(0, 0.75, easeInOutQuart);
 
+  yield* waitUntil("lets change the value of x");
+  yield* codeblock().edit(
+    0.75,
+  )`fn main(){\n    let x = ${edit('"Hi"', "10")};\n    let y = x;\n    println!("{}", x);\n}`;
+  yield* waitUntil("since integers are fixed, allocate on stack");
+
+  const stackValueX = createRef<Rect>();
+  const stackValueY = createRef<Rect>();
+
+  stackMemBoxRef().removeChildren();
+
+  stackMemBoxRef().add(
+    <Rect
+      width={310}
+      height={70}
+      radius={10}
+      lineWidth={5}
+      stroke="89b4fa"
+      layout
+      alignItems="center"
+      justifyContent="center"
+      ref={stackValueX}
+      clip
+      opacity={0}
+    >
+      <Txt
+        fontFamily="JetBrains Mono"
+        fontSize={32}
+        fontWeight={600}
+        fill="cdd6f4"
+        text="x: 10"
+      />
+    </Rect>,
+  );
+
+  stackMemBoxRef().add(
+    <Rect
+      width={310}
+      height={70}
+      radius={10}
+      lineWidth={5}
+      stroke="89b4fa"
+      layout
+      alignItems="center"
+      justifyContent="center"
+      ref={stackValueY}
+      clip
+      opacity={0}
+    >
+      <Txt
+        fontFamily="JetBrains Mono"
+        fontSize={32}
+        fontWeight={600}
+        fill="cdd6f4"
+        text="y: 10"
+      />
+    </Rect>,
+  );
+  yield* animateClone(view, stackValueX(), function* (clone) {
+    yield* clone.y(240);
+    yield* all(
+      clone.opacity(1, 0.75, easeInOutQuart),
+      clone.y(-181, 0.75, easeInOutQuart),
+    );
+  });
+  yield* waitUntil("it is instead copied");
+
+  yield* animateClone(view, stackValueY(), function* (clone) {
+    yield* clone.y(240);
+    yield* all(
+      clone.opacity(1, 0.75, easeInOutQuart),
+      clone.y(-81, 0.75, easeInOutQuart),
+    );
+  });
+
+  yield* waitUntil("there are two integers");
+
+  yield* all(
+    stackValueX().stroke("f9e2af", 0.75, easeInOutQuart),
+    stackValueY().stroke("f9e2af", 0.75, easeInOutQuart),
+  );
+
+  yield* waitUntil("we can do one of two things");
+  const overlayRef = createRef<Rect>();
+  yield* view.add(
+    <Rect
+      width={1920}
+      height={1080}
+      fill="181825"
+      opacity={0}
+      zIndex={500000000}
+      ref={overlayRef}
+    />,
+  );
+  yield* overlayRef().opacity(0.98, 0.75, easeInOutQuart);
   /* ---- Memory Manangement End ---- */
 });

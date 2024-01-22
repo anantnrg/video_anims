@@ -264,6 +264,26 @@
     {
       "name": "so rust drops this value",
       "targetTime": 111.74996737488371
+    },
+    {
+      "name": "lets change the value of x",
+      "targetTime": 113.24996737488371
+    },
+    {
+      "name": "since integers are fixed, allocate on stack",
+      "targetTime": 113.99996737488371
+    },
+    {
+      "name": "it is instead copied",
+      "targetTime": 114.74996737488371
+    },
+    {
+      "name": "there are two integers",
+      "targetTime": 115.49996737488371
+    },
+    {
+      "name": "we can do one of two things",
+      "targetTime": 116.24996737488371
     }
   ],
   "seed": 302519928
