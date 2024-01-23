@@ -849,7 +849,7 @@ export default makeScene2D(function* (view) {
   });
   yield view.add(
     <Line
-      lineWidth={74}
+      lineWidth={44}
       stroke="000"
       points={[
         [-200, 126],
@@ -911,6 +911,7 @@ export default makeScene2D(function* (view) {
   );
 
   const heapMemSampleValue3 = createRef<Rect>();
+  const heapMemSampleValue3Text = createRef<Txt>();
 
   heapMemBoxRef().add(
     <Rect
@@ -931,6 +932,7 @@ export default makeScene2D(function* (view) {
         fontWeight={600}
         fill="b4befe"
         text='"I use Arch!"'
+        ref={heapMemSampleValue3Text}
       />
     </Rect>,
   );
@@ -1688,6 +1690,7 @@ export default makeScene2D(function* (view) {
   });
   yield* heapMemSampleValue2().opacity(0);
   yield* endOfScopeArrow().opacity(0, 0.75, easeInOutQuart);
+  yield* ownershipRule3().opacity(0, 0.75, easeInOutQuart);
 
   yield* waitUntil("lets change the value of x");
   yield* codeblock().edit(
@@ -1784,5 +1787,269 @@ export default makeScene2D(function* (view) {
     />,
   );
   yield* overlayRef().opacity(0.98, 0.75, easeInOutQuart);
+
+  const deepClonePointRef = createRef<Txt>();
+  const shallowClonePointRef = createRef<Txt>();
+
+  yield view.add(
+    <Txt
+      text="1. Create a deep clone"
+      fontFamily="JetBrains Mono"
+      fontSize={48}
+      fontWeight={600}
+      fill="f9e2af"
+      zIndex={600000000}
+      y={-50}
+      x={-245}
+      ref={deepClonePointRef}
+      opacity={0}
+    />,
+  );
+
+  yield view.add(
+    <Txt
+      text="2. Create a shallow clone (a reference)"
+      fontFamily="JetBrains Mono"
+      fontSize={48}
+      fontWeight={600}
+      fill="a6e3a1"
+      zIndex={600000000}
+      y={50}
+      ref={shallowClonePointRef}
+      opacity={0}
+    />,
+  );
+
+  yield* waitUntil("create a deep clone of this variable");
+  yield* deepClonePointRef().opacity(1, 0.75, easeInOutQuart);
+  yield* waitUntil("create a shallow clone of this variable");
+  yield* shallowClonePointRef().opacity(1, 0.75, easeInOutQuart);
+
+  yield* waitUntil("lets look at the first option");
+  yield* all(
+    shallowClonePointRef().opacity(0, 0.75, easeInOutQuart),
+    deepClonePointRef().scale(1.1, 0.75, easeInOutQuart),
+    deepClonePointRef().x(0, 0.75, easeInOutQuart),
+    deepClonePointRef().y(0, 0.75, easeInOutQuart),
+  );
+  yield* codeblock().edit(
+    0,
+  )`fn main(){\n    let x = ${edit("10", '"Hi"')};\n    let y = x;\n    println!("{}", x);\n}`;
+  stackMemBoxRef().removeChildren();
+  yield* heapMemSampleValue2().opacity(1);
+  yield* heapMemSampleValue2().stroke("b4befe");
+  yield* codeblock().selection(lines(0, Infinity));
+  stackMemBoxRef().add(
+    <Rect
+      width={310}
+      minHeight={200}
+      radius={10}
+      lineWidth={5}
+      stroke="89b4fa"
+      layout
+      alignItems="center"
+      ref={stackMemPointerValue}
+      paddingTop={10}
+      direction="column"
+    >
+      <Txt
+        fontFamily="JetBrains Mono"
+        fontSize={32}
+        fontWeight={600}
+        fill="cdd6f4"
+        text="x"
+        ref={stackMemPointerValueText}
+      />
+      <Rect stroke="89b4fa" lineWidth={5} width="100%" marginTop={10} />
+      <Rect layout direction="row" width="100%" height="100%">
+        <Rect
+          layout
+          direction="column"
+          alignItems="end"
+          justifyContent="center"
+          width="65%"
+          height="100%"
+          paddingTop={20}
+          paddingBottom={20}
+          gap={20}
+          clip
+        >
+          <Txt
+            fontFamily="JetBrains Mono"
+            fontSize={32}
+            fontWeight={600}
+            fill="cdd6f4"
+            text="pointer:"
+          />
+          <Rect stroke="89b4fa" lineWidth={5} width="100%" />
+          <Txt
+            fontFamily="JetBrains Mono"
+            fontSize={32}
+            fontWeight={600}
+            fill="cdd6f4"
+            text="length:"
+          />
+        </Rect>
+        <Rect
+          layout
+          direction="column"
+          alignItems="center"
+          justifyContent="center"
+          width="35%"
+          height="100%"
+          paddingTop={20}
+          paddingBottom={20}
+          gap={20}
+        >
+          <Txt
+            fontFamily="JetBrains Mono"
+            fontSize={32}
+            fontWeight={600}
+            fill="89b4fa"
+            text="⠀"
+          />
+          <Rect stroke="89b4fa" lineWidth={5} width="100%" />
+          <Txt
+            fontFamily="JetBrains Mono"
+            fontSize={32}
+            fontWeight={600}
+            fill="cdd6f4"
+            ref={stackMemPointerValueLengthText}
+            text="2"
+          />
+        </Rect>
+      </Rect>
+    </Rect>,
+  );
+  stackMemBoxRef().add(
+    <Rect
+      width={310}
+      minHeight={200}
+      radius={10}
+      lineWidth={5}
+      stroke="89b4fa"
+      layout
+      alignItems="center"
+      ref={stackMemPointerValue1}
+      paddingTop={10}
+      opacity={0}
+      direction="column"
+    >
+      <Txt
+        fontFamily="JetBrains Mono"
+        fontSize={32}
+        fontWeight={600}
+        fill="cdd6f4"
+        text="y"
+      />
+      <Rect stroke="89b4fa" lineWidth={5} width="100%" marginTop={10} />
+      <Rect layout direction="row" width="100%" height="100%">
+        <Rect
+          layout
+          direction="column"
+          alignItems="end"
+          justifyContent="center"
+          width="65%"
+          height="100%"
+          paddingTop={20}
+          paddingBottom={20}
+          gap={20}
+          clip
+        >
+          <Txt
+            fontFamily="JetBrains Mono"
+            fontSize={32}
+            fontWeight={600}
+            fill="cdd6f4"
+            text="pointer:"
+          />
+          <Rect stroke="89b4fa" lineWidth={5} width="100%" />
+          <Txt
+            fontFamily="JetBrains Mono"
+            fontSize={32}
+            fontWeight={600}
+            fill="cdd6f4"
+            text="length:"
+          />
+        </Rect>
+        <Rect
+          layout
+          direction="column"
+          alignItems="center"
+          justifyContent="center"
+          width="35%"
+          height="100%"
+          paddingTop={20}
+          paddingBottom={20}
+          gap={20}
+        >
+          <Txt
+            fontFamily="JetBrains Mono"
+            fontSize={32}
+            fontWeight={600}
+            fill="89b4fa"
+            text="⠀"
+          />
+          <Rect stroke="89b4fa" lineWidth={5} width="100%" />
+          <Txt
+            fontFamily="JetBrains Mono"
+            fontSize={32}
+            fontWeight={600}
+            fill="cdd6f4"
+            ref={stackMemPointerValueLengthText}
+            text="2"
+          />
+        </Rect>
+      </Rect>
+    </Rect>,
+  );
+  yield* stackMemPointerArrow().opacity(1);
+  yield* stackMemPointerArrowBkg().opacity(1);
+  yield* all(
+    overlayRef().opacity(0, 0.75, easeInOutQuart),
+    deepClonePointRef().opacity(0, 0.75, easeInOutQuart),
+  );
+  yield* waitUntil("we can call the .clone method");
+
+  yield* codeblock().edit(
+    0.75,
+  )`fn main() {\n    let x = "10";\n    let y = x${insert(
+    ".clone()",
+  )};\n    println!("{}", x);\n}`;
+
+  yield* waitUntil("it will create a copy in heap and stack");
+  yield* heapMemSampleValue3Text().text('"Hi"');
+  yield* stackMemPointerValueArrow1().opacity(1);
+  yield* stackMemPointerValueArrowBkg1().opacity(1);
+  yield* stackMemPointerValueArrow1().x(450);
+  yield* stackMemPointerValueArrow1().y(0);
+  yield* stackMemPointerValueArrowBkg1().x(450);
+  yield* stackMemPointerValueArrowBkg1().y(0);
+  yield* stackMemPointerValueArrowBkg1().end(0);
+  yield* stackMemPointerValueArrow1().end(0);
+  yield* stackMemPointerValueArrow1().stroke("f9e2af");
+  yield* stackMemPointerValueArrow1().lineDash([0, 0]);
+
+  yield* all(
+    animateClone(view, heapMemSampleValue3(), function* (clone) {
+      yield* clone.y(340);
+      yield* all(
+        clone.opacity(1, 0.75, easeInOutQuart),
+        clone.y(261, 0.75, easeInOutQuart),
+      );
+    }),
+    animateClone(view, stackMemPointerValue1(), function* (clone) {
+      yield* clone.y(340);
+      yield* all(
+        clone.opacity(1, 0.75, easeInOutQuart),
+        clone.y(131, 0.75, easeInOutQuart),
+      );
+    }),
+  );
+  yield* all(
+    stackMemPointerValueArrow1().end(1, 0.75, easeInOutQuart),
+    stackMemPointerValueArrowBkg1().end(1, 0.75, easeInOutQuart),
+  );
+
   /* ---- Memory Manangement End ---- */
 });

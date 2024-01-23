@@ -284,6 +284,26 @@
     {
       "name": "we can do one of two things",
       "targetTime": 116.24996737488371
+    },
+    {
+      "name": "create a deep clone of this variable",
+      "targetTime": 116.99996737488371
+    },
+    {
+      "name": "create a shallow clone of this variable",
+      "targetTime": 116.99996737488371
+    },
+    {
+      "name": "lets look at the first option",
+      "targetTime": 118.49996737488371
+    },
+    {
+      "name": "we can call the .clone method",
+      "targetTime": 119.99996737488371
+    },
+    {
+      "name": "it will create a copy in heap and stack",
+      "targetTime": 120.74996737488371
     }
   ],
   "seed": 302519928
